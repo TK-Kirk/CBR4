@@ -8,7 +8,6 @@ import { Rev1HeaderComponent } from './rev1-header.component';
 import { Rev1FooterComponent } from './rev1-footer.component';
 import { Rev1SignupComponent } from './rev1-signup.component';
 import { Rev1EnterComponent } from './rev1-enter.component';
-import { Rev1OffersComponent } from './rev1-offers.component';
 import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';
 import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';

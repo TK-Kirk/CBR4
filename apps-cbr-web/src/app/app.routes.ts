@@ -4,7 +4,6 @@ import { Rev1Component } from './rev1/rev1.module';
 import { rev1Routes, Rev1RoutingModule } from './rev1/rev1-routing.module';
 import { Rev1SignupComponent } from './rev1/rev1-signup.component';
 import { Rev1EnterComponent } from './rev1/rev1-enter.component';
-import { Rev1OffersComponent } from './rev1/rev1-offers.component';
 
 // const routes: Routes = [
 //    { path: '', pathMatch: 'full', redirectTo: '/rev1' },
