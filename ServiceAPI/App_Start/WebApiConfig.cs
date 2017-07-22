@@ -28,8 +28,8 @@ namespace ServiceAPI
             );
 
 
-            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
-            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            //jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
         }
     }
