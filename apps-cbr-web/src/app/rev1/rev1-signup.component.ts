@@ -1,4 +1,4 @@
-import { ActivatedRoute, Data, Router } from '@angular/router';
+﻿import { ActivatedRoute, Data, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 
@@ -139,10 +139,10 @@ export class Rev1SignupComponent implements OnInit {
         if (this.validateBirthdate() && this.contactform.valid) {
             this._rev1Service.postLead(this.contact)
                 .subscribe((data: CoregLead) => {
-
+                    const cbrId = data.cbrLeadId;
                     this._listrakService.postToLists(data, [ListrakLists.CBR_US_Certified, ListrakLists.CBR_US_Non_Cert], 'rev1signup').subscribe();
 
-                    this._router.navigate(['/rev1enter'], { queryParams: { 'email': this.contact.email, 'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId, 'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId } });
+                    this._router.navigate(['/rev1enter'], { queryParams: { 'email': this.contact.email, 'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId, 'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId, 'cbrid': cbrId } });
                 });
 
         }

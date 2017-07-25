@@ -49,9 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExternalResouceModels\Listrak\Listrak.cs" />
+    <Compile Include="ExternalResouceModels\ProvideMedia\ProvideMediaRequest.cs" />
+    <Compile Include="ExternalResouceModels\ProvideMedia\ProvideMediaResponse.cs" />
     <Compile Include="ExternalResouceModels\XVerify\AddressVerificationResponse.cs" />
     <Compile Include="ExternalResouceModels\XVerify\EmailVerificationResponse.cs" />
     <Compile Include="ExternalResouceModels\XVerify\IpVerificationResponse.cs" />
+    <Compile Include="ModelsPartials\CbrLead.cs" />
     <Compile Include="Models\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,7 +66,6 @@
   <ItemGroup>
     <Folder Include="EntityInterfaces\" />
     <Folder Include="Enums\" />
-    <Folder Include="ModelsPartials\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

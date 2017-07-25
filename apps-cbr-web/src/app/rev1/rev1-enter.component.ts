@@ -1,4 +1,4 @@
-import { ActivatedRoute, Data, Router } from '@angular/router';
+﻿import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { CoregLead } from '../shared/models/coreg-lead.model';
@@ -27,7 +27,9 @@ export class Rev1EnterComponent implements OnInit {
     private initializeParameters() {
         this._route
             .queryParams
-            .subscribe((params: any): void => {
+          .subscribe((params: any): void => {
+                this.contact.cbrLeadId = params['cbrid'];
+
                 this.contact.email = params['email'];
                 this.contact.firstname = params['firstname'];
                 this.contact.lastname = params['lastname'];
@@ -56,7 +58,7 @@ export class Rev1EnterComponent implements OnInit {
         // old aspx code only had non cert
         this._listrakService.postAdhoc(listrakFields, [ ListrakLists.CBR_US_Non_Cert], 'rev1enter').subscribe();
 
-        this._router.navigate(['/offers1'], { queryParams: { 'email': this.contact.email, 'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId, 'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId } });
+        this._router.navigate(['/offers1'], { queryParams: { 'email': this.contact.email, 'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId, 'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId, 'cbrid': this.contact.cbrLeadId  } });
 
     }
 }

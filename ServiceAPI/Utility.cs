@@ -9,7 +9,13 @@ namespace ServiceAPI
     {
         public static string GetClientIpAddress()
         {
-            return HttpContext.Current.Request.UserHostAddress;
+            string ip = HttpContext.Current.Request.UserHostAddress;
+
+            if (ip == "127.0.0.1")
+            {
+                return "68.225.172.87";
+            }
+            return ip;
         }
     }
 }

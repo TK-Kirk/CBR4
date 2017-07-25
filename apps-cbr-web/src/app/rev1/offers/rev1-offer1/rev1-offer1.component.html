@@ -1,18 +1,74 @@
-<p>
-  rev1-offer1 works!
-</p>
-<input type="button"  (click)="getTrustedForm()">
-<p>
-  Trusted form =  {{trustedform}}
-</p>
+﻿<section id="intro" class="intro-parallax">
+  <div class="container">
 
-<!-- <script-hack type="text/javascript">
-            var field = 'xxTrustedFormCertUrl';
-            var provideReferrer = false;
-            var tf = document.createElement('script');
-            tf.type = 'text/javascript'; tf.async = true;
-            tf.src = 'http' + ('https:' == document.location.protocol ? 's' : '') +
-            '://api.trustedform.com/trustedform.js?provide_referrer=' + escape(provideReferrer) + '&field=' + escape(field) + '&l=' + new Date().getTime() + Math.random();
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tf, s);
+    <rev1-header></rev1-header>
 
-</script-hack> -->
+    <div class="row">
+
+      <!-- Intro Section Description -->
+      <div id="intro_description" class="col-sm-7 col-md-7" style="text-align: center;">
+
+        <!-- Intro Section Title -->
+        <h1 class="first"> YOU'RE AWESOME {{contact.firstname}} !!</h1>
+
+      </div>
+      <div class="intro_feature col-sm-7 col-md-7" style="text-align: center; margin-top: 5px;">
+        <h4>
+          An email will be sent to you shortly with instructions on completing your free registration. In the meantime, please help us get to know you by answer the following, simple YES-NO questions.
+        </h4>
+      </div>
+
+      <!-- End Intro Section Description -->
+      <div id="intro_form" class="col-sm-5 col-md-5">
+
+
+      </div>
+      <div id="inputDebtCom" class="col-md-7 col-xs-12 offer-container">
+        <div>
+          <img src="../../../../assets/images/offers/providemedia/debtcom.png" />
+        </div>
+        <div class="offer-container-text">
+          Slash Your Total Credit Card Payments by up to 30% to 50%! Yes, I have over $15,000 in credit card debt & would like a free consultation for becoming debt free.
+        </div>
+        <div class="offer-container-consent" id="divConsentCheckDebtcom" [hidden]="!showDebtComConsent">
+          <!--<div class="checkbox-container">
+
+          </div>-->
+          <div>
+            <label class="checkbox inline">
+              <input type="checkbox" runat="server" id="chkConsentDebtcom" [(ngModel)]="debtComConsentChecked" />
+              I hereby consent to receive calls and/or text messages (using an automated dialing system or containing pre-recorded messaging) from Debt.com at the telephone number I provided above. I understand that consent is not a condition of purchase.
+            </label>
+          </div>
+        </div>
+        <div style="margin: 3px">
+          <div class="text-center">
+            <label class="radio inline opt-in">
+              <input class="radioOptin" name="debtCom" id="optDebtComYes" class="" type="radio" value="Yes" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(true);" />Yes
+            </label>
+            <label class="radio inline opt-in">
+              <input name="debtCom" id="optDebtComNo" class="" type="radio" value="No" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(false);" />No
+            </label>
+            <!-- <input name="debtCom" id="optDebtComHidden" [hidden]="false" type="radio" value="None"[(ngModel)]="debtcomAnswer"/> -->
+          </div>
+        </div>
+        <div class="alert alert-danger" [hidden]="!showDebtComUpdate">
+          <label>The follow data is incorrect.</label>
+          <div [hidden]=!showDebtComPhone>
+            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.phone">
+          </div>
+          <div [hidden]=!showDebtComAddress>
+            <input class="form-control data-update-control"  type="text" [(ngModel)]="contact.address">
+            <span [hidden]="debtComMessage === nulll">{{debtComMessage}}</span>
+          </div>
+          <div [hidden]=!showDebtComZip>
+            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+          </div>
+          <input type="button" value="Update" (click)="updateData()">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<rev1-footer></rev1-footer>

@@ -63,6 +63,7 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<CbrSurveyTarget> CbrSurveyTargets { get; set; } // CBRSurveyTarget
         System.Data.Entity.DbSet<CbrSurveyWithdraw> CbrSurveyWithdraws { get; set; } // CBRSurveyWithdraw
         System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
+        System.Data.Entity.DbSet<CbrZipVerified> CbrZipVerifieds { get; set; } // CBRZipVerified
         System.Data.Entity.DbSet<Coreg> Coregs { get; set; } // Coreg
         System.Data.Entity.DbSet<CoregError> CoregErrors { get; set; } // CoregError
         System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
@@ -149,6 +150,7 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<UserNew> UserNews { get; set; } // UserNews
         System.Data.Entity.DbSet<UserSurveyCountAfter> UserSurveyCountAfters { get; set; } // UserSurveyCountAfter
         System.Data.Entity.DbSet<UserSurveyCountBefore> UserSurveyCountBefores { get; set; } // UserSurveyCountBefore
+        System.Data.Entity.DbSet<VerifyZipFailure> VerifyZipFailures { get; set; } // VerifyZipFailure
         System.Data.Entity.DbSet<VwCbrSurveyStatusWithPending> VwCbrSurveyStatusWithPendings { get; set; } // vwCBRSurveyStatusWithPending
         System.Data.Entity.DbSet<VwDebugIp> VwDebugIps { get; set; } // vwDebugIP
         System.Data.Entity.DbSet<VwJobCode> VwJobCodes { get; set; } // vwJobCodes
@@ -376,6 +378,7 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<CbrSurveyTarget> CbrSurveyTargets { get; set; } // CBRSurveyTarget
         public System.Data.Entity.DbSet<CbrSurveyWithdraw> CbrSurveyWithdraws { get; set; } // CBRSurveyWithdraw
         public System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
+        public System.Data.Entity.DbSet<CbrZipVerified> CbrZipVerifieds { get; set; } // CBRZipVerified
         public System.Data.Entity.DbSet<Coreg> Coregs { get; set; } // Coreg
         public System.Data.Entity.DbSet<CoregError> CoregErrors { get; set; } // CoregError
         public System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
@@ -462,6 +465,7 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<UserNew> UserNews { get; set; } // UserNews
         public System.Data.Entity.DbSet<UserSurveyCountAfter> UserSurveyCountAfters { get; set; } // UserSurveyCountAfter
         public System.Data.Entity.DbSet<UserSurveyCountBefore> UserSurveyCountBefores { get; set; } // UserSurveyCountBefore
+        public System.Data.Entity.DbSet<VerifyZipFailure> VerifyZipFailures { get; set; } // VerifyZipFailure
         public System.Data.Entity.DbSet<VwCbrSurveyStatusWithPending> VwCbrSurveyStatusWithPendings { get; set; } // vwCBRSurveyStatusWithPending
         public System.Data.Entity.DbSet<VwDebugIp> VwDebugIps { get; set; } // vwDebugIP
         public System.Data.Entity.DbSet<VwJobCode> VwJobCodes { get; set; } // vwJobCodes
@@ -552,6 +556,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrSurveyTargetConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyWithdrawConfiguration());
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration());
+            modelBuilder.Configurations.Add(new CbrZipVerifiedConfiguration());
             modelBuilder.Configurations.Add(new CoregConfiguration());
             modelBuilder.Configurations.Add(new CoregErrorConfiguration());
             modelBuilder.Configurations.Add(new CountryConfiguration());
@@ -638,6 +643,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new UserNewConfiguration());
             modelBuilder.Configurations.Add(new UserSurveyCountAfterConfiguration());
             modelBuilder.Configurations.Add(new UserSurveyCountBeforeConfiguration());
+            modelBuilder.Configurations.Add(new VerifyZipFailureConfiguration());
             modelBuilder.Configurations.Add(new VwCbrSurveyStatusWithPendingConfiguration());
             modelBuilder.Configurations.Add(new VwDebugIpConfiguration());
             modelBuilder.Configurations.Add(new VwJobCodeConfiguration());
@@ -680,6 +686,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrSurveyTargetConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyWithdrawConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrZipVerifiedConfiguration(schema));
             modelBuilder.Configurations.Add(new CoregConfiguration(schema));
             modelBuilder.Configurations.Add(new CoregErrorConfiguration(schema));
             modelBuilder.Configurations.Add(new CountryConfiguration(schema));
@@ -766,6 +773,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new UserNewConfiguration(schema));
             modelBuilder.Configurations.Add(new UserSurveyCountAfterConfiguration(schema));
             modelBuilder.Configurations.Add(new UserSurveyCountBeforeConfiguration(schema));
+            modelBuilder.Configurations.Add(new VerifyZipFailureConfiguration(schema));
             modelBuilder.Configurations.Add(new VwCbrSurveyStatusWithPendingConfiguration(schema));
             modelBuilder.Configurations.Add(new VwDebugIpConfiguration(schema));
             modelBuilder.Configurations.Add(new VwJobCodeConfiguration(schema));

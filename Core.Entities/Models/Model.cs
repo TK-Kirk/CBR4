@@ -212,7 +212,8 @@ namespace CBR.Core.Entities.Models
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class CbrLead
     {
-        public string EmailAddress { get; set; } // EmailAddress (Primary key) (length: 255)
+        public int CbrLeadId { get; set; } // CBRLeadId (Primary key)
+        public string EmailAddress { get; set; } // EmailAddress (length: 255)
         public string Salutation { get; set; } // Salutation (length: 100)
         public string Firstname { get; set; } // Firstname (length: 100)
         public string Lastname { get; set; } // Lastname (length: 100)
@@ -240,16 +241,16 @@ namespace CBR.Core.Entities.Models
         public string AffiliateId { get; set; } // AffiliateID (length: 255)
         public string SubId { get; set; } // SubID (length: 255)
         public decimal? Cost { get; set; } // Cost
-        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
-        public string SelectedLanguageId { get; set; } // SelectedLanguageID (Primary key) (length: 2)
-        public System.DateTime OptInDate { get; set; } // OptInDate (Primary key)
-        public System.DateTime LastRunDate { get; set; } // LastRunDate (Primary key)
-        public int LastSendOnDay { get; set; } // LastSendOnDay (Primary key)
+        public string CountryId { get; set; } // CountryID (length: 2)
+        public string SelectedLanguageId { get; set; } // SelectedLanguageID (length: 2)
+        public System.DateTime OptInDate { get; set; } // OptInDate
+        public System.DateTime LastRunDate { get; set; } // LastRunDate
+        public int LastSendOnDay { get; set; } // LastSendOnDay
         public System.DateTime? OptOutDate { get; set; } // OptOutDate
-        public bool DoNotSendTo { get; set; } // DoNotSendTo (Primary key)
+        public bool DoNotSendTo { get; set; } // DoNotSendTo
         public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
-        public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated (Primary key)
-        public System.DateTime InsertDate { get; set; } // InsertDate (Primary key)
+        public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated
+        public System.DateTime InsertDate { get; set; } // InsertDate
         public string Ip { get; set; } // IP (length: 15)
         public string Uid { get; set; } // UID (length: 50)
         public bool? Clik { get; set; } // Clik
@@ -648,6 +649,25 @@ namespace CBR.Core.Entities.Models
 
         public CbrVerification()
         {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CBRZipVerified
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrZipVerified
+    {
+        public int CbrZipVerifiedId { get; set; } // CBRZipVerifiedId (Primary key)
+        public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public string ValidIpAddress { get; set; } // ValidIpAddress (length: 15)
+        public string ValidZip { get; set; } // ValidZip (length: 100)
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        public CbrZipVerified()
+        {
+            InsertDate = System.DateTime.Now;
             InitializePartial();
         }
 
@@ -2820,6 +2840,36 @@ namespace CBR.Core.Entities.Models
 
         public UserSurveyCountBefore()
         {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // VerifyZipFailure
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class VerifyZipFailure
+    {
+        public int VerifyZipFailureId { get; set; } // VerifyZipFailureId (Primary key)
+        public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public string Street { get; set; } // Street (length: 500)
+        public string IpAddress { get; set; } // IpAddress (length: 50)
+        public string Zip { get; set; } // Zip (length: 50)
+        public string IpVerifyResultJson { get; set; } // IpVerifyResultJson (length: 1000)
+        public string AddressVerifyResultJson { get; set; } // AddressVerifyResultJson (length: 1000)
+        public bool InvalidIp { get; set; } // InvalidIP
+        public bool InvalidZip { get; set; } // InvalidZip
+        public bool InValidAddress { get; set; } // InValidAddress
+        public bool NoMatch { get; set; } // NoMatch
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        public VerifyZipFailure()
+        {
+            InvalidIp = false;
+            InvalidZip = false;
+            InValidAddress = false;
+            NoMatch = false;
+            InsertDate = System.DateTime.Now;
             InitializePartial();
         }
 

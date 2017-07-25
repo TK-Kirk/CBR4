@@ -8,6 +8,7 @@ namespace CBR.Core.Entities.ResourceModels
 {
     public class Lead
     {
+        public int CBRLeadId { get; set; }
         public string Email { get; set; } // EmailAddress (Primary key) (length: 255)
         public string Firstname { get; set; } // Firstname (length: 100)
         public string Lastname { get; set; } // Lastname (length: 100)

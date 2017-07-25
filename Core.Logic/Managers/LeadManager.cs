@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CBR.Core.Entities.Models;
 
 namespace CBR.Core.Logic.Managers
 {
@@ -33,7 +34,8 @@ namespace CBR.Core.Logic.Managers
             var lead = _db.CbrLeads.FirstOrDefault(l => l.EmailAddress == coreglead.Email && l.OfferId == coreglead.OfferId && l.AffiliateId == coreglead.AffiliateId);
             if (lead == null)
             {
-                lead = new Entities.Models.CbrLead();
+                lead  = new CbrLead();
+                _db.CbrLeads.Add(lead);
             }
             if (string.IsNullOrEmpty(lead.CountryId))
             {
@@ -42,6 +44,8 @@ namespace CBR.Core.Logic.Managers
             LeadMapper.Map(coreglead, lead);
 
             _db.SaveChanges();
+
+            coreglead.CBRLeadId = lead.CbrLeadId;
 
             return coreglead;
         }

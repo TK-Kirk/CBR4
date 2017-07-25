@@ -12,6 +12,7 @@ import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';
 import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';
 
+import { PostService } from '../shared/services/post.service';
 import { XVerifyService } from '../shared/services/xverify.service';
 import { ListrakService } from '../shared/services/listrak.service';
 import { Rev1Offer1Component } from './offers/rev1-offer1/rev1-offer1.component';
@@ -37,7 +38,7 @@ export { Rev1Component };
         Rev1Offer1Component
     ],
     providers: [
-        Rev1Service, XVerifyService, ListrakService
+        Rev1Service, XVerifyService, ListrakService, PostService
     ],
     exports: [
         Rev1Component,

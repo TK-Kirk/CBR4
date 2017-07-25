@@ -272,9 +272,10 @@ namespace CBR.DataAccess.Mapping
         public CbrLeadConfiguration(string schema)
         {
             ToTable("CBRLead", schema);
-            HasKey(x => new { x.EmailAddress, x.CountryId, x.SelectedLanguageId, x.OptInDate, x.LastRunDate, x.LastSendOnDay, x.DoNotSendTo, x.ThirdPartyListsUpdated, x.InsertDate });
+            HasKey(x => x.CbrLeadId);
 
-            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CbrLeadId).HasColumnName(@"CBRLeadId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
             Property(x => x.Salutation).HasColumnName(@"Salutation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
             Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
             Property(x => x.Lastname).HasColumnName(@"Lastname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
@@ -302,16 +303,16 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.AffiliateId).HasColumnName(@"AffiliateID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
             Property(x => x.SubId).HasColumnName(@"SubID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
             Property(x => x.Cost).HasColumnName(@"Cost").HasColumnType("money").IsOptional().HasPrecision(19,4);
-            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.SelectedLanguageId).HasColumnName(@"SelectedLanguageID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.OptInDate).HasColumnName(@"OptInDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.LastRunDate).HasColumnName(@"LastRunDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.LastSendOnDay).HasColumnName(@"LastSendOnDay").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.SelectedLanguageId).HasColumnName(@"SelectedLanguageID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.OptInDate).HasColumnName(@"OptInDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastRunDate).HasColumnName(@"LastRunDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastSendOnDay).HasColumnName(@"LastSendOnDay").HasColumnType("int").IsRequired();
             Property(x => x.OptOutDate).HasColumnName(@"OptOutDate").HasColumnType("datetime").IsOptional();
-            Property(x => x.DoNotSendTo).HasColumnName(@"DoNotSendTo").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DoNotSendTo).HasColumnName(@"DoNotSendTo").HasColumnType("bit").IsRequired();
             Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
-            Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
             Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
             Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
@@ -726,6 +727,30 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.CbrVerificationId).HasColumnName(@"CbrVerificationID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CBRZipVerified
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrZipVerifiedConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrZipVerified>
+    {
+        public CbrZipVerifiedConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrZipVerifiedConfiguration(string schema)
+        {
+            ToTable("CBRZipVerified", schema);
+            HasKey(x => x.CbrZipVerifiedId);
+
+            Property(x => x.CbrZipVerifiedId).HasColumnName(@"CBRZipVerifiedId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.ValidIpAddress).HasColumnName(@"ValidIpAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.ValidZip).HasColumnName(@"ValidZip").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
             InitializePartial();
         }
@@ -3073,6 +3098,37 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.UserSurveyCountBeforeId).HasColumnName(@"UserSurveyCountBeforeID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
             Property(x => x.SurveyCount).HasColumnName(@"SurveyCount").HasColumnType("int").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // VerifyZipFailure
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class VerifyZipFailureConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<VerifyZipFailure>
+    {
+        public VerifyZipFailureConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public VerifyZipFailureConfiguration(string schema)
+        {
+            ToTable("VerifyZipFailure", schema);
+            HasKey(x => x.VerifyZipFailureId);
+
+            Property(x => x.VerifyZipFailureId).HasColumnName(@"VerifyZipFailureId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.Street).HasColumnName(@"Street").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(500);
+            Property(x => x.IpAddress).HasColumnName(@"IpAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.IpVerifyResultJson).HasColumnName(@"IpVerifyResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
+            Property(x => x.AddressVerifyResultJson).HasColumnName(@"AddressVerifyResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
+            Property(x => x.InvalidIp).HasColumnName(@"InvalidIP").HasColumnType("bit").IsRequired();
+            Property(x => x.InvalidZip).HasColumnName(@"InvalidZip").HasColumnType("bit").IsRequired();
+            Property(x => x.InValidAddress).HasColumnName(@"InValidAddress").HasColumnType("bit").IsRequired();
+            Property(x => x.NoMatch).HasColumnName(@"NoMatch").HasColumnType("bit").IsRequired();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
             InitializePartial();
         }

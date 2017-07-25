@@ -23,6 +23,7 @@ namespace ServiceAPI.Controllers
 
                 coreglead.Ip = Utility.GetClientIpAddress();
 
+                //returns new lead with id
                 return Ok(manager.AddOrUpdateCoregLead(coreglead));
             }
             catch (Exception e)

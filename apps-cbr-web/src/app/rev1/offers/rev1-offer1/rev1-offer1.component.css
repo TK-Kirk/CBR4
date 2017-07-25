@@ -1,0 +1,76 @@
+﻿.offer-container  {
+  background: blue;
+}
+
+.offer-container  img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 150px;
+  padding: 9px;
+}
+
+  .offer-container-text div{
+
+    padding: 9px;
+    margin-bottom: 5px;
+  }
+
+
+.offer-container-consent div{
+  margin-top: 10px;
+}
+
+
+.checkbox-container div {
+  margin-right: 8px;
+  float: left;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.offer-selection div {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 10%;
+}
+
+
+.opt-in {
+  width: 15%
+}
+
+/*.inline {
+  display: inline-block;
+}
+
+
+.radioOptin {
+  margin-right: 3px !important;
+  margin-bottom: 0;
+}*/
+
+.radio.inline, .checkbox.inline {
+  display: inline-block;
+  padding-top: 5px;
+  margin-bottom: 0;
+  /*vertical-align: middle;*/
+}
+.radio, .checkbox {
+  min-height: 20px;
+  padding-left: 20px;
+  margin-top: 0;
+}
+.radio.inline+.radio.inline,.checkbox.inline+.checkbox.inline {
+  margin-left: 10px
+}
+
+.data-update-control {
+  margin-bottom: 5px;
+}
+
+
+label, select, button, input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {
+  cursor: pointer;
+}
