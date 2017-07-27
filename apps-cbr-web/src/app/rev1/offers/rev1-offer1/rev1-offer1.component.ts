@@ -126,6 +126,15 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
       this._postservice.postProvideMedia(request)
         .subscribe((data: ProvideMediaResponse) => {
           offer.success = data.success;
+          if (!data.success && data.other === 'Failed zip/ip verifiction.') {
+            offer.showUpdate = true;
+            if (offer.zipMatchAttempts === 0) {
+              offer.invalidZip = true;
+              offer.zipMatchAttempts = 1;
+            } else {
+              this._router.navigate(['/campaignComplete']);
+            }
+          }
 
           if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
             offer.showUpdate = true;
@@ -138,7 +147,7 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
     }
   }
-  updateData(model: ProvideMediaResponse) {
+  updateData(offer: ProvideMediaResponse) {
     const tf: string = this.getTrustedForm();
     const request: ProvideMediaUpdateRequest = {
       phone: this.contact.phone,
@@ -152,13 +161,16 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
     this._postservice.postProvideMediaUpdate(request)
       .subscribe((data: ProvideMediaResponse) => {
-        model.success = data.success;
-        if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
-          //this.showDebtComPhone = data.invalidPhone;
-          //this.showDebtComAddress = data.invalidAddress;
-          //this.showDebtComZip = data.invalidZip;
+        offer.success = data.success;
+        if (!data.success && data.other === 'Failed zip/ip verifiction.') {
+          this._router.navigate(['/campaignComplete']);
         }
-        model.showUpdate = false;
+        if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
+          offer.showUpdate = true;
+          offer.invalidAddress = data.invalidPhone;
+          offer.invalidAddress = data.invalidAddress;
+          offer.invalidZip = data.invalidZip;
+        }
       });
   }
 

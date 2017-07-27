@@ -22,6 +22,11 @@ export class ProvideMediaResponse {
     public consentChecked: boolean;
     public answer: string;
     public campaignCode: string;
+    public zipMatchAttempts;
+
+  constructor() {
+    this.zipMatchAttempts = 0;
+  }
 }
 export class ProvideMediaUpdateRequest {
   public retryRequest: ProvideMediaRequest;

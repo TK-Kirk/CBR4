@@ -8,6 +8,9 @@ import { Rev1HeaderComponent } from './rev1-header.component';
 import { Rev1FooterComponent } from './rev1-footer.component';
 import { Rev1SignupComponent } from './rev1-signup.component';
 import { Rev1EnterComponent } from './rev1-enter.component';
+import { Rev1RejectComponent } from './rev1-reject.component';
+import { Rev1Offer1Component } from './offers/rev1-offer1/rev1-offer1.component';
+
 import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';
 import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';
@@ -15,36 +18,36 @@ import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';
 import { PostService } from '../shared/services/post.service';
 import { XVerifyService } from '../shared/services/xverify.service';
 import { ListrakService } from '../shared/services/listrak.service';
-import { Rev1Offer1Component } from './offers/rev1-offer1/rev1-offer1.component';
 
 
 export { Rev1Component };
 
 
 @NgModule({
-    imports: [
-        FormsModule,
-        CommonModule,
-        Rev1RoutingModule,
-        RouterModule.forChild(rev1Routes)
-    ],
-    declarations: [
-        Rev1Component,
-        Rev1HeaderComponent,
-        Rev1FooterComponent,
-        Rev1SignupComponent,
-        ScriptComponent,
-        Rev1RoutingModule.components,
-        Rev1Offer1Component
-    ],
-    providers: [
-        Rev1Service, XVerifyService, ListrakService, PostService
-    ],
-    exports: [
-        Rev1Component,
-        ScriptComponent,
-        Rev1RoutingModule
-    ]
+  imports: [
+    FormsModule,
+    CommonModule,
+    Rev1RoutingModule,
+    RouterModule.forChild(rev1Routes)
+  ],
+  declarations: [
+    Rev1Component,
+    Rev1HeaderComponent,
+    Rev1FooterComponent,
+    Rev1SignupComponent,
+    ScriptComponent,
+    Rev1RoutingModule.components,
+    Rev1Offer1Component,
+    Rev1RejectComponent
+  ],
+  providers: [
+    Rev1Service, XVerifyService, ListrakService, PostService
+  ],
+  exports: [
+    Rev1Component,
+    ScriptComponent,
+    Rev1RoutingModule
+  ]
 })
 export class Rev1Module {
 

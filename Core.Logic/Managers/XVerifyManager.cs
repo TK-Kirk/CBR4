@@ -13,8 +13,8 @@ namespace CBR.Core.Logic.Managers
 {
     public class XVerifyManager
     {
-        public AddressVerificationResponse AddressInfo { get; }
-        public IpVerificationResponse IpInfo { get; }
+        public AddressVerificationResponse AddressInfo { get; set; }
+        public IpVerificationResponse IpInfo { get; set; }
         private ZipIpVerifyResult _zipIpVerifyResult;
 
         GloshareContext _db;
@@ -32,14 +32,14 @@ namespace CBR.Core.Logic.Managers
                 return new ZipIpVerifyResult() { IsValid = true };
             }
 
-            var xverifyZipResult = Validate(ip, street, zip, email);
-            if (xverifyZipResult.IsValid)
+            _zipIpVerifyResult = Validate(ip, street, zip, email);
+            if (_zipIpVerifyResult.IsValid)
             {
                 return new ZipIpVerifyResult() { IsValid = true };
             }
 
             LogInvalidEntry(ip, street, zip, email);
-            return xverifyZipResult;
+            return _zipIpVerifyResult;
         }
 
         private void LogInvalidEntry(string ip, string street, string zip, string email)
@@ -65,12 +65,12 @@ namespace CBR.Core.Logic.Managers
         private ZipIpVerifyResult Validate(string ip, string street, string zip, string email)
         {
             
-            IpVerificationResponse ipInfo = _xverifyRepository.GetIpVerification(ip);
-            AddressVerificationResponse addressInfo = _xverifyRepository.GetAddressVerification(street, zip);
+            IpInfo = _xverifyRepository.GetIpVerification(ip);
+            AddressInfo = _xverifyRepository.GetAddressVerification(street, zip);
 
-            if (ipInfo.IsValid && addressInfo.IsValid)
+            if (IpInfo.IsValid && AddressInfo.IsValid)
             {
-                if (ipInfo.ipdata.region == addressInfo.address.state)
+                if (IpInfo.ipdata.region == AddressInfo.address.state)
                 {
                     _db.CbrZipVerifieds.Add(new CbrZipVerified()
                     {
@@ -89,24 +89,24 @@ namespace CBR.Core.Logic.Managers
 
             _zipIpVerifyResult = new ZipIpVerifyResult() {IsValid = false, Message = ""};
 
-            if (!addressInfo.IsValid)
+            if (!AddressInfo.IsValid)
             {
-                if (addressInfo.address.message.Contains("Zip Code"))
+                if (AddressInfo.address.message.Contains("Zip Code"))
                 {
                     _zipIpVerifyResult.ZipCodeInvalid = true;
-                    _zipIpVerifyResult.Message += addressInfo.address.message;
+                    _zipIpVerifyResult.Message += AddressInfo.address.message;
                 }
                 else
                 {
                     _zipIpVerifyResult.AddressInvalid = true;
-                    _zipIpVerifyResult.Message += addressInfo.address.message;
+                    _zipIpVerifyResult.Message += AddressInfo.address.message;
                 }
             }
 
-            if (!ipInfo.IsValid)
+            if (!AddressInfo.IsValid)
             {
                 _zipIpVerifyResult.IpInvalid = true;
-                _zipIpVerifyResult.Message += ipInfo.ipdata.message;
+                _zipIpVerifyResult.Message += IpInfo.ipdata.message;
             }
 
             return _zipIpVerifyResult;
