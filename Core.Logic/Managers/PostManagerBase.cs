@@ -84,7 +84,7 @@ namespace CBR.Core.Logic.Managers
                 if (fixedPhone.Length == 10)
                 {
                     //format  (917) 478-3878
-                    fixedPhone = string.Format("({0}) {1}-{2}", phone.Substring(0, 3), phone.Substring(3, 3), phone.Substring(6, 4));
+                    fixedPhone = string.Format("({0}) {1}-{2}", fixedPhone.Substring(0, 3), fixedPhone.Substring(3, 3), fixedPhone.Substring(6, 4));
                 }
             }
 

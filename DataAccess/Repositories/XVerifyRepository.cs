@@ -17,6 +17,21 @@ namespace CBR.DataAccess.Repositories
 
         }
 
+        public ZipcodeLookupResponse GetZipcodeLookup(string zipcode)
+        {
+            string url = $"zipcode/lookup/?zipcode={zipcode}{key}";
+
+            var response = _client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string answer = response.Content.ReadAsStringAsync().Result;
+                var r = JsonConvert.DeserializeObject<ZipcodeLookupResponse>(answer);
+                return r;
+            }
+
+            return new ZipcodeLookupResponse();
+        }
         public bool GetEmailVerification(string email)
         {
             string url = $"emails/verify/?email={email}{key}";

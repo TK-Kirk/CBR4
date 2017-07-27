@@ -31,6 +31,19 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   showDebtComAddress: boolean;
   showDebtComPhone: boolean;
   debtComMessage: string;
+  debtComSuccess: boolean = false;
+
+  // direct energy
+  directEnergyAnswer: string;
+  showDirectEnergyConsent = false;
+  directEnergyConsentChecked = false;
+  showDirectEnergyUpdate: boolean;
+  showDrectEnergyZip: boolean;
+  showDirectEnergyAddress: boolean;
+  showDirectEnergyPhone: boolean;
+  directEnergyMessage: string;
+  directEnergySuccess: boolean = false;
+
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _postservice: PostService, @Inject(DOCUMENT) private document: any) {
     this.contact = new CoregLead;
@@ -90,7 +103,6 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
         return;
       }
 
-      // const tf = this.document.getElementsByName('xxTrustedFormCertUrl').value;
       const tf: string = this.getTrustedForm();
 
       const request: ProvideMediaRequest = {
@@ -101,6 +113,8 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
       this._postservice.postProvideMedia(request)
         .subscribe((data: ProvideMediaResponse) => {
+          this.debtComSuccess = data.success;
+
           if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
             this.showDebtComUpdate = true;
             this.showDebtComPhone = data.invalidPhone;
@@ -128,6 +142,7 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
     this._postservice.postProvideMediaUpdate(request)
       .subscribe((data: ProvideMediaResponse) => {
+        this.debtComSuccess = data.success;
         if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
           //this.showDebtComPhone = data.invalidPhone;
           //this.showDebtComAddress = data.invalidAddress;

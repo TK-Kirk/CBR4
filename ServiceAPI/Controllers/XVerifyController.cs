@@ -19,6 +19,23 @@ namespace ServiceAPI.Controllers
             _xverifyRepository = new XVerifyRepository();
         }
 
+
+        [Route("lookupZipcode/{zipcode}")]
+        [HttpGet]
+        public IHttpActionResult LookupZipcode(string zipcode)
+        {
+            try
+            {
+                return Ok(_xverifyRepository.GetZipcodeLookup(zipcode));
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException != null)
+                    return Ok(e.InnerException.Message);
+                return Ok(e.Message);
+            }
+
+        }
         [Route("verifyemail/{email}")]
         [HttpGet]
         public IHttpActionResult VerifyEmail( string email)

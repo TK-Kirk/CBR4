@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+﻿/* You can add global styles to this file, and also import other style files */
 
 /*Template Name: Crossway - Startup Landing Page Template
 Theme URL: http://themeforest.net/user/DSA79/
@@ -172,7 +172,7 @@ ul {
 /*------------------------------------------*/
 
 #header {
-    margin-bottom: 80px;
+    /*margin-bottom: 80px;*/
 }
 
 #header img {

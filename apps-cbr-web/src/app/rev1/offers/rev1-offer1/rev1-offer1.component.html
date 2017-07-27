@@ -23,48 +23,94 @@
 
 
       </div>
-      <div id="inputDebtCom" class="col-md-7 col-xs-12 offer-container">
-        <div>
-          <img src="../../../../assets/images/offers/providemedia/debtcom.png" />
-        </div>
-        <div class="offer-container-text">
-          Slash Your Total Credit Card Payments by up to 30% to 50%! Yes, I have over $15,000 in credit card debt & would like a free consultation for becoming debt free.
-        </div>
-        <div class="offer-container-consent" id="divConsentCheckDebtcom" [hidden]="!showDebtComConsent">
-          <!--<div class="checkbox-container">
-
-          </div>-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputDebtCom" class="col-md-7 col-xs-12 well offer-container-well">
           <div>
-            <label class="checkbox inline">
-              <input type="checkbox" runat="server" id="chkConsentDebtcom" [(ngModel)]="debtComConsentChecked" />
-              I hereby consent to receive calls and/or text messages (using an automated dialing system or containing pre-recorded messaging) from Debt.com at the telephone number I provided above. I understand that consent is not a condition of purchase.
-            </label>
+            <img src="../../../../assets/images/offers/providemedia/debtcom.png" />
+          </div>
+          <div class="offer-container-text">
+            Slash Your Total Credit Card Payments by up to 30% to 50%! Yes, I have over $15,000 in credit card debt & would like a free consultation for becoming debt free.
+          </div>
+          <div class="offer-container-consent" id="divConsentCheckDebtcom" [hidden]="!showDebtComConsent">
+            <div>
+              <label class="checkbox inline">
+                <input type="checkbox" runat="server" id="chkConsentDebtcom" [(ngModel)]="debtComConsentChecked" />
+                I hereby consent to receive calls and/or text messages (using an automated dialing system or containing pre-recorded messaging) from Debt.com at the telephone number I provided above. I understand that consent is not a condition of purchase.
+              </label>
+            </div>
+          </div>
+          <div class="options-select-container">
+            <div class="text-center">
+              <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png"  *ngIf="debtComSuccess" />
+              <label class="radio inline opt-in">
+                <input name="debtCom" id="optDebtComYes"  type="radio" value="Yes" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(true);"/>Yes
+              </label>
+              <label class="radio inline opt-in">
+                <input name="debtCom" id="optDebtComNo" class="" type="radio" value="No" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(false);"/>No
+              </label>
+            </div>
+          </div>
+          <div class="alert alert-danger" [hidden]="!showDebtComUpdate">
+            <label>The follow data is incorrect.</label>
+            <div [hidden]=!showDebtComPhone>
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.phone">
+            </div>
+            <div [hidden]=!showDebtComAddress>
+              <input class="form-control data-update-control"  type="text" [(ngModel)]="contact.address">
+              <span [hidden]="debtComMessage === null">{{debtComMessage}}</span>
+            </div>
+            <div [hidden]=!showDebtComZip>
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="updateData()">
           </div>
         </div>
-        <div style="margin: 3px">
-          <div class="text-center">
-            <label class="radio inline opt-in">
-              <input class="radioOptin" name="debtCom" id="optDebtComYes" class="" type="radio" value="Yes" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(true);" />Yes
-            </label>
-            <label class="radio inline opt-in">
-              <input name="debtCom" id="optDebtComNo" class="" type="radio" value="No" [(ngModel)]="debtcomAnswer" (change)="debtComSelection(false);" />No
-            </label>
-            <!-- <input name="debtCom" id="optDebtComHidden" [hidden]="false" type="radio" value="None"[(ngModel)]="debtcomAnswer"/> -->
+      </div>
+      
+
+      <!--Direct Energy-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputdirectEnergy" class="col-md-7 col-xs-12 well offer-container-well">
+          <div>
+            <img src="../../../../assets/images/offers/providemedia/directEnergy.png" />
           </div>
-        </div>
-        <div class="alert alert-danger" [hidden]="!showDebtComUpdate">
-          <label>The follow data is incorrect.</label>
-          <div [hidden]=!showDebtComPhone>
-            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.phone">
+          <div class="offer-container-text">
+            Utility bills too high? Tired of seasonal price hikes in electricity or natural gas? Get price protection from utility rate increases with our fixed-rate plans! Find out if you qualify by checking YES!&nbsp;&nbsp;A representative of Direct Energy will contact you at the telephone number you provide by live sales calls, text messaging and/or pre-recorded messaging, which may use automated dialing equipment, to which you consent below. Consent for calls is not required as a condition to purchase. By completion and submission of this form, you confirm you are at least 21 years old and are authorized to provide this consent.<a href="http://www.termspm.com/camps/504_PrivacyPolicy.html" target="_blank">Privacy Policy</a>.
           </div>
-          <div [hidden]=!showDebtComAddress>
-            <input class="form-control data-update-control"  type="text" [(ngModel)]="contact.address">
-            <span [hidden]="debtComMessage === nulll">{{debtComMessage}}</span>
+          <div class="offer-container-consent" id="divConsentCheckdirectEnergy" [hidden]="!showdirectEnergyConsent">
+            <div>
+              <label class="checkbox inline">
+                <input type="checkbox" runat="server" id="chkConsentdirectEnergy" [(ngModel)]="directEnergyConsentChecked" />
+                A representative of Direct Energy will contact you at the telephone number you provide by live sales calls, text messaging and/or pre-recorded messaging, which may use automated dialing equipment, to which you consent below. Consent for calls is not required as a condition to purchase. By completion and submission of this form, you confirm you are at least 21 years old and are authorized to provide this consent. <a href="http://www.termspm.com/camps/504_PrivacyPolicy.html" target="_blank">Privacy Policy</a>
+              </label>
+            </div>
           </div>
-          <div [hidden]=!showDebtComZip>
-            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+          <div class="options-select-container">
+            <div class="text-center">
+              <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="directEnergySuccess" />
+              <label class="radio inline opt-in">
+                <input name="directEnergy" id="optdirectEnergyYes" type="radio" value="Yes" [(ngModel)]="directEnergyAnswer" (change)="directEnergySelection(true);" />Yes
+              </label>
+              <label class="radio inline opt-in">
+                <input name="directEnergy" id="optdirectEnergyNo" class="" type="radio" value="No" [(ngModel)]="directEnergyAnswer" (change)="directEnergySelection(false);" />No
+              </label>
+              <!-- <input name="directEnergy" id="optdirectEnergyHidden" [hidden]="false" type="radio" value="None"[(ngModel)]="directEnergyAnswer"/> -->
+            </div>
           </div>
-          <input type="button" value="Update" (click)="updateData()">
+          <div class="alert alert-danger" [hidden]="!showdirectEnergyUpdate">
+            <label>The follow data is incorrect.</label>
+            <div [hidden]=!showdirectEnergyPhone>
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.phone">
+            </div>
+            <div [hidden]=!showdirectEnergyAddress>
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.address">
+              <span [hidden]="directEnergyMessage === null">{{directEnergyMessage}}</span>
+            </div>
+            <div [hidden]=!showdirectEnergyZip>
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="updateData()">
+          </div>
         </div>
       </div>
     </div>

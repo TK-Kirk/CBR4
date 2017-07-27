@@ -20,6 +20,20 @@ namespace CBR.Core.Entities.ExternalResouceModels.XVerify
             }
         }
 
+        public bool IsIrreputable
+        {
+            get
+            {
+                if (ipdata != null)
+                {
+                    return ipdata.proxy == "1";
+                }
+                return false; ;
+            }
+
+        }
+
+
         public Ipdata ipdata { get; set; }
     }
 

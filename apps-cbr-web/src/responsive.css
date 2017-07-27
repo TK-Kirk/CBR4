@@ -1,4 +1,4 @@
-
+﻿
 /* 
    ------------------------------------------------------
 					Responsive Styles
@@ -39,7 +39,10 @@
 	/*	 Header
 	/*------------------------------------------*/
 
-	#header { margin-bottom: 40px; }
+  /*#header { margin-bottom: 40px; }*/
+
+  /*changed to get rid of big space for mobile*/
+  /*#header { margin-bottom: 15px; }*/
 	
 	/*------------------------------------------*/
 	/*	  Intro Section
@@ -106,7 +109,7 @@
 	/*	 Header
 	/*------------------------------------------*/
 
-	#header { margin-bottom: 50px; }
+	/*#header { margin-bottom: 50px; }*/
 	#header img {padding: 0 15px 0 0;}
 
 	/*------------------------------------------*/

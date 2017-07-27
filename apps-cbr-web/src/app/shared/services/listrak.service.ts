@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class ListrakService {
     listrakUrl: string;
     constructor(private http: Http) {
-        this.listrakUrl = environment.host + 'api/listrak/';
+      this.listrakUrl = `${environment.host}api/listrak/`;
     }
 
     postToLists(data: CoregLead, lists: ListrakLists[], pagename: string): Observable<boolean> {

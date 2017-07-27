@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+﻿import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
@@ -9,7 +9,7 @@ export class XVerifyService {
     xverifyUrl: string;
     hostUrl: string;
     constructor(private http: Http) {
-        this.xverifyUrl = environment.host + 'api/xverify/';
+      this.xverifyUrl = `${environment.host}api/xverify/`;
     }
 
     getEmailIsValid(email: string): Observable<boolean> {
