@@ -22,33 +22,45 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   private subIdTag = 'rev1';
   contact: CoregLead;
 
+
+  debtCom: ProvideMediaResponse;
+  directEnergy: ProvideMediaResponse;
+
   // debt.com
-  debtcomAnswer: string;
-  showDebtComConsent = false;
-  debtComConsentChecked = false;
-  showDebtComUpdate: boolean;
-  showDebtComZip: boolean;
-  showDebtComAddress: boolean;
-  showDebtComPhone: boolean;
-  debtComMessage: string;
-  debtComSuccess: boolean = false;
+  //debtcomAnswer: string;
+  //showDebtComConsent = false;
+  //debtComConsentChecked = false;
+  //showDebtComUpdate: boolean;
+  //showDebtComZip: boolean;
+  //showDebtComAddress: boolean;
+  //showDebtComPhone: boolean;
+  //debtComMessage: string;
+  //debtComSuccess: boolean = false;
 
   // direct energy
-  directEnergyAnswer: string;
-  showDirectEnergyConsent = false;
-  directEnergyConsentChecked = false;
-  showDirectEnergyUpdate: boolean;
-  showDrectEnergyZip: boolean;
-  showDirectEnergyAddress: boolean;
-  showDirectEnergyPhone: boolean;
-  directEnergyMessage: string;
-  directEnergySuccess: boolean = false;
+  //directEnergyAnswer: string;
+  //showDirectEnergyConsent = false;
+  //directEnergyConsentChecked = false;
+  //showDirectEnergyUpdate: boolean;
+  //showDrectEnergyZip: boolean;
+  //showDirectEnergyAddress: boolean;
+  //showDirectEnergyPhone: boolean;
+  //directEnergyMessage: string;
+  //directEnergySuccess: boolean = false;
 
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _postservice: PostService, @Inject(DOCUMENT) private document: any) {
     this.contact = new CoregLead;
 
     this.initializeParameters();
+
+    this.debtCom = new ProvideMediaResponse();
+    this.debtCom.campaignCode = this.CAMPAIGN_CODE_DEBT_COM;
+
+    this.directEnergy = new ProvideMediaResponse;
+    this.directEnergy.campaignCode = this.CAMPAIGN_CODE_DIRECT_ENERGY;
+
+
   }
 
 
@@ -89,46 +101,44 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   }
 
 
-  debtComSelection(selected: boolean) {
-    this.showDebtComConsent = selected;
+  provideMediaSelected(selected: boolean, offer: ProvideMediaResponse) {
+    offer.showConsent = selected;
     if (!selected) {
-      this.showDebtComUpdate = false;
+      offer.showUpdate = false;
       return;
     }
 
     if (selected) {
 
-      if (!this.debtComConsentChecked) {
-        this.debtcomAnswer = null;  // uncheck yes
+      if (!offer.consentChecked) {
+        offer.answer = null;  // uncheck yes
         return;
       }
 
       const tf: string = this.getTrustedForm();
 
       const request: ProvideMediaRequest = {
-        trustedForm: tf, campaignCode: this.CAMPAIGN_CODE_DEBT_COM,
+        trustedForm: tf, campaignCode: offer.campaignCode,
         subIdTag: this.subIdTag, cbrLeadId: this.contact.cbrLeadId
       };
 
 
       this._postservice.postProvideMedia(request)
         .subscribe((data: ProvideMediaResponse) => {
-          this.debtComSuccess = data.success;
+          offer.success = data.success;
 
           if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
-            this.showDebtComUpdate = true;
-            this.showDebtComPhone = data.invalidPhone;
-            this.showDebtComAddress = data.invalidAddress;
-            this.showDebtComZip = data.invalidZip;
-            this.debtComMessage = data.message;
+            offer.showUpdate = true;
+            offer.invalidAddress = data.invalidPhone;
+            offer.invalidAddress = data.invalidAddress;
+            offer.invalidZip = data.invalidZip;
+            offer.message = data.message;
           }
         });
 
     }
   }
-
-
-  updateData() {
+  updateData(model: ProvideMediaResponse) {
     const tf: string = this.getTrustedForm();
     const request: ProvideMediaUpdateRequest = {
       phone: this.contact.phone,
@@ -142,15 +152,79 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
     this._postservice.postProvideMediaUpdate(request)
       .subscribe((data: ProvideMediaResponse) => {
-        this.debtComSuccess = data.success;
+        model.success = data.success;
         if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
           //this.showDebtComPhone = data.invalidPhone;
           //this.showDebtComAddress = data.invalidAddress;
           //this.showDebtComZip = data.invalidZip;
         }
-        this.showDebtComUpdate = false;
+        model.showUpdate = false;
       });
   }
+
+  //debtComSelection(selected: boolean) {
+  //  this.showDebtComConsent = selected;
+  //  if (!selected) {
+  //    this.showDebtComUpdate = false;
+  //    return;
+  //  }
+
+  //  if (selected) {
+
+  //    if (!this.debtComConsentChecked) {
+  //      this.debtcomAnswer = null;  // uncheck yes
+  //      return;
+  //    }
+
+  //    const tf: string = this.getTrustedForm();
+
+  //    const request: ProvideMediaRequest = {
+  //      trustedForm: tf, campaignCode: this.CAMPAIGN_CODE_DEBT_COM,
+  //      subIdTag: this.subIdTag, cbrLeadId: this.contact.cbrLeadId
+  //    };
+
+
+  //    this._postservice.postProvideMedia(request)
+  //      .subscribe((data: ProvideMediaResponse) => {
+  //        this.debtComSuccess = data.success;
+
+  //        if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
+  //          this.showDebtComUpdate = true;
+  //          this.showDebtComPhone = data.invalidPhone;
+  //          this.showDebtComAddress = data.invalidAddress;
+  //          this.showDebtComZip = data.invalidZip;
+  //          this.debtComMessage = data.message;
+  //        }
+  //      });
+
+  //  }
+  //}
+
+
+  //updateData() {
+  //  const tf: string = this.getTrustedForm();
+  //  const request: ProvideMediaUpdateRequest = {
+  //    phone: this.contact.phone,
+  //    address: this.contact.address,
+  //    zip: this.contact.zip,
+  //    retryRequest: {
+  //      trustedForm: tf, campaignCode: this.CAMPAIGN_CODE_DEBT_COM,
+  //      subIdTag: this.subIdTag, cbrLeadId: this.contact.cbrLeadId
+  //    }
+  //  };
+
+  //  this._postservice.postProvideMediaUpdate(request)
+  //    .subscribe((data: ProvideMediaResponse) => {
+  //      this.debtComSuccess = data.success;
+  //      if (!data.success && data.other !== 'Failed zip/ip verifiction.') {
+  //        //this.showDebtComPhone = data.invalidPhone;
+  //        //this.showDebtComAddress = data.invalidAddress;
+  //        //this.showDebtComZip = data.invalidZip;
+  //      }
+  //      this.showDebtComUpdate = false;
+  //    });
+  //}
+
 
 
 }

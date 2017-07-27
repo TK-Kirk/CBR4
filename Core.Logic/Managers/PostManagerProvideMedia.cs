@@ -127,7 +127,9 @@ namespace CBR.Core.Logic.Managers
 
             if (response.Contains("not valid for this offer"))
             {
-                new ProvideMediaResponse() { Success = false, Other = "Not valid for offer." };
+                //return true for success here because 
+                //we don't want the data correction control to show 
+                return new ProvideMediaResponse() { Success = true, Other = "Not valid for offer." };
             }
 
             if (response.Contains("failure"))

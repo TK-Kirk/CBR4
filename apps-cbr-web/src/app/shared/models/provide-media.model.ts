@@ -16,6 +16,12 @@ export class ProvideMediaResponse {
     public other: string;
     public message: string;
 
+  // UI properties only
+    public showUpdate: boolean;
+    public showConsent: boolean;
+    public consentChecked: boolean;
+    public answer: string;
+    public campaignCode: string;
 }
 export class ProvideMediaUpdateRequest {
   public retryRequest: ProvideMediaRequest;
