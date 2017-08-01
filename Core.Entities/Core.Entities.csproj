@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\CoregEnums.cs" />
+    <Compile Include="ExternalResouceModels\CoregPostRequestBase.cs" />
+    <Compile Include="ExternalResouceModels\CoregPostResponse.cs" />
+    <Compile Include="ExternalResouceModels\EngageIQ\EngageIqRequest.cs" />
+    <Compile Include="ExternalResouceModels\EngageIQ\EngageIqResponse.cs" />
     <Compile Include="ExternalResouceModels\Listrak\Listrak.cs" />
     <Compile Include="ExternalResouceModels\ProvideMedia\ProvideMediaRequest.cs" />
     <Compile Include="ExternalResouceModels\ProvideMedia\ProvideMediaResponse.cs" />
@@ -66,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntityInterfaces\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

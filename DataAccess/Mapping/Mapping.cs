@@ -780,6 +780,32 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
+    // CoregCampaign
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregCampaignConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CoregCampaign>
+    {
+        public CoregCampaignConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CoregCampaignConfiguration(string schema)
+        {
+            ToTable("CoregCampaign", schema);
+            HasKey(x => x.CoregCampaignId);
+
+            Property(x => x.CoregCampaignId).HasColumnName(@"CoregCampaignId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.CoregPartnerId).HasColumnName(@"CoregPartnerId").HasColumnType("int").IsRequired();
+            Property(x => x.Active).HasColumnName(@"Active").HasColumnType("bit").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.CoregPartner).WithMany(b => b.CoregCampaigns).HasForeignKey(c => c.CoregPartnerId).WillCascadeOnDelete(false); // FK_CoregCampaign_CoregPartner
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
     // CoregError
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class CoregErrorConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CoregError>
@@ -800,6 +826,58 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.PostData).HasColumnName(@"PostData").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(8000);
             Property(x => x.Response).HasColumnName(@"Response").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(8000);
             Property(x => x.DateInserted).HasColumnName(@"DateInserted").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CoregLeadAccepted
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregLeadAcceptedConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CoregLeadAccepted>
+    {
+        public CoregLeadAcceptedConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CoregLeadAcceptedConfiguration(string schema)
+        {
+            ToTable("CoregLeadAccepted", schema);
+            HasKey(x => x.CoregLeadAcceptedId);
+
+            Property(x => x.CoregLeadAcceptedId).HasColumnName(@"CoregLeadAcceptedId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.CbrLeadId).HasColumnName(@"CBRLeadId").HasColumnType("int").IsRequired();
+            Property(x => x.CoregPartnerId).HasColumnName(@"CoregPartnerId").HasColumnType("int").IsRequired();
+            Property(x => x.CoregCampaignId).HasColumnName(@"CoregCampaignId").HasColumnType("int").IsRequired();
+            Property(x => x.DateSubmitted).HasColumnName(@"DateSubmitted").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.CbrLead).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CbrLeadId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CBRLead
+            HasRequired(a => a.CoregCampaign).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CoregCampaignId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CoregCampaign
+            HasRequired(a => a.CoregPartner).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CoregPartnerId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CoregPartner
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CoregPartner
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregPartnerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CoregPartner>
+    {
+        public CoregPartnerConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CoregPartnerConfiguration(string schema)
+        {
+            ToTable("CoregPartner", schema);
+            HasKey(x => x.CoregPartnerId);
+
+            Property(x => x.CoregPartnerId).HasColumnName(@"CoregPartnerId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Active).HasColumnName(@"Active").HasColumnType("bit").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
             InitializePartial();
         }
         partial void InitializePartial();
@@ -3120,16 +3198,15 @@ namespace CBR.DataAccess.Mapping
 
             Property(x => x.VerifyZipFailureId).HasColumnName(@"VerifyZipFailureId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
-            Property(x => x.Street).HasColumnName(@"Street").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(500);
             Property(x => x.IpAddress).HasColumnName(@"IpAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.IpVerifyResultJson).HasColumnName(@"IpVerifyResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
-            Property(x => x.AddressVerifyResultJson).HasColumnName(@"AddressVerifyResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
+            Property(x => x.ZipLookupResultJson).HasColumnName(@"ZipLookupResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
             Property(x => x.InvalidIp).HasColumnName(@"InvalidIP").HasColumnType("bit").IsRequired();
             Property(x => x.InvalidZip).HasColumnName(@"InvalidZip").HasColumnType("bit").IsRequired();
-            Property(x => x.InValidAddress).HasColumnName(@"InValidAddress").HasColumnType("bit").IsRequired();
             Property(x => x.NoMatch).HasColumnName(@"NoMatch").HasColumnType("bit").IsRequired();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.IrreputableIp).HasColumnName(@"IrreputableIP").HasColumnType("bit").IsRequired();
             InitializePartial();
         }
         partial void InitializePartial();

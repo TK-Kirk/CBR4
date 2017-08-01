@@ -10,7 +10,7 @@ import { Rev1SignupComponent } from './rev1-signup.component';
 import { Rev1EnterComponent } from './rev1-enter.component';
 import { Rev1RejectComponent } from './rev1-reject.component';
 import { Rev1Offer1Component } from './offers/rev1-offer1/rev1-offer1.component';
-
+import { TiburonContentComponent } from './tiburon-content';
 import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';
 import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';
@@ -38,7 +38,8 @@ export { Rev1Component };
     ScriptComponent,
     Rev1RoutingModule.components,
     Rev1Offer1Component,
-    Rev1RejectComponent
+    Rev1RejectComponent,
+    TiburonContentComponent
   ],
   providers: [
     Rev1Service, XVerifyService, ListrakService, PostService

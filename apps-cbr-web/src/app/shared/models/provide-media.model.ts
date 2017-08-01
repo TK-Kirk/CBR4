@@ -1,10 +1,7 @@
 ﻿import { CoregLead } from './coreg-lead.model';
+import { CoregPostRequestBase } from '../models/coreg-post-request-base.model'
 
-export class ProvideMediaRequest {
-    // public contact: CoregLead;
-    public cbrLeadId: number;
-    public subIdTag: string;
-    public campaignCode: string;
+export class ProvideMediaRequest extends CoregPostRequestBase {
     public trustedForm: string;
 }
 
@@ -16,17 +13,7 @@ export class ProvideMediaResponse {
     public other: string;
     public message: string;
 
-  // UI properties only
-    public showUpdate: boolean;
-    public showConsent: boolean;
-    public consentChecked: boolean;
-    public answer: string;
-    public campaignCode: string;
-    public zipMatchAttempts;
 
-  constructor() {
-    this.zipMatchAttempts = 0;
-  }
 }
 export class ProvideMediaUpdateRequest {
   public retryRequest: ProvideMediaRequest;

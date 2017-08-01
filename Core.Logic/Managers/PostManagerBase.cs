@@ -12,12 +12,33 @@ using System.Text.RegularExpressions;
 using CBR.Core.Entities.Models;
 using CBR.DataAccess;
 using System.Web;
+using CBR.Core.Entities.ExternalResouceModels;
 
 
 namespace CBR.Core.Logic.Managers
 {
+
     public class PostManagerBase
     {
+        protected string Get(string url)
+        {
+            // Create a request using a URL that can receive a post. 
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "GET";
+
+            WebResponse response = request.GetResponse();
+            Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            //Console.WriteLine (responseFromServer);
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
+
+        protected GloshareContext _db = new GloshareContext();
         protected string Post(string postData, string url)
         {
             // Create a request using a URL that can receive a post. 
@@ -43,6 +64,7 @@ namespace CBR.Core.Logic.Managers
             response.Close();
             return responseFromServer;
         }
+
 
         protected string GetAge(DateTime? birthDate)
         {
@@ -106,5 +128,68 @@ namespace CBR.Core.Logic.Managers
             });
             _db.SaveChanges();
         }
+
+        protected string GenderGetSingleCharacter(CbrLead lead)
+        {
+            var gender = "";
+            if (!string.IsNullOrWhiteSpace(lead.Gender))
+            {
+                gender = lead.Gender.Substring(0, 1).ToUpper();
+            }
+            return gender;
+        }
+
+
+        protected void UpdateLeadAccepted(CoregPostRequestBase postRequest, CbrLead lead)
+        {
+            var campaign =  _db.CoregCampaigns.First(c => c.CoregCampaignId == (int) postRequest.CampaignCodeId);
+
+            _db.CoregLeadAccepteds.Add(new CoregLeadAccepted()
+            {
+                CbrLeadId = lead.CbrLeadId,
+                CoregCampaignId = (int) postRequest.CampaignCodeId,
+                CoregPartnerId = campaign.CoregPartnerId
+            });
+
+            _db.SaveChanges();
+        }
+
+        protected void UpdateLeadCityStateIP(XVerifyManager xvm, CbrLead lead, string ipAddress)
+        {
+            //Update state/city/ip 
+            if (string.IsNullOrWhiteSpace(lead.City) || string.IsNullOrWhiteSpace(lead.State))
+            {
+                //used cached xverify info if available
+                if (xvm.IpInfo?.ipdata != null)
+                {
+                    lead.City = xvm.IpInfo.ipdata.city;
+                    lead.State = xvm.IpInfo.ipdata.region;
+                }
+                else
+                {
+                    var ipInfo = xvm.GetIpVerification(ipAddress);
+                    lead.City = ipInfo.ipdata.city;
+                    lead.State = ipInfo.ipdata.region;
+                }
+                _db.SaveChanges();
+            }
+
+            if (lead.Ip != ipAddress)
+            {
+                lead.Ip = ipAddress;
+                _db.SaveChanges();
+            }
+        }
+
+        protected bool IsGreaterThan(string value, int testValue)
+        {
+            int intValue;
+            if (int.TryParse(value, out intValue))
+            {
+                return intValue > testValue;
+            }
+            return false;
+        }
+
     }
 }

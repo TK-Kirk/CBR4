@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
 
+import { TiburonContentComponent } from  './tiburon-content';
 import { CoregLead } from '../shared/models/coreg-lead.model';
 import { CoregPostRequest, ListrakLists } from '../shared/models/listrak.model';
 import { TextValue } from '../shared/models/text-value.model';

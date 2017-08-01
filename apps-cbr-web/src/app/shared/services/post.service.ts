@@ -2,8 +2,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CoregLead } from '../../shared/models/coreg-lead.model';
-import { ProvideMediaResponse, ProvideMediaRequest, ProvideMediaUpdateRequest } from '../../shared/models/provide-media.model';
+import { ProvideMediaRequest, ProvideMediaUpdateRequest } from '../../shared/models/provide-media.model';
 import { environment } from '../../../environments/environment';
+import { EngageIqRequest } from "../models/engage-iq.model";
+import { CoregPostResponse } from "../models/coreg-post-response.model";
 
 import 'rxjs/add/operator/map';
 
@@ -16,7 +18,18 @@ export class PostService {
 
   }
 
-    postProvideMedia(request: ProvideMediaRequest): Observable<ProvideMediaResponse> {
+  postEngageIq(request: EngageIqRequest): Observable<CoregPostResponse> {
+    const routeUrl = `${this.postUrl}engageiq`;
+
+    return this.http.post(routeUrl, request)
+      .map((res: Response) => {
+        const result = res.json();
+        return result;
+      });
+  }
+
+
+  postProvideMedia(request: ProvideMediaRequest): Observable<CoregPostResponse> {
       const routeUrl = `${this.postUrl}providemedia`;
 
         return this.http.post(routeUrl, request)
@@ -27,7 +40,7 @@ export class PostService {
     }
 
 
-      postProvideMediaUpdate(request: ProvideMediaUpdateRequest): Observable<ProvideMediaResponse> {
+  postProvideMediaUpdate(request: ProvideMediaUpdateRequest): Observable<CoregPostResponse> {
       const routeUrl = `${this.postUrl}providemediaupdate`;
 
         return this.http.post(routeUrl, request)

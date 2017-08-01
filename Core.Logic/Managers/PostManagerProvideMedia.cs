@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using CBR.Core.Entities.ExternalResouceModels.ProvideMedia;
 using System.Web;
 using System.Xml.Schema;
+using CBR.Core.Entities.ExternalResouceModels;
+using CBR.Core.Entities.Models;
 using CBR.DataAccess;
 using CBR.DataAccess.Repositories;
 using Newtonsoft.Json;
@@ -18,61 +20,46 @@ namespace CBR.Core.Logic.Managers
         const string CAMPAIGN_CODE_DEBT_COM = "wm9EdfezDE8RXU9Rxt21LA";
         const string CAMPAIGN_CODE_SPRING_POWER_GAS = "6lIEmSzGTZ-OW52pU7Ir5g";
         const string CAMPAIGN_CODE_DIRECT_ENERGY = "yGK2ea4AmDf1fVJbMg05kQ";
-        GloshareContext _db = new GloshareContext();
 
-        public ProvideMediaResponse SubmitProvideMediaLead(ProvideMediaRequest request, string ipAddress, bool isTest)
+        public CoregPostResponse SubmitLead(ProvideMediaRequest request, string ipAddress, bool isTest)
         {
             var lead = _db.CbrLeads.FirstOrDefault(l => l.CbrLeadId == request.CbrLeadId);
 
             if (lead == null)
             {
-                return new ProvideMediaResponse(){Success = false, Other = $"LeadId {request.CbrLeadId} not found."};
+                return new CoregPostResponse(){Success = false, Other = $"LeadId {request.CbrLeadId} not found."};
             }
 
-            XVerifyManager xvm = new XVerifyManager();
-            var xverifyZipResult = xvm.VerifyZipCode(lead.EmailAddress, ipAddress, lead.Address, lead.Zip);
-            if (!xverifyZipResult.IsValid)
-            {
-                if (xverifyZipResult.NoMatch)
-                {
-                    return new ProvideMediaResponse() { Success = false, Other = "Failed zip/ip verifiction." };
-                }
+            //XVerifyManager xvm = new XVerifyManager();
+            //var xverifyZipResult = xvm.VerifyZipCode(lead.EmailAddress, ipAddress, lead.Address, lead.Zip);
+            //if (!xverifyZipResult.IsValid)
+            //{
+            //    if (xverifyZipResult.NoMatch)
+            //    {
+            //        return new ProvideMediaResponse() { Success = false, Other = "Failed zip/ip verifiction." };
+            //    }
 
-                return new ProvideMediaResponse()
-                {
-                    Success = false,
-                    InvalidAddress = xverifyZipResult.AddressInvalid,
-                    InvalidZip = xverifyZipResult.ZipCodeInvalid,
-                    Message = xverifyZipResult.Message
-                };
-            };
+            //    return new ProvideMediaResponse()
+            //    {
+            //        Success = false,
+            //        InvalidAddress = xverifyZipResult.AddressInvalid,
+            //        InvalidZip = xverifyZipResult.ZipCodeInvalid,
+            //        Message = xverifyZipResult.Message
+            //    };
+            //};
 
-            //Update state/city/ip 
-            if (string.IsNullOrWhiteSpace(lead.City) || string.IsNullOrWhiteSpace(lead.State))
+            var xverifyManager = new XVerifyManager();
+            var zipResponse = xverifyManager.VerifyZipAndIpAddress(ipAddress, lead.Zip, request.email);
+            if (zipResponse.IpIsIrReputable)
             {
-                //if the zip verification was not cached we can get it from that xverify call result
-                //else we have to make new call to xverify
-                if (xvm.AddressInfo != null)
-                {
-                    lead.City = xvm.AddressInfo.address.city;
-                    lead.State = xvm.AddressInfo.address.state;
-                }
-                else
-                {
-                    var addressInfo  = xvm.GetAddressVerification(lead.Address, lead.Zip);
-                    lead.City = addressInfo.address.city;
-                    lead.State = addressInfo.address.state;
-                    lead.Zip = addressInfo.address.zip;
-                }
-                _db.SaveChanges();
+                return new CoregPostResponse() { Success = false, ipIsIrReputable = true };
             }
 
-            if (lead.Ip != ipAddress)
+            if (zipResponse.NoMatch || zipResponse.ZipCodeInvalid)
             {
-                lead.Ip = ipAddress;
-                _db.SaveChanges();
+                return new CoregPostResponse() { Success = false, zipIpVerificationFailed = true, InvalidZip = zipResponse.ZipCodeInvalid };
             }
-
+            UpdateLeadCityStateIP(xverifyManager, lead, ipAddress);
 
             var phone = PreparePhoneForPost(lead.Phone);
 
@@ -86,13 +73,9 @@ namespace CBR.Core.Logic.Managers
                 consent = "1";
             }
 
-            var gender = "";
-            if (!string.IsNullOrWhiteSpace(lead.Gender))
-            {
-                gender = lead.Gender.Substring(0, 1).ToUpper();
-            }
-            var c = lead;
+            var gender = GenderGetSingleCharacter(lead);
 
+            var c = lead;
 
             string postData = $"campaign_code={request.CampaignCode}&lead[firstname]={c.Firstname}&lead[lastname]={c.Lastname}" +
                 $"&lead[email]={c.EmailAddress}&lead[phone1]={phone}&lead[age]={GetAge(c.BirthDate)}" +
@@ -107,8 +90,8 @@ namespace CBR.Core.Logic.Managers
             {
                 if (response.Contains("success"))
                 {
-
-                    return new ProvideMediaResponse() { Success = true };
+                    UpdateLeadAccepted(request, c);
+                    return new CoregPostResponse() { Success = true };
                 }
                 string errorUrl = BASE_URL + postData;
                 WriteCoregError("ProvideMedia", postData, errorUrl, response);
@@ -116,11 +99,14 @@ namespace CBR.Core.Logic.Managers
                 return ParseResponse(response);
             }
 
-            return new ProvideMediaResponse() { Success = false, Other = "No response." };
+            return new CoregPostResponse() { Success = false, Other = "No response." };
 
         }
 
-        private ProvideMediaResponse ParseResponse(string response)
+
+
+
+        private CoregPostResponse ParseResponse(string response)
         {
 
             //PMResponse pmr = JsonConvert.DeserializeObject<PMResponse>(response);
@@ -129,27 +115,27 @@ namespace CBR.Core.Logic.Managers
             {
                 //return true for success here because 
                 //we don't want the data correction control to show 
-                return new ProvideMediaResponse() { Success = true, Other = "Not valid for offer." };
+                return new CoregPostResponse() { Success = true, Other = "Not valid for offer." };
             }
 
             if (response.Contains("failure"))
             {
                 if (response.Contains("lead_address[address]"))
                 {
-                    return new ProvideMediaResponse() { Success = false, InvalidAddress=true };
+                    return new CoregPostResponse() { Success = false, InvalidAddress=true };
                 }
                 if (response.Contains("lead[phone1]"))
                 {
-                    return new ProvideMediaResponse() { Success = false, InvalidPhone = true };
+                    return new CoregPostResponse() { Success = false, InvalidPhone = true };
                 }
                 if (response.Contains("lead_address[zip]"))
                 {
-                    return new ProvideMediaResponse() { Success = false, InvalidZip = true };
+                    return new CoregPostResponse() { Success = false, InvalidZip = true };
                 }
 
             }
 
-            return new ProvideMediaResponse() { Success = false, Other = "No respose." };
+            return new CoregPostResponse() { Success = false, Other = "No respose." };
 
 
         }

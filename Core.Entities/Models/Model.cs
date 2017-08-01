@@ -255,6 +255,13 @@ namespace CBR.Core.Entities.Models
         public string Uid { get; set; } // UID (length: 50)
         public bool? Clik { get; set; } // Clik
 
+        // Reverse navigation
+
+        /// <summary>
+        /// Child CoregLeadAccepteds where [CoregLeadAccepted].[CBRLeadId] point to this entity (FK_CoregLeadAccepted_CBRLead)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted.FK_CoregLeadAccepted_CBRLead
+
         public CbrLead()
         {
             SmartPhone = false;
@@ -267,6 +274,7 @@ namespace CBR.Core.Entities.Models
             DoNotSendTo = false;
             ThirdPartyListsUpdated = false;
             InsertDate = System.DateTime.Now;
+            CoregLeadAccepteds = new System.Collections.Generic.List<CoregLeadAccepted>();
             InitializePartial();
         }
 
@@ -692,6 +700,38 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
+    // CoregCampaign
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregCampaign
+    {
+        public int CoregCampaignId { get; set; } // CoregCampaignId (Primary key)
+        public string Name { get; set; } // Name (length: 255)
+        public int CoregPartnerId { get; set; } // CoregPartnerId
+        public bool Active { get; set; } // Active
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child CoregLeadAccepteds where [CoregLeadAccepted].[CoregCampaignId] point to this entity (FK_CoregLeadAccepted_CoregCampaign)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted.FK_CoregLeadAccepted_CoregCampaign
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent CoregPartner pointed by [CoregCampaign].([CoregPartnerId]) (FK_CoregCampaign_CoregPartner)
+        /// </summary>
+        public virtual CoregPartner CoregPartner { get; set; } // FK_CoregCampaign_CoregPartner
+
+        public CoregCampaign()
+        {
+            CoregLeadAccepteds = new System.Collections.Generic.List<CoregLeadAccepted>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // CoregError
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class CoregError
@@ -705,6 +745,71 @@ namespace CBR.Core.Entities.Models
 
         public CoregError()
         {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CoregLeadAccepted
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregLeadAccepted
+    {
+        public int CoregLeadAcceptedId { get; set; } // CoregLeadAcceptedId (Primary key)
+        public int CbrLeadId { get; set; } // CBRLeadId
+        public int CoregPartnerId { get; set; } // CoregPartnerId
+        public int CoregCampaignId { get; set; } // CoregCampaignId
+        public System.DateTime DateSubmitted { get; set; } // DateSubmitted
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent CbrLead pointed by [CoregLeadAccepted].([CbrLeadId]) (FK_CoregLeadAccepted_CBRLead)
+        /// </summary>
+        public virtual CbrLead CbrLead { get; set; } // FK_CoregLeadAccepted_CBRLead
+        /// <summary>
+        /// Parent CoregCampaign pointed by [CoregLeadAccepted].([CoregCampaignId]) (FK_CoregLeadAccepted_CoregCampaign)
+        /// </summary>
+        public virtual CoregCampaign CoregCampaign { get; set; } // FK_CoregLeadAccepted_CoregCampaign
+        /// <summary>
+        /// Parent CoregPartner pointed by [CoregLeadAccepted].([CoregPartnerId]) (FK_CoregLeadAccepted_CoregPartner)
+        /// </summary>
+        public virtual CoregPartner CoregPartner { get; set; } // FK_CoregLeadAccepted_CoregPartner
+
+        public CoregLeadAccepted()
+        {
+            DateSubmitted = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CoregPartner
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CoregPartner
+    {
+        public int CoregPartnerId { get; set; } // CoregPartnerId (Primary key)
+        public string Name { get; set; } // Name (length: 100)
+        public bool Active { get; set; } // Active
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child CoregCampaigns where [CoregCampaign].[CoregPartnerId] point to this entity (FK_CoregCampaign_CoregPartner)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<CoregCampaign> CoregCampaigns { get; set; } // CoregCampaign.FK_CoregCampaign_CoregPartner
+        /// <summary>
+        /// Child CoregLeadAccepteds where [CoregLeadAccepted].[CoregPartnerId] point to this entity (FK_CoregLeadAccepted_CoregPartner)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted.FK_CoregLeadAccepted_CoregPartner
+
+        public CoregPartner()
+        {
+            InsertDate = System.DateTime.Now;
+            CoregCampaigns = new System.Collections.Generic.List<CoregCampaign>();
+            CoregLeadAccepteds = new System.Collections.Generic.List<CoregLeadAccepted>();
             InitializePartial();
         }
 
@@ -2852,22 +2957,20 @@ namespace CBR.Core.Entities.Models
     {
         public int VerifyZipFailureId { get; set; } // VerifyZipFailureId (Primary key)
         public string EmailAddress { get; set; } // EmailAddress (length: 255)
-        public string Street { get; set; } // Street (length: 500)
         public string IpAddress { get; set; } // IpAddress (length: 50)
         public string Zip { get; set; } // Zip (length: 50)
         public string IpVerifyResultJson { get; set; } // IpVerifyResultJson (length: 1000)
-        public string AddressVerifyResultJson { get; set; } // AddressVerifyResultJson (length: 1000)
+        public string ZipLookupResultJson { get; set; } // ZipLookupResultJson (length: 1000)
         public bool InvalidIp { get; set; } // InvalidIP
         public bool InvalidZip { get; set; } // InvalidZip
-        public bool InValidAddress { get; set; } // InValidAddress
         public bool NoMatch { get; set; } // NoMatch
         public System.DateTime InsertDate { get; set; } // InsertDate
+        public bool IrreputableIp { get; set; } // IrreputableIP
 
         public VerifyZipFailure()
         {
             InvalidIp = false;
             InvalidZip = false;
-            InValidAddress = false;
             NoMatch = false;
             InsertDate = System.DateTime.Now;
             InitializePartial();

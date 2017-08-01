@@ -7,32 +7,54 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CBR.Core.Entities.ExternalResouceModels.EngageIQ;
 
 namespace ServiceAPI.Controllers
 {
     [RoutePrefix("api/post")]
     public class PostController : ApiController
     {
-        [Route("providemedia")]
+        [Route("engageiq")]
         [HttpPost]
-        public IHttpActionResult PostProvideMedia(ProvideMediaRequest request)
+        public IHttpActionResult PostEngageIq(EngageIqRequest request)
         {
-            try { 
-                var isTest = Properties.Settings.Default.ProvideMediaTest;
+            try
+            {
+                string clientIpAddress = Utility.GetClientIpAddress();
 
-
-
-                //request.Contact.Ip = Utility.GetClientIpAddress();
-                
-                var postManager = new PostManagerProvideMedia();
-
-                return Ok(postManager.SubmitProvideMediaLead(request, Utility.GetClientIpAddress(), isTest));
+                var postManager = new PostManagerEngageIQ();
+                return Ok(postManager.SubmitLead(request, clientIpAddress));
             }
             catch (Exception e)
             {
                 if (e.InnerException != null)
                     return Ok(e.InnerException.Message);
                 return Ok(e.Message);
+            }
+        }
+
+        [Route("providemedia")]
+        [HttpPost]
+        public IHttpActionResult PostProvideMedia(ProvideMediaRequest request)
+        {
+            try { 
+                var isTest = Properties.Settings.Default.ProvideMediaTest;
+                var postManager = new PostManagerProvideMedia();
+                return Ok(postManager.SubmitLead(request, Utility.GetClientIpAddress(), isTest));
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException != null)
+                {
+                    if (e.InnerException.InnerException != null)
+                    {
+                        return Ok(e.InnerException.InnerException.Message);
+                    }
+                    return Ok(e.InnerException.Message);
+                }
+               
+                return Ok(e.Message);
+
             }
         }
 
@@ -49,7 +71,7 @@ namespace ServiceAPI.Controllers
 
                 postManager.UpdateLeadWithProvideMediaData(request);
 
-                return Ok(postManager.SubmitProvideMediaLead(request.RetryRequest, Utility.GetClientIpAddress(), isTest));
+                return Ok(postManager.SubmitLead(request.RetryRequest, Utility.GetClientIpAddress(), isTest));
             }
             catch (Exception e)
             {

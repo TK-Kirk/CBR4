@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 
 namespace CBR.Core.Entities.ExternalResouceModels.ProvideMedia
 {
-    public class ProvideMediaRequest
+    public class ProvideMediaRequest : CoregPostRequestBase
     {
-        //public Lead Contact { get; set; }
-
-        public int CbrLeadId {get;set;}
-        public string SubIdTag { get; set; }
-
-        public string CampaignCode { get; set; }
-
         public string TrustedForm { get; set; }
+
     }
 
     public class ProvideMediaUpdateRequest

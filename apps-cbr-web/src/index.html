@@ -1,33 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <base href="/">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Cashback Research</title>
+  <base href="/">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />-->
+  <title>Cashback Research</title>
 </head>
 <body>
-    <app-container>
-        <div style="position: fixed; top: 43%; left: 43%;">
-            <div id="preloader">
-                <div id="status"></div>
-            </div>
-
-        </div>
-    </app-container>
-    <script type="text/javascript">
-        (function () {
-            var field = 'xxTrustedFormCertUrl';
-            var provideReferrer = false;
-            var tf = document.createElement('script');
-            tf.type = 'text/javascript'; tf.async = true;
-            tf.src = 'http' + ('https:' == document.location.protocol ? 's' : '') +
-            '://api.trustedform.com/trustedform.js?provide_referrer=' + escape(provideReferrer) + '&field=' + escape(field) + '&l=' + new Date().getTime() + Math.random();
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tf, s);
-        }
-        )();
-</script>    
+<app-container>
+  <div style="position: fixed; top: 43%; left: 43%;">
+    <div id="preloader">
+      <div id="status"></div>
+    </div>
+  </div>
+</app-container>
+<script type="text/javascript">
+  (function () {
+      var field = 'xxTrustedFormCertUrl';
+      var provideReferrer = false;
+      var tf = document.createElement('script');
+      tf.type = 'text/javascript';
+      tf.async = true;
+      tf.src = 'http' +
+        ('https:' == document.location.protocol ? 's' : '') +
+        '://api.trustedform.com/trustedform.js?provide_referrer=' +
+        escape(provideReferrer) +
+        '&field=' +
+        escape(field) +
+        '&l=' +
+        new Date().getTime() +
+        Math.random();
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(tf, s);
+    }
+  )();
+</script>
 <form></form>
 </body>
 </html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />

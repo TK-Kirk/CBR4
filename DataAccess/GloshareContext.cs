@@ -65,7 +65,10 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
         System.Data.Entity.DbSet<CbrZipVerified> CbrZipVerifieds { get; set; } // CBRZipVerified
         System.Data.Entity.DbSet<Coreg> Coregs { get; set; } // Coreg
+        System.Data.Entity.DbSet<CoregCampaign> CoregCampaigns { get; set; } // CoregCampaign
         System.Data.Entity.DbSet<CoregError> CoregErrors { get; set; } // CoregError
+        System.Data.Entity.DbSet<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted
+        System.Data.Entity.DbSet<CoregPartner> CoregPartners { get; set; } // CoregPartner
         System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         System.Data.Entity.DbSet<CountryLanguageDefault> CountryLanguageDefaults { get; set; } // CountryLanguageDefault
         System.Data.Entity.DbSet<CpaNotification> CpaNotifications { get; set; } // CPANotification
@@ -380,7 +383,10 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
         public System.Data.Entity.DbSet<CbrZipVerified> CbrZipVerifieds { get; set; } // CBRZipVerified
         public System.Data.Entity.DbSet<Coreg> Coregs { get; set; } // Coreg
+        public System.Data.Entity.DbSet<CoregCampaign> CoregCampaigns { get; set; } // CoregCampaign
         public System.Data.Entity.DbSet<CoregError> CoregErrors { get; set; } // CoregError
+        public System.Data.Entity.DbSet<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted
+        public System.Data.Entity.DbSet<CoregPartner> CoregPartners { get; set; } // CoregPartner
         public System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         public System.Data.Entity.DbSet<CountryLanguageDefault> CountryLanguageDefaults { get; set; } // CountryLanguageDefault
         public System.Data.Entity.DbSet<CpaNotification> CpaNotifications { get; set; } // CPANotification
@@ -558,7 +564,10 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration());
             modelBuilder.Configurations.Add(new CbrZipVerifiedConfiguration());
             modelBuilder.Configurations.Add(new CoregConfiguration());
+            modelBuilder.Configurations.Add(new CoregCampaignConfiguration());
             modelBuilder.Configurations.Add(new CoregErrorConfiguration());
+            modelBuilder.Configurations.Add(new CoregLeadAcceptedConfiguration());
+            modelBuilder.Configurations.Add(new CoregPartnerConfiguration());
             modelBuilder.Configurations.Add(new CountryConfiguration());
             modelBuilder.Configurations.Add(new CountryLanguageDefaultConfiguration());
             modelBuilder.Configurations.Add(new CpaNotificationConfiguration());
@@ -688,7 +697,10 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrZipVerifiedConfiguration(schema));
             modelBuilder.Configurations.Add(new CoregConfiguration(schema));
+            modelBuilder.Configurations.Add(new CoregCampaignConfiguration(schema));
             modelBuilder.Configurations.Add(new CoregErrorConfiguration(schema));
+            modelBuilder.Configurations.Add(new CoregLeadAcceptedConfiguration(schema));
+            modelBuilder.Configurations.Add(new CoregPartnerConfiguration(schema));
             modelBuilder.Configurations.Add(new CountryConfiguration(schema));
             modelBuilder.Configurations.Add(new CountryLanguageDefaultConfiguration(schema));
             modelBuilder.Configurations.Add(new CpaNotificationConfiguration(schema));

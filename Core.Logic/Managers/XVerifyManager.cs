@@ -16,6 +16,7 @@ namespace CBR.Core.Logic.Managers
         public AddressVerificationResponse AddressInfo { get; set; }
         public IpVerificationResponse IpInfo { get; set; }
         private ZipIpVerifyResult _zipIpVerifyResult;
+        public ZipcodeLookupResponse ZipLookupInfo { get; set; }
 
         GloshareContext _db;
         XVerifyRepository _xverifyRepository;
@@ -26,51 +27,115 @@ namespace CBR.Core.Logic.Managers
             _xverifyRepository = new XVerifyRepository();
         }
 
-        public ZipIpVerifyResult VerifyZipCode(string email, string ip,string street, string zip)
-        {
-            if (_db.CbrZipVerifieds.Any(z => z.EmailAddress == email && z.ValidZip == zip && z.ValidIpAddress == ip)){
-                return new ZipIpVerifyResult() { IsValid = true };
-            }
+        //public ZipIpVerifyResult VerifyZipCode(string email, string ip,string street, string zip)
+        //{
+        //    if (_db.CbrZipVerifieds.Any(z => z.EmailAddress == email && z.ValidZip == zip && z.ValidIpAddress == ip)){
+        //        return new ZipIpVerifyResult() { IsValid = true };
+        //    }
 
-            _zipIpVerifyResult = Validate(ip, street, zip, email);
-            if (_zipIpVerifyResult.IsValid)
+        //    _zipIpVerifyResult = Validate(ip, street, zip, email);
+        //    if (_zipIpVerifyResult.IsValid)
+        //    {
+        //        return new ZipIpVerifyResult() { IsValid = true };
+        //    }
+
+        //    LogInvalidEntry(ip, street, zip, email);
+        //    return _zipIpVerifyResult;
+        //}
+
+        private void LogInvalidEntry(string ip, string zip, string email, ZipIpVerifyResult zipIpVerifyResult)
+        {
+            if (_db.VerifyZipFailures.Any(z => z.EmailAddress == email && z.Zip == zip && z.IpAddress == ip))
             {
-                return new ZipIpVerifyResult() { IsValid = true };
+                // already logged it
+                return;
             }
 
-            LogInvalidEntry(ip, street, zip, email);
-            return _zipIpVerifyResult;
-        }
-
-        private void LogInvalidEntry(string ip, string street, string zip, string email)
-        {
             string invalidIpJson = JsonConvert.SerializeObject(IpInfo);
-            string invalidAddressJson = JsonConvert.SerializeObject(AddressInfo);
+            string invalidZipJson = JsonConvert.SerializeObject(ZipLookupInfo);
+
             _db.VerifyZipFailures.Add(new VerifyZipFailure()
             {
                 EmailAddress = email,
-                Street = street,
                 Zip = zip,
                 IpAddress = ip,
-                NoMatch = _zipIpVerifyResult.NoMatch,
-                InValidAddress = _zipIpVerifyResult.AddressInvalid,
-                InvalidIp = _zipIpVerifyResult.IpInvalid,
-                InvalidZip = _zipIpVerifyResult.ZipCodeInvalid,
-                AddressVerifyResultJson = invalidAddressJson,
+                NoMatch = zipIpVerifyResult.NoMatch,
+                InvalidIp = zipIpVerifyResult.IpInvalid,
+                InvalidZip = zipIpVerifyResult.ZipCodeInvalid,
+                IrreputableIp = zipIpVerifyResult.IpIsIrReputable,
+                ZipLookupResultJson = invalidZipJson,
                 IpVerifyResultJson = invalidIpJson
             });
             _db.SaveChanges();
         }
 
-        private ZipIpVerifyResult Validate(string ip, string street, string zip, string email)
-        {
-            
-            IpInfo = _xverifyRepository.GetIpVerification(ip);
-            AddressInfo = _xverifyRepository.GetAddressVerification(street, zip);
 
-            if (IpInfo.IsValid && AddressInfo.IsValid)
+
+
+        //private ZipIpVerifyResult Validate(string ip, string street, string zip, string email)
+        //{
+
+        //    IpInfo = _xverifyRepository.GetIpVerification(ip);
+        //    AddressInfo = _xverifyRepository.GetAddressVerification(street, zip);
+
+        //    if (IpInfo.IsValid && AddressInfo.IsValid)
+        //    {
+        //        if (IpInfo.ipdata.region == AddressInfo.address.state)
+        //        {
+        //            _db.CbrZipVerifieds.Add(new CbrZipVerified()
+        //            {
+        //                EmailAddress = email,
+        //                ValidIpAddress = ip,
+        //                ValidZip = zip
+        //            });
+        //            _db.SaveChanges();
+        //            return new ZipIpVerifyResult() { IsValid = true };
+        //        }
+
+        //        return new ZipIpVerifyResult() { IsValid = false, NoMatch = true };
+        //    }
+
+        //    _zipIpVerifyResult = new ZipIpVerifyResult() { IsValid = false, Message = "" };
+
+        //    if (!AddressInfo.IsValid)
+        //    {
+        //        if (AddressInfo.address.message.Contains("Zip Code"))
+        //        {
+        //            _zipIpVerifyResult.ZipCodeInvalid = true;
+        //            _zipIpVerifyResult.Message += AddressInfo.address.message;
+        //        }
+        //        else
+        //        {
+        //            _zipIpVerifyResult.AddressInvalid = true;
+        //            _zipIpVerifyResult.Message += AddressInfo.address.message;
+        //        }
+        //    }
+
+        //    if (!AddressInfo.IsValid)
+        //    {
+        //        _zipIpVerifyResult.IpInvalid = true;
+        //        _zipIpVerifyResult.Message += IpInfo.ipdata.message;
+        //    }
+
+        //    return _zipIpVerifyResult;
+        //}
+
+        public ZipIpVerifyResult VerifyZipAndIpAddress(string ip, string zip, string email)
+        {
+            if (_db.CbrZipVerifieds.Any(z => z.EmailAddress == email && z.ValidZip == zip && z.ValidIpAddress == ip))
             {
-                if (IpInfo.ipdata.region == AddressInfo.address.state)
+                //should default to true
+                return new ZipIpVerifyResult();
+            }
+            
+
+            IpInfo = _xverifyRepository.GetIpVerification(ip);
+            ZipLookupInfo = _xverifyRepository.GetZipcodeLookup(zip);
+
+            var _zipIpVerifyResult = new ZipIpVerifyResult();
+            if (IpInfo.IsValid && !IpInfo.IsIrreputable && ZipLookupInfo.IsValid)
+            {
+                if (IpInfo.ipdata.region == ZipLookupInfo.zipdata.state)
                 {
                     _db.CbrZipVerifieds.Add(new CbrZipVerified()
                     {
@@ -79,34 +144,22 @@ namespace CBR.Core.Logic.Managers
                         ValidZip = zip
                     });
                     _db.SaveChanges();
-                    return new ZipIpVerifyResult() { IsValid = true};
-                    //return true;
-                }
-
-                return new ZipIpVerifyResult() {IsValid = false, NoMatch = true};
-                //return false;
-            }
-
-            _zipIpVerifyResult = new ZipIpVerifyResult() {IsValid = false, Message = ""};
-
-            if (!AddressInfo.IsValid)
-            {
-                if (AddressInfo.address.message.Contains("Zip Code"))
-                {
-                    _zipIpVerifyResult.ZipCodeInvalid = true;
-                    _zipIpVerifyResult.Message += AddressInfo.address.message;
+                    //return new ZipIpVerifyResult() { IsValid = true };
+                    _zipIpVerifyResult.IsValid = true;
                 }
                 else
                 {
-                    _zipIpVerifyResult.AddressInvalid = true;
-                    _zipIpVerifyResult.Message += AddressInfo.address.message;
+                    _zipIpVerifyResult.NoMatch = true;
                 }
             }
 
-            if (!AddressInfo.IsValid)
+            _zipIpVerifyResult.IpIsIrReputable = IpInfo.IsIrreputable;
+            _zipIpVerifyResult.ZipCodeInvalid = !ZipLookupInfo.IsValid;
+            _zipIpVerifyResult.IpInvalid = !IpInfo.IsValid;
+
+            if (!_zipIpVerifyResult.IsValid)
             {
-                _zipIpVerifyResult.IpInvalid = true;
-                _zipIpVerifyResult.Message += IpInfo.ipdata.message;
+                LogInvalidEntry(ip, zip, email, _zipIpVerifyResult);
             }
 
             return _zipIpVerifyResult;
@@ -114,7 +167,14 @@ namespace CBR.Core.Logic.Managers
 
         public class ZipIpVerifyResult
         {
-            public bool IsValid { get; set; }
+            public bool IsValid
+            {
+                get { return !IpInvalid && !ZipCodeInvalid && !IpIsIrReputable && !NoMatch; }
+                set { }
+            }
+
+            public bool IpIsIrReputable { get; set; }
+
             public bool ZipCodeInvalid { get; set; }
             public bool AddressInvalid { get; set; }
             public bool IpInvalid { get; set; }
@@ -126,7 +186,13 @@ namespace CBR.Core.Logic.Managers
         {
             return _xverifyRepository.GetAddressVerification(streeet, zip);
         }
+
+        public IpVerificationResponse GetIpVerification(string ip)
+        {
+            return _xverifyRepository.GetIpVerification(ip);
+        }
+
     }
-    
+
 }
 
