@@ -48,7 +48,7 @@ namespace CBR.Core.Logic.Managers
 
             if (zipResponse.NoMatch || zipResponse.ZipCodeInvalid)
             {
-                return new CoregPostResponse() { Success = false, zipIpVerificationFailed = true, InvalidZip = zipResponse.ZipCodeInvalid};
+                return new CoregPostResponse() { Success = false, zipIpVerificationFailed = true, InvalidZip = zipResponse.ZipCodeInvalid };
             }
             UpdateLeadCityStateIP(xverifyManager, lead, ipAddress);
 
@@ -92,16 +92,17 @@ namespace CBR.Core.Logic.Managers
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&ip={ipAddress}&q1={r.Q1}&q2={r.Q2}";
                     break;
                 case CoregCampaignType.EngageIQ_RailroadCancer:
+                    postLead = (r.Q1 == "Yes");
                     postData =
                     $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&ip={ipAddress}&q1={r.Q1}";
                     break;
                 case CoregCampaignType.EngageIQ_HernaMesh:
-                    //only post lead if Q2 is 2004 or later
-                    postLead = IsGreaterThan(r.Q2, 2003) && r.Q4 == "0";
+                    postLead = r.Q1 == "Yes" && IsGreaterThan(r.Q2, 2003) && r.Q3 == "Yes" && r.Q4 == "0";
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&state={l.State}&ip={ipAddress}&q1={r.Q1}&q2={r.Q2}";
                     break;
                 case CoregCampaignType.EngageIQ_Xarelto:
+                    postLead = (r.Q1 == "Yes" && r.Q2 == "No");
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&state={l.State}&q1={r.Q1}&q2={r.Q2}";
                     break;
@@ -114,15 +115,18 @@ namespace CBR.Core.Logic.Managers
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&address={l.Address}&city={l.City}&state={l.State}&ip={ipAddress}&dob={dob_YMD_dash}&gender={gender}&datetime={postdate_YMD}&leadid={leadtimestamp}";
                     break;
                 case CoregCampaignType.EngageIQ_PainGel:
+                    postLead = (r.Q1 == "Yes");
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&address={l.Address}&city={l.City}&state={l.State}&ip={ipAddress}&dob={dob_YMD_slash}&gender={gender}";
                     break;
                 case CoregCampaignType.EngageIQ_Toluna:
                     //needs pre ping
+                    postLead = CheckPrePing(l.EmailAddress);
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&zip={l.Zip}&gender={gender}&birth_date={dob_YMD_dash}";
                     break;
                 case CoregCampaignType.EngageIQ_MotorVehicleAccident:
+                    postLead = IsGreaterThan(r.Q2, 2014) && r.Q6 == "No";
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&address={l.Address}&city={l.City}&state={l.State}&ip={ipAddress}&lr=new&program_name=National+Injury+Bureau+MVA(1170)&program_id=1170&q1={r.Q1}&q2={r.Q2}&q3={r.Q3}&q4={r.Q4}&q5={r.Q5}&q6={r.Q6}&comments={r.Comments1}&terms=Yes";
                     break;
@@ -135,7 +139,8 @@ namespace CBR.Core.Logic.Managers
 
             if (postLead)
             {
-                string response = Get(baseurl + postData);
+                string finalUrl = baseurl + postData;
+                string response = Get(finalUrl);
                 if (!string.IsNullOrWhiteSpace(response))
                 {
                     //dynamic dyn = JsonConvert.DeserializeObject(response);
@@ -144,8 +149,7 @@ namespace CBR.Core.Logic.Managers
                         UpdateLeadAccepted(r, l);
                         return new CoregPostResponse() { Success = true };
                     }
-                    string errorUrl = baseurl + postData;
-                    WriteCoregError("EngageIQ", postData, errorUrl, response);
+                    WriteCoregError("EngageIQ", postData, finalUrl, response);
 
                     return new CoregPostResponse() { Success = true };
                 }
@@ -153,52 +157,58 @@ namespace CBR.Core.Logic.Managers
             }
 
             //lead was not posted due to wrong answers on custom questions
+            WriteCoregError("EngageIQ", postData, baseurl, "No response.");
             return new CoregPostResponse() { Success = true };
         }
 
-
+        private bool CheckPrePing(string email)
+        {
+            //return false if the email comes back in the response because it already is in the db
+            string response = Get($"https://us.toluna.com/coreg/panelists?email={email}");
+            return !response.Contains(email);
+        }
 
 
         private void SwapSpacesForPlusSign(EngageIqRequest request, CbrLead lead)
         {
-            int sso = (int)StringSplitOptions.RemoveEmptyEntries;
+            int sso = (int)StringSplitOptions.None;
             //Lead
             if (!string.IsNullOrWhiteSpace(lead.Address))
             {
-                lead.Address = String.Join("+", lead.Address.Split(new[] { ' ' }, sso));
+                lead.Address = lead.Address.Replace(" ", "=");
             }
 
             //Questions
             if (!string.IsNullOrWhiteSpace(request.Q1))
             {
-                request.Q1 = string.Join("+", request.Q1.Split(new[] { ' ' }, sso));
+                request.Q1 = request.Q1.Replace(" ", "+");
             }
             if (!string.IsNullOrWhiteSpace(request.Q2))
             {
-                request.Q2 = string.Join("+", request.Q2.Split(new[] { ' ' }, sso));
+                request.Q2 = request.Q2.Replace(" ", "+");
             }
             if (!string.IsNullOrWhiteSpace(request.Q3))
             {
-                request.Q3 = string.Join("+", request.Q3.Split(new[] { ' ' }, sso));
+                request.Q3 = request.Q3.Replace(" ", "+");
             }
             if (!string.IsNullOrWhiteSpace(request.Q4))
             {
-                request.Q4 = string.Join("+", request.Q4.Split(new[] { ' ' }, sso));
-            }
-            if (!string.IsNullOrWhiteSpace(request.Q6))
-            {
-                request.Q6 = string.Join("+", request.Q6.Split(new[] { ' ' }, sso));
+                request.Q4 = request.Q4.Replace(" ", "+");
             }
             if (!string.IsNullOrWhiteSpace(request.Q5))
             {
-                request.Q5 = string.Join("+", request.Q5.Split(new[] { ' ' }, sso));
+                request.Q5 = request.Q5.Replace(" ", "+");
+            }
+            if (!string.IsNullOrWhiteSpace(request.Q6))
+            {
+                request.Q6 = request.Q6.Replace(" ", "+");
             }
 
 
             // Comments
             if (!string.IsNullOrWhiteSpace(request.Comments1))
             {
-                request.Comments1 = string.Join("+", request.Comments1.Split(new[] { ' ' }, sso));
+                request.Comments1 = request.Comments1.Replace(" ", "+");
             }
         }
     }

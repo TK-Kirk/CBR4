@@ -1,0 +1,1683 @@
+﻿<html>
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Cashback Research</title>
+  <style type="text/css">
+    /* You can add global styles to this file, and also import other style files */
+
+    /*Template Name: Crossway - Startup Landing Page Template
+    Theme URL: http://themeforest.net/user/DSA79/
+    Description: Crossway - Startup Landing Page Template
+    Author: DSA79
+    Author URL: http://themeforest.net/user/DSA79
+    Version: 1.1.0
+    Website: www.dsathemes.com
+    Tags: responsive, html5 template, one page, landing, startup, business, company, corporate, creative
+    */
+
+
+
+    /* ------------------------------------------ */
+    /*             TABLE OF CONTENTS
+    /* ------------------------------------------ */
+
+    /*   01 - General & Basic Styles   */
+    /*   02 - Intro      			   */
+    /*   03 - About        			   */
+    /*   04 - Features                 */
+    /*   05 - FAQs		               */
+    /*   06 - Clients                  */
+    /*   07 - Call to Action           */
+    /*   08 - Footer         		   */
+    /*   09 - Scroll to Top	   		   */
+    /*   10 - Contact Form Response    */
+
+
+
+    /* ==========================================================================
+       01. GENERAL & BASIC STYLES
+       ========================================================================== */
+
+    /*------------------------------------------*/
+    /*	 Preload Animation
+    /*------------------------------------------*/
+      #preloader {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 99999;
+        background-color: #fff;
+      }
+
+      #status {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -100px 0 0 -100px;
+        width: 200px;
+        height: 200px;
+        background-image: url(loader.ab2de61527baf62026db.gif);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 75px 75px;
+      }
+
+      /*------------------------------------------*/
+      /*	 Parallax Settings
+    /*------------------------------------------*/
+
+      .intro-parallax {
+        background-attachment: fixed !important;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+
+      #intro {
+        background-image: url(backgroundimage.35e669e6483ab7ff222f.jpg);
+      }
+
+      .parallax {
+        background-attachment: fixed !important;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      #features {
+        background-image: url(features_bkg.9bbb8d010d974887ed8c.jpg);
+      }
+
+      #call-to-action {
+        /* background-image: url(../img/parallax_bg/call_to_action_bkg.jpg);  */
+        background-color: #8e908f;
+      }
+
+      /*------------------------------------------*/
+      /*	 Headers
+    /*------------------------------------------*/
+
+      h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      /*------------------------------------------*/
+      /*	 Link Setting
+    /*------------------------------------------*/
+
+      a {
+        text-decoration: none;
+        transition: all 250ms ease-in-out;
+      }
+
+      a:hover {
+        color: #444;
+        text-decoration: none;
+      }
+
+      a:focus {
+        color: #f8f8f8;
+        outline: none;
+        border: none;
+        text-decoration: none;
+      }
+
+      /*------------------------------------------*/
+      /*	 Lists
+    /*------------------------------------------*/
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      /*------------------------------------------*/
+      /*	 Section Titlebar
+    /*------------------------------------------*/
+
+      .titlebar {
+        margin-bottom: 40px;
+      }
+
+      .titlebar h1 {
+        color: #000;
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+
+      .titlebar p {
+        color: #666;
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+      }
+
+
+
+      /* ==========================================================================
+       02. INTRO
+       ========================================================================== */
+
+      #intro {
+        padding-top: 30px;
+        /*trying to remove large space on actual phone */
+        /*padding-bottom: 50px;*/
+        color: #fff;
+      }
+
+      /*------------------------------------------*/
+      /*	 Header
+    /*------------------------------------------*/
+
+      #header {
+        /*margin-bottom: 80px;*/
+      }
+
+      #header img {
+        padding: 0 15px;
+      }
+
+      /*------------------------------------------*/
+      /*	 Header Social Icons
+    /*------------------------------------------*/
+
+      .social-icons {
+        display: inline-block;
+      }
+
+      .social-icons li {
+        float: left;
+        width: auto !important;
+        display: inline-block !important;
+        vertical-align: top;
+        clear: none !important;
+        line-height: 35px;
+      }
+
+      .he_social {
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 36px;
+        margin: 0 4px;
+        border-radius: 50%;
+        display: block;
+        text-decoration: none;
+        transition: all 250ms ease-in-out;
+      }
+
+      .he_social:hover {
+        color: #fff;
+        opacity: 0.7;
+      }
+
+      .ico-facebook {
+        background-color: #3b5998;
+        color: #f8f8f8;
+      }
+
+      .ico-twitter {
+        background-color: #00a9ed;
+        color: #f8f8f8;
+      }
+
+      .ico-google-plus {
+        background-color: #cd1111;
+        color: #f8f8f8;
+      }
+
+      .ico-linkedin {
+        background-color: #015886;
+        color: #f8f8f8;
+      }
+
+      .ico-dribbble {
+        background-color: #d92d84;
+        color: #f8f8f8;
+      }
+
+      .ico-instagram {
+        background-color: #beb3a8;
+        color: #f8f8f8;
+      }
+
+      .ico-pinterest {
+        background-color: #ac281a;
+        color: #f8f8f8;
+      }
+
+      .ico-dropbox {
+        background-color: #008ad2;
+        color: #f8f8f8;
+      }
+
+      .ico-skype {
+        background-color: #00a9ed;
+        color: #f8f8f8;
+      }
+
+      .ico-youtube {
+        background-color: #cd1b20;
+        color: #f8f8f8;
+      }
+
+      .ico-tumblr {
+        background-color: #3a5976;
+        color: #f8f8f8;
+      }
+
+      .ico-vimeo {
+        background-color: #00adee;
+        color: #f8f8f8;
+      }
+
+      .ico-flickr {
+        background-color: #d2d2d2;
+        color: #f8f8f8;
+      }
+
+      .ico-github {
+        background-color: #222;
+        color: #f8f8f8;
+      }
+
+      .ico-renren {
+        background-color: #364a83;
+        color: #f8f8f8;
+      }
+
+      .ico-vk {
+        background-color: #3b5998;
+        color: #f8f8f8;
+      }
+
+      .ico-xing {
+        background-color: #015f5e;
+        color: #f8f8f8;
+      }
+
+      .ico-weibo {
+        background-color: #be4443;
+        color: #f8f8f8;
+      }
+
+      .ico-rss {
+        background-color: #ff6600;
+        color: #f8f8f8;
+      }
+
+      /*------------------------------------------*/
+      /*	  Intro Section Description
+    /*------------------------------------------*/
+
+      #intro_description h1 {
+        font-size: 40px;
+        margin-bottom: 30px;
+      }
+
+      #intro_description h1.first {
+        margin-bottom: 0;
+      }
+
+      .intro_feature {
+        margin-bottom: 20px;
+      }
+
+      .intro_feature h4 {
+        font-weight: 600;
+      }
+
+      .intro_feature i {
+        margin-right: 5px;
+      }
+
+      .intro_feature p {
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        padding-left: 25px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Intro Section Button
+    /*------------------------------------------*/
+
+      .intro_button {
+        margin-top: 60px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Register Form
+    /*------------------------------------------*/
+
+      /*#intro_form {
+        padding-left: 100px;
+    }*/
+
+      .form_register {
+        width: 100%;
+        background: rgba(120, 120, 120, 0.45);
+        margin: 0 auto 10px auto;
+        padding: 20px 20px 25px;
+        border-radius: 5px;
+      }
+
+      .form_register h2 {
+        color: #fff;
+        text-align: center;
+        line-height: 30px;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-size: 22px;
+      }
+
+      .terms {
+        text-align: center;
+      }
+
+      .terms a {
+        color: #fff;
+      }
+
+      /*------------------------------------------*/
+      /*	  Register Form Input
+    /*------------------------------------------*/
+
+      label {
+        text-transform: uppercase;
+        font-weight: normal;
+        font-family: 'Lato', sans-serif;
+        width: 100%;
+      }
+
+      .form_register .form-control {
+        height: 46px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 0;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        color: #444;
+        transition: all 300ms ease-in-out;
+      }
+
+      .form_register textarea {
+        min-height: 140px;
+      }
+
+      input[type="date"] {
+        color: #444;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 0 12px;
+      }
+
+      input[type="radio"], input[type="checkbox"] {
+        margin-bottom: 20px;
+      }
+
+      #input_gender span {
+        margin-right: 10px;
+      }
+
+      /*------------------------------------------*/
+      /*	   Register Form Error Message
+    /*------------------------------------------*/
+
+      .error {
+        color: #fc0000;
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+
+
+
+      /* ==========================================================================
+       03. ABOUT
+       ========================================================================== */
+
+      #about-1 {
+        padding-top: 60px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #about-2 {
+        padding-top: 70px;
+        padding-bottom: 80px;
+      }
+
+      #about-1 .titlebar {
+        margin-bottom: 30px;
+      }
+
+      #about-1 h4, #about-2 h4 {
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      /*------------------------------------------*/
+      /*	  About-1 Text
+    /*------------------------------------------*/
+
+      #about-1-text {
+        padding-right: 35px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Accordion
+    /*------------------------------------------*/
+
+      #accordion_holder {
+        margin-top: 40px;
+      }
+
+      .accordion {
+        margin-bottom: 40px;
+      }
+
+      #text_1,
+      #text_2,
+      #text_3,
+      #text_4 {
+        width: 100%;
+        display: block;
+        float: left;
+        padding: 0;
+        margin: 3px 0;
+        cursor: pointer;
+      }
+
+      /*.accordion a {
+        color: #666;
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        line-height: 26px;
+        padding: 10px 40px 10px 15px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+        background: rgba(170, 170, 170, 0.15) url(../img/icons/open.png) no-repeat center right;
+    }
+
+    .accordion li.active > a {
+        background: rgba(170, 170, 170, 0.15) url(../img/icons/close.png) no-repeat center right;
+        color: #151515;
+        box-shadow: none;
+    }*/
+
+      /*------------------------------------------*/
+      /*	  Accordion Answer
+    /*------------------------------------------*/
+
+      .accordion li div {
+        background: #fff;
+        line-height: 22px;
+        padding: 10px 10px;
+        margin-bottom: 5px;
+        display: block;
+        clear: both;
+        float: left;
+      }
+
+      /*------------------------------------------*/
+      /*	 Video Holder
+    /*------------------------------------------*/
+
+      #video_holder p {
+        margin-bottom: 30px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Video Content Settings
+    /*------------------------------------------*/
+
+      .video-block {
+        position: relative;
+        padding-bottom: 54.25%;
+        padding-top: 20px;
+        margin-top: 20px;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-block iframe,
+      .video-block object,
+      .video-block embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /*------------------------------------------*/
+      /*	 About-2 Text
+    /*------------------------------------------*/
+
+      #about-2-text {
+        padding-left: 60px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Quote
+    /*------------------------------------------*/
+
+      #quote_holder {
+        margin-top: 40px;
+      }
+
+      .quote-text {
+        background: rgba(170, 170, 170, 0.15);
+        border-left: none;
+        color: rgba(85, 94, 106, 0.8);
+        font-style: italic;
+        line-height: 25px;
+        margin: 0 0 30px 0;
+        padding: 26px;
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 0 3px 0 rgba(182, 196, 209, 0.3);
+      }
+
+      .quote-text:before {
+        border: 14px solid transparent;
+        z-index: 3;
+        border-top-color: #f2f2f2;
+        top: auto;
+        right: auto;
+        bottom: -28px;
+        left: 30px;
+      }
+
+      .quote-text:after {
+        border: solid 14px transparent;
+        z-index: 2;
+        border-width: 18px;
+        border-top-color: rgba(182, 196, 209, 0.3);
+        top: auto;
+        right: auto;
+        bottom: -36px;
+        left: 26px;
+      }
+
+      .quote-text:before,
+      .quote-text:after,
+      .quote-text-up:before,
+      .quote-text-up:after {
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+      }
+
+      .quote-text a {
+        color: #8c989e;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+      }
+
+      .quote-text a:hover {
+        text-decoration: none;
+      }
+
+      .flexslider .slides img {
+        float: left;
+        margin-right: 15px;
+        margin-left: 6px;
+        width: 75px;
+        box-shadow: 0 0 5px rgba(140, 140, 140, 0.8);
+        border-radius: 1000px;
+      }
+
+      .quote-author {
+        display: inline-block;
+        font-size: 13px !important;
+        line-height: 65px !important;
+      }
+
+
+
+      /* ==========================================================================
+       04. FEATURES
+       ========================================================================== */
+
+      #features {
+        padding-top: 60px;
+        padding-bottom: 30px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Feature Box
+    /*------------------------------------------*/
+
+      .feature-box {
+        margin-bottom: 50px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Feature Box Icon
+    /*------------------------------------------*/
+
+      .feature-box-icon {
+        background-color: #666;
+        display: block;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 0px;
+        top: 10px;
+        border-radius: 30px;
+        color: #FFF;
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      /*------------------------------------------*/
+      /*	  Feature Box Content
+    /*------------------------------------------*/
+
+      .feature-box-content {
+        padding-left: 70px;
+      }
+
+      .feature-box-content h4 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+      }
+
+
+
+      /* ==========================================================================
+       05. FAQs
+       ========================================================================== */
+
+      #faq {
+        padding-top: 60px;
+        padding-bottom: 50px;
+      }
+
+      /*------------------------------------------*/
+      /*	  FAQs Titlebar
+    /*------------------------------------------*/
+
+      #faq .titlebar {
+        margin-bottom: 30px;
+      }
+
+      /*------------------------------------------*/
+      /*	  FAQs Question
+    /*------------------------------------------*/
+
+      .question {
+        margin-bottom: 20px;
+      }
+
+      .question h4 {
+        font-weight: 600;
+      }
+
+      .question p {
+        color: #666;
+        font-family: 'Lato', sans-serif;
+      }
+
+
+
+      /* ==========================================================================
+       06. CLIENTS
+       ========================================================================== */
+
+
+      #clients {
+        padding-top: 60px;
+        padding-bottom: 80px;
+        border-top: 1px solid #ddd;
+      }
+
+      #clients-titlebar {
+        position: relative;
+      }
+
+      /*------------------------------------------*/
+      /*	 Clients Carousel Navigation
+    /*------------------------------------------*/
+
+      .customNavigation {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 10px;
+      }
+
+      .customNavigation .btn {
+        padding: 4px 10px;
+      }
+
+      .customNavigation i {
+        font-size: 20px;
+        color: #fff;
+      }
+
+
+
+      /* ==========================================================================
+       07. CALL TO ACTION
+       ========================================================================== */
+
+      #call-to-action {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
+      #call-to-action h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 300;
+        padding: 0 15%;
+        margin-bottom: 15px;
+      }
+
+      #call-to-action p {
+        color: #fff;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        padding: 0 10%;
+        margin-bottom: 30px;
+      }
+
+
+      /* ==========================================================================
+       08. FOOTER
+       ========================================================================== */
+      #footer {
+        background-color: #1A1E23;
+        padding: 60px 0 40px;
+      }
+
+      /*------------------------------------------*/
+      /*	 Footer Navigation Menu
+    /*------------------------------------------*/
+
+      .footer-nav li {
+        float: left;
+        padding: 5px 10px 10px;
+      }
+
+      .footer-nav li a {
+        color: #999;
+        font-size: 15px;
+        font-family: 'Lato', sans-serif;
+      }
+
+      .footer-nav li a:hover {
+        color: #428bca;
+      }
+
+      /*------------------------------------------*/
+      /*	 Footer Copy
+    /*------------------------------------------*/
+
+      #footer_copy p {
+        color: #666;
+        font-size: 13px;
+        font-family: 'Lato', sans-serif;
+        margin-left: 10px;
+      }
+
+      #footer_copy p span {
+        color: #428bca;
+      }
+
+      /*------------------------------------------*/
+      /*	 Footer Social Icons
+    /*------------------------------------------*/
+
+      #footer_icons {
+        margin: 3px 0;
+      }
+
+      .footer-socials {
+        display: inline-block;
+      }
+
+      .footer-socials li {
+        float: left;
+        width: auto !important;
+        display: inline-block !important;
+        vertical-align: top;
+        clear: none !important;
+        line-height: 44px;
+        color: #999;
+      }
+
+      .foo_social {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        color: #1A1E23;
+        font-size: 20px;
+        line-height: 40px;
+        margin: 0 5px;
+        background-color: #999;
+        border-radius: 50%;
+        display: block;
+        text-decoration: none;
+        transition: all 250ms ease-in-out;
+      }
+
+      .phone {
+        margin-left: 10px;
+      }
+
+      /*------------------------------------------*/
+      /*	 Footer Icons Hover
+    /*------------------------------------------*/
+
+      .ico-facebook:hover {
+        background-color: #3b5998;
+        color: #f8f8f8;
+      }
+
+      .ico-twitter:hover {
+        background-color: #00a9ed;
+        color: #f8f8f8;
+      }
+
+      .ico-google-plus:hover {
+        background-color: #cd1111;
+        color: #f8f8f8;
+      }
+
+      .ico-linkedin:hover {
+        background-color: #015886;
+        color: #f8f8f8;
+      }
+
+      .ico-dribbble:hover {
+        background-color: #d92d84;
+        color: #f8f8f8;
+      }
+
+      .ico-instagram:hover {
+        background-color: #beb3a8;
+        color: #f8f8f8;
+      }
+
+      .ico-pinterest:hover {
+        background-color: #ac281a;
+        color: #f8f8f8;
+      }
+
+      .ico-dropbox:hover {
+        background-color: #008ad2;
+        color: #f8f8f8;
+      }
+
+      .ico-skype:hover {
+        background-color: #00a9ed;
+        color: #f8f8f8;
+      }
+
+      .ico-youtube:hover {
+        background-color: #cd1b20;
+        color: #f8f8f8;
+      }
+
+      .ico-tumblr:hover {
+        background-color: #3a5976;
+        color: #f8f8f8;
+      }
+
+      .ico-vimeo:hover {
+        background-color: #00adee;
+        color: #f8f8f8;
+      }
+
+      .ico-flickr:hover {
+        background-color: #d2d2d2;
+        color: #f8f8f8;
+      }
+
+      .ico-github:hover {
+        background-color: #222;
+        color: #f8f8f8;
+      }
+
+      .ico-renren:hover {
+        background-color: #364a83;
+        color: #f8f8f8;
+      }
+
+      .ico-vk:hover {
+        background-color: #3b5998;
+        color: #f8f8f8;
+      }
+
+      .ico-xing:hover {
+        background-color: #015f5e;
+        color: #f8f8f8;
+      }
+
+      .ico-weibo:hover {
+        background-color: #be4443;
+        color: #f8f8f8;
+      }
+
+      .ico-rss:hover {
+        background-color: #ff6600;
+        color: #f8f8f8;
+      }
+
+      /*------------------------------------------*/
+      /*	 Footer Newsletter Form
+    /*------------------------------------------*/
+
+      .subscribe-form {
+        margin: 5px auto 0;
+        position: relative;
+        z-index: 10;
+        width: 90%;
+      }
+
+      #newsletter_form p {
+        color: #666;
+        font-size: 13px;
+        line-height: 16px;
+        font-family: 'Lato', sans-serif;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      #newsletter_form p span {
+        color: #428bca;
+      }
+
+      .subscribe-input {
+        width: 68%;
+        height: 30px;
+        background-color: #aaa;
+        color: #ddd;
+        font-size: 14px;
+        font-weight: 300;
+        padding-left: 10px;
+        border: none;
+      }
+
+      .subscribe-submit {
+        width: 32%;
+        height: 30px;
+        background: #383e46;
+        color: #fff;
+        font-size: 12px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border: none;
+        cursor: pointer;
+        outline: 0;
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.2);
+        transition: all 250ms ease-in-out;
+      }
+
+      .subscribe-submit:active {
+        outline: 0;
+      }
+
+      .subscribe-submit:hover {
+        background: #428bca;
+      }
+
+
+
+      /* ==========================================================================
+       09. SCROLL TO TOP
+       ========================================================================== */
+
+      /*#scrollUp {
+        display: none;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-image: url(../img/icons/back-to-top.png);
+        background-repeat: no-repeat;
+        background-position: 50% 48%;
+        background-color: rgba(123, 123, 123, 0.65);
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-transition: all 250ms linear;
+        -moz-transition: all 250ms linear;
+        transition: all 250ms linear;
+    }*/
+
+      #scrollUp:hover {
+        background-color: rgba(66, 139, 202, 0.95);
+      }
+
+      nav a#pull {
+        display: none;
+      }
+
+
+
+      /* ==========================================================================
+       10. CONTACT FORM RESPONSE PAGE
+       ========================================================================== */
+
+      #form_response {
+        margin: 50px auto;
+      }
+
+      #form_response .img-responsive {
+        display: inline-block;
+      }
+
+      #form_response h1 {
+        font-size: 40px;
+        font-weight: 700;
+        margin-top: 10px;
+      }
+
+      #form_response p {
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+  </style>
+  <style type="text/css">
+    /*
+       ------------------------------------------------------
+              Responsive Styles
+       ------------------------------------------------------
+    */
+
+
+              @media (min-width: 992px) and (max-width: 1199px) {
+
+                /*------------------------------------------*/
+                /*	  Intro Section
+      /*------------------------------------------*/
+
+                #intro_form {padding-left: 15px;}
+                .intro_button {margin-top: 30px;}
+
+                /*------------------------------------------*/
+                /*	  Video Content Settings
+      /*------------------------------------------*/
+
+                .video-block {padding-bottom: 68.25%;}
+
+                /*------------------------------------------*/
+                /*	 Footer Newsletter Form
+      /*------------------------------------------*/
+
+                .subscribe-form {width: 100%;}
+
+              }
+
+
+              @media only screen and (max-width: 991px){
+
+                .titlebar h1 { font-size: 32px; }
+                .titlebar p {font-size: 16px; }
+
+                /*------------------------------------------*/
+                /*	 Header
+      /*------------------------------------------*/
+
+                /*#header { margin-bottom: 40px; }*/
+
+                /*changed to get rid of big space for mobile*/
+                /*#header { margin-bottom: 15px; }*/
+
+                /*------------------------------------------*/
+                /*	  Intro Section
+      /*------------------------------------------*/
+
+                #intro_description, #logo_image, #social_icons { padding: 0;}
+                #intro_form {padding: 0 0 0 25px;}
+                #intro_description h1 {font-size: 32px;}
+                .intro_button {margin-top: 40px;}
+
+                /*------------------------------------------*/
+                /*	 About Sections
+      /*------------------------------------------*/
+
+                #about-1 {padding-bottom: 60px;}
+                #about-2 {padding-top: 60px;}
+
+                #about-1-text {padding-right: 15px;}
+                #about-2-text {padding-left: 15px;}
+
+                /*------------------------------------------*/
+                /*	 About-1 Image
+      /*------------------------------------------*/
+
+                #about-1-img img {padding: 0 60px;}
+
+                /*------------------------------------------*/
+                /*	 Video Holder
+      /*------------------------------------------*/
+
+                #video_holder {margin-bottom: 40px;}
+
+                /*------------------------------------------*/
+                /*	 Call to Action
+      /*------------------------------------------*/
+
+                #call-to-action h1 {font-size: 32px; padding: 0;}
+                #call-to-action p {font-size: 18px; padding: 0;}
+
+                /*------------------------------------------*/
+                /*	 Footer Social Icons
+      /*------------------------------------------*/
+
+                #footer_icons { margin:6px 0; }
+                .footer-socials { display: inline-block; float: right;}
+
+                /*------------------------------------------*/
+                /*	 Footer Newsletter Form
+      /*------------------------------------------*/
+
+                .subscribe-form {margin: 40px auto 5px; width: 55%; float: none !important;}
+                #newsletter-paragraph {float: none !important;}
+
+              }
+
+
+              @media only screen and (max-width: 767px){
+
+                .container { overflow: hidden;}
+
+                #intro_form, #logo_image, #social_icons, #about-1, #about-2, #features, #faq, #clients { padding-left: 45px; padding-right: 45px;}
+
+                /*------------------------------------------*/
+                /*	 Header
+      /*------------------------------------------*/
+
+                /*#header { margin-bottom: 50px; }*/
+                #header img {padding: 0 15px 0 0;}
+
+                /*------------------------------------------*/
+                /*	  Intro Section
+      /*------------------------------------------*/
+
+                #intro_description  { margin-bottom: 40px; padding: 0 45px;}
+                #intro_description h1 {font-size: 32px;}
+                .intro_button {margin-top: 20px;}
+
+                .form_register {width: 60%; }
+
+                /*------------------------------------------*/
+                /*	 Features
+      /*------------------------------------------*/
+
+                .feature-box {margin-bottom: 30px;}
+
+                /*------------------------------------------*/
+                /*	 Call to Action
+      /*------------------------------------------*/
+
+                #call-to-action p {padding: 0 4%;}
+
+                /*------------------------------------------*/
+                /*	 Footer
+      /*------------------------------------------*/
+
+                #footer_nav { text-align: center; margin-bottom: 30px;}
+                .footer-nav {display: inline-block; margin: 0 auto;}
+                #footer_copy p {margin-left: 0;}
+                .footer-nav li {padding: 5px 10px 5px;}
+
+                /*------------------------------------------*/
+                /*	 Footer Social Icons
+      /*------------------------------------------*/
+
+                .footer-socials {float: none;}
+
+                /*------------------------------------------*/
+                /*	 Footer Newsletter Form
+      /*------------------------------------------*/
+
+                .subscribe-form {margin: 25px auto 5px; width: 50%;}
+
+              }
+
+
+              @media (max-width: 480px) {
+
+                #intro_description, #intro_form, #logo_image, #social_icons, #about-1, #about-2, #features, #faq, #clients { padding-left: 20px; padding-right: 20px;}
+
+                .intro_feature p {font-size: 14px; }
+                .form_register {width: 90%; }
+
+                #about-1-img img {padding: 0;}
+                #about-2-img img {margin-top: 0;padding: 0;}
+
+                /*------------------------------------------*/
+                /*	 Footer Newsletter Form
+      /*------------------------------------------*/
+
+                .subscribe-form {margin: 25px auto 5px; width: 70%;}
+
+              }
+
+
+              @media (max-width: 320px) {
+
+                .titlebar h1 { font-size: 28px; }
+
+                #intro_form, #logo_image, #social_icons, #about-1, #about-2, #features, #faq, #clients { padding-left: 5px; padding-right: 5px;}
+
+                /*------------------------------------------*/
+                /*	  Header
+      /*------------------------------------------*/
+
+                #logo_image {width: 100%; text-align: center; margin-bottom: 15px; float: none !important;}
+                #logo_image img { padding: 0;}
+                #social_icons {width: 100%; text-align: center; float: none !important;}
+
+                .customNavigation {display: none;}
+
+                /*------------------------------------------*/
+                /*	  Intro Section
+      /*------------------------------------------*/
+
+                #intro_description { padding-left: 15px; padding-right: 15px;text-align: center;}
+                #intro_description h1 {text-align: center;}
+
+
+                /*------------------------------------------*/
+                /*	 Footer Newsletter Form
+      /*------------------------------------------*/
+
+                .subscribe-form {margin: 25px auto 5px; width: 100%;}
+
+              }</style>
+</head>
+<body cz-shortcut-listen="true">
+  <div id="content-wrapper">
+    <div style="position: fixed; top: 43%; left: 43%;">
+      <div id="preloader">
+        <div id="status"></div>
+      </div>
+    </div>
+    <app-container ng-version="4.3.1">
+      <router-outlet></router-outlet><rev1-signup>
+        <section class="intro-parallax" id="intro">
+          <div class="container">
+
+            <rev1-header>
+              <header id="header">
+                <div class="row">
+
+                  <div class="col-xs-6" id="logo_image">
+                    <a href="#intro">
+                      <img alt="logo" role="banner" src="../../assets/images/cbr-small-logo.png">
+                    </a>
+                  </div>
+
+                  <div class="col-xs-6 text-right" id="social_icons">
+                    <ul class="social-icons clearfix">
+                      <li><a class="he_social ico-facebook" href="https://www.facebook.com/CashbackResearch"><i class="fa fa-facebook"></i></a></li>
+                      <li><a class="he_social ico-twitter" href="https://twitter.com/CashbackResearc"><i class="fa fa-twitter"></i></a></li>
+                      <li class="phone">
+                        Phone: 888-408-0470<br>
+                        <a href="http://www.cashbackresearch.com/login.asp">
+                          <span class="style1">Member Login</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+              </header>
+            </rev1-header>
+            <div class="row">
+
+              <div class="col-sm-7 col-md-7" id="intro_description">
+
+
+                <h1 class="first">
+                  Earning extra money
+                  <br>
+                  has never been
+                  <br>
+                  THIS EASY!
+                </h1>
+
+
+
+                <div class="intro_feature">
+                  <h4>&nbsp;</h4>
+                  <h4>Step 1: Find out if you are eligible</h4>
+                </div>
+
+
+              </div>
+
+
+              <div class="col-sm-5 col-md-5" id="intro_form">
+
+
+                <div class="form_register">
+                  <h2>Sign up now and get $5.00</h2>
+
+                  <form class="row ng-untouched ng-pristine ng-invalid" id="contactform" name="contactform" novalidate="">
+                    <div id="divError">
+                      <label forecolor="Red" id="lblError"></label>
+                    </div>
+                    <div class="col-md-12" id="input_name">
+                      <input class="form-control ng-untouched ng-pristine ng-valid" id="txtFirstname" name="txtFirstname" placeholder="First name" required="" type="text" ng-reflect-required="" ng-reflect-name="txtFirstname" ng-reflect-model="Thomas">
+                      <div class="alert alert-danger" hidden="">First Name is required</div>
+                    </div>
+                    <div class="col-md-12" id="input_name2">
+                      <input class="form-control ng-untouched ng-pristine ng-valid" id="txtLastname" name="txtLastname" placeholder="Last name" required="" type="text" ng-reflect-required="" ng-reflect-name="txtLastname" ng-reflect-model="Kirk">
+                      <div class="alert alert-danger" hidden="">Last Name is required</div>
+                    </div>
+                    <div class="col-md-12" id="input_email">
+                      <input class="form-control ng-untouched ng-pristine ng-valid" id="txtEmail" name="txtEmail" placeholder="Email" required="" type="text" ng-reflect-required="" ng-reflect-name="txtEmail" ng-reflect-model="tk07242017.1@webhenmedia.com">
+                      <div class="alert alert-danger" hidden="">Email is required</div>
+                      <div class="alert alert-danger" hidden="">Email is not valid</div>
+                    </div>
+                    <div class="col-md-12" id="input_address">
+                      <input class="form-control ng-untouched ng-pristine ng-valid" id="txtAddress" maxlength="100" name="txtAddress" placeholder="Address" required="" type="text" ng-reflect-required="" ng-reflect-maxlength="100" ng-reflect-name="txtAddress" ng-reflect-model="132 Street">
+                      <div class="alert alert-danger" hidden="">Address is required</div>
+                    </div>
+                    <div class="col-md-12" id="input_zip">
+                      <input class="form-control ng-untouched ng-pristine ng-valid" id="txtZip" maxlength="5" name="txtZip" placeholder="Zip Code" required="" type="text" ng-reflect-required="" ng-reflect-maxlength="5" ng-reflect-name="txtZip" ng-reflect-model="68135">
+                      <div class="alert alert-danger" hidden="">Zip is required</div>
+                    </div>
+                    <div class="col-md-12" id="input_phone">
+                      <input maxlength="10" class="form-control ng-untouched ng-pristine ng-invalid" id="txtPhone" name="txtPhone" placeholder="Phone Number" required="" type="text" ng-reflect-required="" ng-reflect-name="txtPhone">
+                      <div class="alert alert-danger" hidden="">Phone is required</div>
+                    </div>
+                    <div class="col-md-12" id="input_birthdate" style="margin-top: 4px;">
+                      <p>Birthdate</p>
+                      <div>
+                        <select class="form-control col-md-3 ng-untouched ng-pristine ng-valid" id="ddlMonth" name="ddlMonth" placeholder="Month" required="" style="height: 33px; width: 41%;" ng-reflect-required="" ng-reflect-name="ddlMonth" ng-reflect-model="8">
+                          <!--bindings={
+                          "ng-reflect-ng-for-of": "[object Object],[object Object"
+                          }-->
+                          <option value="null" label="Month"></option>
+                          <option value="1" ng-reflect-value="1" label="Janauary"></option>
+                          <option value="2" ng-reflect-value="2" label="February"></option>
+                          <option value="3" ng-reflect-value="3" label="March"></option>
+                          <option value="4" ng-reflect-value="4" label="April"></option>
+                          <option value="5" ng-reflect-value="5" label="May"></option>
+                          <option value="6" ng-reflect-value="6" label="June"></option>
+                          <option value="7" ng-reflect-value="7" label="July"></option>
+                          <option value="8" ng-reflect-value="8" label="August"></option>
+                          <option value="9" ng-reflect-value="9" label="September"></option>
+                          <option value="10" ng-reflect-value="10" label="October"></option>
+                          <option value="11" ng-reflect-value="11" label="November"></option>
+                          <option value="12" ng-reflect-value="12" label="December"></option>
+                        </select>
+                        <select class="form-control  col-md-3 ng-untouched ng-pristine ng-valid" id="ddlDay" name="ddlDay" placeholder="Day" required="" style="height: 33px;width:25%" ng-reflect-required="" ng-reflect-name="ddlDay" ng-reflect-model="11">
+                          <!--bindings={
+                          "ng-reflect-ng-for-of": "[object Object],[object Object"
+                          }-->
+                          <option value="null" label="Day"></option>
+                          <option value="0" ng-reflect-value="0" label="0"></option>
+                          <option value="1" ng-reflect-value="1" label="1"></option>
+                          <option value="2" ng-reflect-value="2" label="2"></option>
+                          <option value="3" ng-reflect-value="3" label="3"></option>
+                          <option value="4" ng-reflect-value="4" label="4"></option>
+                          <option value="5" ng-reflect-value="5" label="5"></option>
+                          <option value="6" ng-reflect-value="6" label="6"></option>
+                          <option value="7" ng-reflect-value="7" label="7"></option>
+                          <option value="8" ng-reflect-value="8" label="8"></option>
+                          <option value="9" ng-reflect-value="9" label="9"></option>
+                          <option value="10" ng-reflect-value="10" label="10"></option>
+                          <option value="11" ng-reflect-value="11" label="11"></option>
+                          <option value="12" ng-reflect-value="12" label="12"></option>
+                          <option value="13" ng-reflect-value="13" label="13"></option>
+                          <option value="14" ng-reflect-value="14" label="14"></option>
+                          <option value="15" ng-reflect-value="15" label="15"></option>
+                          <option value="16" ng-reflect-value="16" label="16"></option>
+                          <option value="17" ng-reflect-value="17" label="17"></option>
+                          <option value="18" ng-reflect-value="18" label="18"></option>
+                          <option value="19" ng-reflect-value="19" label="19"></option>
+                          <option value="20" ng-reflect-value="20" label="20"></option>
+                          <option value="21" ng-reflect-value="21" label="21"></option>
+                          <option value="22" ng-reflect-value="22" label="22"></option>
+                          <option value="23" ng-reflect-value="23" label="23"></option>
+                          <option value="24" ng-reflect-value="24" label="24"></option>
+                          <option value="25" ng-reflect-value="25" label="25"></option>
+                          <option value="26" ng-reflect-value="26" label="26"></option>
+                          <option value="27" ng-reflect-value="27" label="27"></option>
+                          <option value="28" ng-reflect-value="28" label="28"></option>
+                          <option value="29" ng-reflect-value="29" label="29"></option>
+                          <option value="30" ng-reflect-value="30" label="30"></option>
+                          <option value="31" ng-reflect-value="31" label="31"></option>
+                        </select>
+                        <select class="form-control col-md-3 ng-untouched ng-pristine ng-valid" id="ddlYear" name="ddlYear" placeholder="Year" required="" style="height: 33px; width: 27%" ng-reflect-required="" ng-reflect-name="ddlYear" ng-reflect-model="1966">
+                          <!--bindings={
+                          "ng-reflect-ng-for-of": "[object Object],[object Object"
+                          }-->
+                          <option value="null" label="Year"></option>
+                          <option value="2003" ng-reflect-value="2003" label="2003"></option>
+                          <option value="2002" ng-reflect-value="2002" label="2002"></option>
+                          <option value="2001" ng-reflect-value="2001" label="2001"></option>
+                          <option value="2000" ng-reflect-value="2000" label="2000"></option>
+                          <option value="1999" ng-reflect-value="1999" label="1999"></option>
+                          <option value="1998" ng-reflect-value="1998" label="1998"></option>
+                          <option value="1997" ng-reflect-value="1997" label="1997"></option>
+                          <option value="1996" ng-reflect-value="1996" label="1996"></option>
+                          <option value="1995" ng-reflect-value="1995" label="1995"></option>
+                          <option value="1994" ng-reflect-value="1994" label="1994"></option>
+                          <option value="1993" ng-reflect-value="1993" label="1993"></option>
+                          <option value="1992" ng-reflect-value="1992" label="1992"></option>
+                          <option value="1991" ng-reflect-value="1991" label="1991"></option>
+                          <option value="1990" ng-reflect-value="1990" label="1990"></option>
+                          <option value="1989" ng-reflect-value="1989" label="1989"></option>
+                          <option value="1988" ng-reflect-value="1988" label="1988"></option>
+                          <option value="1987" ng-reflect-value="1987" label="1987"></option>
+                          <option value="1986" ng-reflect-value="1986" label="1986"></option>
+                          <option value="1985" ng-reflect-value="1985" label="1985"></option>
+                          <option value="1984" ng-reflect-value="1984" label="1984"></option>
+                          <option value="1983" ng-reflect-value="1983" label="1983"></option>
+                          <option value="1982" ng-reflect-value="1982" label="1982"></option>
+                          <option value="1981" ng-reflect-value="1981" label="1981"></option>
+                          <option value="1980" ng-reflect-value="1980" label="1980"></option>
+                          <option value="1979" ng-reflect-value="1979" label="1979"></option>
+                          <option value="1978" ng-reflect-value="1978" label="1978"></option>
+                          <option value="1977" ng-reflect-value="1977" label="1977"></option>
+                          <option value="1976" ng-reflect-value="1976" label="1976"></option>
+                          <option value="1975" ng-reflect-value="1975" label="1975"></option>
+                          <option value="1974" ng-reflect-value="1974" label="1974"></option>
+                          <option value="1973" ng-reflect-value="1973" label="1973"></option>
+                          <option value="1972" ng-reflect-value="1972" label="1972"></option>
+                          <option value="1971" ng-reflect-value="1971" label="1971"></option>
+                          <option value="1970" ng-reflect-value="1970" label="1970"></option>
+                          <option value="1969" ng-reflect-value="1969" label="1969"></option>
+                          <option value="1968" ng-reflect-value="1968" label="1968"></option>
+                          <option value="1967" ng-reflect-value="1967" label="1967"></option>
+                          <option value="1966" ng-reflect-value="1966" label="1966"></option>
+                          <option value="1965" ng-reflect-value="1965" label="1965"></option>
+                          <option value="1964" ng-reflect-value="1964" label="1964"></option>
+                          <option value="1963" ng-reflect-value="1963" label="1963"></option>
+                          <option value="1962" ng-reflect-value="1962" label="1962"></option>
+                          <option value="1961" ng-reflect-value="1961" label="1961"></option>
+                          <option value="1960" ng-reflect-value="1960" label="1960"></option>
+                          <option value="1959" ng-reflect-value="1959" label="1959"></option>
+                          <option value="1958" ng-reflect-value="1958" label="1958"></option>
+                          <option value="1957" ng-reflect-value="1957" label="1957"></option>
+                          <option value="1956" ng-reflect-value="1956" label="1956"></option>
+                          <option value="1955" ng-reflect-value="1955" label="1955"></option>
+                          <option value="1954" ng-reflect-value="1954" label="1954"></option>
+                          <option value="1953" ng-reflect-value="1953" label="1953"></option>
+                          <option value="1952" ng-reflect-value="1952" label="1952"></option>
+                          <option value="1951" ng-reflect-value="1951" label="1951"></option>
+                          <option value="1950" ng-reflect-value="1950" label="1950"></option>
+                          <option value="1949" ng-reflect-value="1949" label="1949"></option>
+                          <option value="1948" ng-reflect-value="1948" label="1948"></option>
+                          <option value="1947" ng-reflect-value="1947" label="1947"></option>
+                          <option value="1946" ng-reflect-value="1946" label="1946"></option>
+                          <option value="1945" ng-reflect-value="1945" label="1945"></option>
+                          <option value="1944" ng-reflect-value="1944" label="1944"></option>
+                          <option value="1943" ng-reflect-value="1943" label="1943"></option>
+                          <option value="1942" ng-reflect-value="1942" label="1942"></option>
+                          <option value="1941" ng-reflect-value="1941" label="1941"></option>
+                          <option value="1940" ng-reflect-value="1940" label="1940"></option>
+                          <option value="1939" ng-reflect-value="1939" label="1939"></option>
+                          <option value="1938" ng-reflect-value="1938" label="1938"></option>
+                          <option value="1937" ng-reflect-value="1937" label="1937"></option>
+                          <option value="1936" ng-reflect-value="1936" label="1936"></option>
+                          <option value="1935" ng-reflect-value="1935" label="1935"></option>
+                          <option value="1934" ng-reflect-value="1934" label="1934"></option>
+                          <option value="1933" ng-reflect-value="1933" label="1933"></option>
+                          <option value="1932" ng-reflect-value="1932" label="1932"></option>
+                          <option value="1931" ng-reflect-value="1931" label="1931"></option>
+                          <option value="1930" ng-reflect-value="1930" label="1930"></option>
+                          <option value="1929" ng-reflect-value="1929" label="1929"></option>
+                          <option value="1928" ng-reflect-value="1928" label="1928"></option>
+                          <option value="1927" ng-reflect-value="1927" label="1927"></option>
+                          <option value="1926" ng-reflect-value="1926" label="1926"></option>
+                          <option value="1925" ng-reflect-value="1925" label="1925"></option>
+                          <option value="1924" ng-reflect-value="1924" label="1924"></option>
+                          <option value="1923" ng-reflect-value="1923" label="1923"></option>
+                          <option value="1922" ng-reflect-value="1922" label="1922"></option>
+                          <option value="1921" ng-reflect-value="1921" label="1921"></option>
+                          <option value="1920" ng-reflect-value="1920" label="1920"></option>
+                          <option value="1919" ng-reflect-value="1919" label="1919"></option>
+                          <option value="1918" ng-reflect-value="1918" label="1918"></option>
+                        </select>
+                      </div>
+                      <div class="alert alert-danger" hidden="">Birthdate is invalid</div>
+                    </div>
+
+                    <div class="col-md-12" id="input_gender">
+                      <label>Gender</label>
+                      <input id="radMale" name="sex" required="" type="radio" value="male" ng-reflect-name="sex" ng-reflect-value="male" ng-reflect-required="" ng-reflect-model="male" class="ng-untouched ng-pristine ng-valid">
+                      <span>Male</span>
+                      <input id="radFemale" name="sex" required="" type="radio" value="female" ng-reflect-name="sex" ng-reflect-value="female" ng-reflect-required="" ng-reflect-model="male" class="ng-untouched ng-pristine ng-valid">
+                      Female
+                      <div class="alert alert-danger" hidden="">Gender is required</div>
+                    </div>
+
+
+
+                    <div class="text-center" id="form_register_btn">
+
+
+                      <input class="btn btn-primary btn-lg" id="button" type="submit" value="Sign up">
+                    </div>
+
+                    <input type="hidden" name="xxTrustedFormToken" id="xxTrustedFormToken_0" value="https://cert.trustedform.com/5fb04e19b13c3957eabbb82d0f07ff5d8d2bd87a"><input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_0" value="https://cert.trustedform.com/5fb04e19b13c3957eabbb82d0f07ff5d8d2bd87a">
+                  </form>
+
+                </div>
+                <div class="terms">
+                  <a href="http://www.cashbackresearch.com/privacy.htm">Privacy</a>	&nbsp;
+
+                  <a href="http://www.cashbackresearch.com/terms.htm">Terms</a>
+                </div>
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </section>
+
+        <rev1-footer>
+          <footer id="footer">
+            <div class="container">
+              <div class="row">
+
+
+                <div class="col-sm-6 col-md-4" id="footer_nav">
+                  <ul class="footer-nav clearfix">
+                    <li><a href="http://www.cashbackresearch.com/contact.htm">Help</a></li>
+                    <li><a href="http://www.cashbackresearch.com/login.asp">Login</a></li>
+                    <li><a href="http://www.cashbackresearch.com/terms.htm">Terms</a></li>
+                    <li><a href="http://www.cashbackresearch.com/privacy.htm">Privacy</a></li>
+                  </ul>
+                  <div id="footer_copy">
+                    <p>© Copyright 2017 Cashback Research </p>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-6 col-md-4 text-center" id="footer_icons">
+                  <ul class="footer-socials clearfix">
+                    <li><a class="foo_social ico-facebook" href="https://www.facebook.com/CashbackResearch"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="foo_social ico-twitter" href="https://twitter.com/CashbackResearc"><i class="fa fa-twitter"></i></a></li>
+                    <li class="phone">Phone: 888-408-0470</li>
+                  </ul>
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+          </footer>
+        </rev1-footer>
+      </rev1-signup>
+    </app-container>
+  </div>
+  <script type="text/javascript" async="" src="http://api.trustedform.com/trustedform.js?provide_referrer=false&amp;field=xxTrustedFormCertUrl&amp;l=15016328981600.18665500041921868"></script>
+  <script type="text/javascript">
+    (function () {
+      var field = 'xxTrustedFormCertUrl';
+      var provideReferrer = false;
+      var tf = document.createElement('script');
+      tf.type = 'text/javascript';
+      tf.async = true;
+      tf.src = 'http' +
+        ('https:' == document.location.protocol ? 's' : '') +
+        '://api.trustedform.com/trustedform.js?provide_referrer=' +
+        escape(provideReferrer) +
+        '&field=' +
+        escape(field) +
+        '&l=' +
+        new Date().getTime() +
+        Math.random();
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(tf, s);
+    }
+    )();
+  </script>
+  <form><input type="hidden" name="xxTrustedFormToken" id="xxTrustedFormToken_1" value="https://cert.trustedform.com/5fb04e19b13c3957eabbb82d0f07ff5d8d2bd87a"><input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_1" value="https://cert.trustedform.com/5fb04e19b13c3957eabbb82d0f07ff5d8d2bd87a"></form>
+  <script type="text/javascript" src="inline.bundle.js"></script>
+  <script type="text/javascript" src="polyfills.bundle.js"></script>
+  <script type="text/javascript" src="styles.bundle.js"></script>
+  <script type="text/javascript" src="vendor.bundle.js"></script>
+  <script type="text/javascript" src="main.bundle.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</body>
+</html>

@@ -30,5 +30,5 @@ export enum ListrakLists {
     CBR_UK_Non_Cert = 9
 }
 
-export const ListrakEmailField: string = 'CBR.EmailAddress';
-export const ListrakJoinSoiField: string = 'CBR.joinsoi';
+export const ListrakEmailField = 'CBR.EmailAddress';
+export const ListrakJoinSoiField = 'CBR.joinsoi';

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CBR.Core.Entities.ExternalResouceModels;
 using CBR.Core.Entities.ExternalResouceModels.EngageIQ;
 
 namespace ServiceAPI.Controllers
@@ -14,6 +15,32 @@ namespace ServiceAPI.Controllers
     [RoutePrefix("api/post")]
     public class PostController : ApiController
     {
+        [Route("centerfieldmedia")]
+        [HttpPost]
+        public IHttpActionResult PostCenterfieldMedia(CoregPostRequestBase request)
+        {
+            try
+            {
+                var isTest = Properties.Settings.Default.CenterfieldMediaTest;
+                var postManager = new PostManagerCenterfieldMedia();
+                return Ok(postManager.SubmitLead(request, Utility.GetClientIpAddress(), isTest));
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException != null)
+                {
+                    if (e.InnerException.InnerException != null)
+                    {
+                        return Ok(e.InnerException.InnerException.Message);
+                    }
+                    return Ok(e.InnerException.Message);
+                }
+
+                return Ok(e.Message);
+
+            }
+        }
+
         [Route("engageiq")]
         [HttpPost]
         public IHttpActionResult PostEngageIq(EngageIqRequest request)

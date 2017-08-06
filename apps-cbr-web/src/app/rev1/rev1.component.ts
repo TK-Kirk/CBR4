@@ -13,8 +13,8 @@ import { ScriptComponent } from '../shared/components/script.component';
 })
 export class Rev1Component {
     private lead: CoregLead;
-    email: string = 'tk07082017.10@webhenmedia.com';
-    offerId: string = '51001';
+    email = 'tk07082017.10@webhenmedia.com';
+    offerId = '51001';
 
 
 

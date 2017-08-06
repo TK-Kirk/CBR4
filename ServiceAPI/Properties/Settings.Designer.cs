@@ -31,5 +31,14 @@ namespace ServiceAPI.Properties {
                 return ((bool)(this["ProvideMediaTest"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CenterfieldMediaTest {
+            get {
+                return ((bool)(this["CenterfieldMediaTest"]));
+            }
+        }
     }
 }

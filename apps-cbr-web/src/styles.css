@@ -163,7 +163,8 @@ ul {
 
 #intro {
     padding-top: 30px;
-    padding-bottom: 50px;
+    /*trying to remove large space on actual phone */
+    /*padding-bottom: 50px;*/
     color: #fff;
 }
 
@@ -1141,3 +1142,5 @@ nav a#pull {
     font-weight: 400;
     margin-bottom: 20px;
 }
+
+

@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Managers\FormUpload.cs" />
     <Compile Include="Managers\PostManagerBase.cs" />
     <Compile Include="Managers\LeadManager.cs" />
+    <Compile Include="Managers\PostManagerCenterfieldMedia.cs" />
     <Compile Include="Managers\PostManagerEngageIQ.cs" />
     <Compile Include="Managers\PostManagerProvideMedia.cs" />
     <Compile Include="Managers\XVerifyManager.cs" />

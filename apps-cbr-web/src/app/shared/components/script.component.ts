@@ -1,10 +1,10 @@
-﻿import { Component, ElementRef, ViewChild, Input } from '@angular/core';
+﻿import { Component, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'script-hack',
     templateUrl: './script.component.html'
 })
-export class ScriptComponent {
+export class ScriptComponent implements OnInit {
 
     @Input()
     src: string;
@@ -15,8 +15,8 @@ export class ScriptComponent {
     @ViewChild('script') script: ElementRef;
 
     convertToScript() {
-        var element = this.script.nativeElement;
-        var script = document.createElement('script');
+        const element = this.script.nativeElement;
+        const script = document.createElement('script');
         script.type = this.type ? this.type : 'text/javascript';
         if (this.src) {
             script.src = this.src;
@@ -24,11 +24,12 @@ export class ScriptComponent {
         if (element.innerHTML) {
             script.innerHTML = element.innerHTML;
         }
-        var parent = element.parentElement;
+        const parent = element.parentElement;
         parent.parentElement.replaceChild(script, parent);
     }
 
-    ngAfterViewInit() {
+    public ngOnInit(): void {
         this.convertToScript();
     }
 }
+

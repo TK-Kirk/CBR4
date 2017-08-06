@@ -21,9 +21,8 @@
       <!-- End Intro Section Description -->
       <div id="intro_form" class="col-sm-5 col-md-5">
 
-
       </div>
-     
+
       <!--Debt.com-->
       <div class="offer-container row offer-container-row">
         <div id="inputDebtCom" class="col-md-7 col-xs-12 well offer-container-well">
@@ -119,9 +118,9 @@
       <!--Taxotere-->
       <div class="offer-container row offer-container-row">
         <div id="inputTaxotere" class="col-md-7 col-xs-12 well offer-container-well">
-          <form #taxotereform="ngForm"  id="taxotereform" name="taxotereform" class="row" novalidate>
+          <form #taxotereform="ngForm" id="taxotereform" name="taxotereform" class="row" novalidate>
             <div>
-              <img src="../../../../assets/images/offers/engageiq/sticker-green-free-case-study.png" />
+              <img src="../../../../assets/images/offers/engageiq/ciyqgrey.png" />
             </div>
             <div class="offer-container-text">
               <b>If you or a loved one has taken TAXOTERE and developed permanent hair loss, you may be entitled to a financial compensation. </b>
@@ -185,162 +184,595 @@
           </div>
         </div>
       </div>
-      
+
       <!--Railroad Cancer-->
-    <div class="offer-container row offer-container-row">
-      <div id="inputRailroadCancer" class="col-md-7 col-xs-12 well offer-container-well">
-        <form #railroadCancerform="ngForm"  id="railroadCancerform" name="railroadCancerform" class="row" novalidate>
-          <div>
-            <img src="../../../../assets/images/offers/engageiq/legal6.png" />
-          </div>
-          <div class="offer-container-text">
-            <b>Were you or a loved one diagnosed with any of the following cancers after working on a railroad for at least five years? </b>
-          </div>
-          <div class="offer-container-consent" id="divConsentCheckRailroadCancer" [hidden]="!railroadCancer.showQuestions">
+      <div class="offer-container row offer-container-row">
+        <div id="inputRailroadCancer" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #railroadCancerform="ngForm" id="railroadCancerform" name="railroadCancerform" class="row" novalidate>
             <div>
-              1.Did you or a family member work on a railroad and were diagnosed with cancer? 
-              <div class="options-select-container">
-                <div class="text-center">
-                  <label class="radio inline opt-in">
-                    <input name="railroadCancerQ1" id="optRailroadCancerQ1Yes" type="radio" value="Yes" [(ngModel)]="railroadCancerRequest.q1" #railroadCancerQ1="ngModel" required />Yes
-                  </label>
-                  <label class="radio inline opt-in">
-                    <input name="railroadCancerQ1" id="optRailroadCancerQ1No" class="" type="radio" value="No" [(ngModel)]="railroadCancerRequest.q1" #railroadCancerQ1="ngModel" />No
-                  </label>
+              <img src="../../../../assets/images/offers/engageiq/legal6.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Were you or a loved one diagnosed with any of the following cancers after working on a railroad for at least five years? </b>
+            </div>
+            <div class="offer-container-consent" id="divConsentCheckRailroadCancer" [hidden]="!railroadCancer.showQuestions">
+              <div>
+                1.Did you or a family member work on a railroad and were diagnosed with cancer?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="railroadCancerQ1" id="optRailroadCancerQ1Yes" type="radio" value="Yes" [(ngModel)]="railroadCancerRequest.q1" #railroadCancerQ1="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="railroadCancerQ1" id="optRailroadCancerQ1No" class="" type="radio" value="No" [(ngModel)]="railroadCancerRequest.q1" #railroadCancerQ1="ngModel" />No
+                    </label>
+                  </div>
                 </div>
+                <div class="alert alert-danger" [hidden]="!railroadCancer.validationOn || railroadCancerQ1.valid">This question is required</div>
               </div>
-              <div class="alert alert-danger" [hidden]="!railroadCancer.validationOn || railroadCancerQ1.valid">This question is required</div>
-            </div>
-            
-            <div class="fine-print">
-              By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
-            </div>
-          </div>
-          <div class="options-select-container">
-            <div class="text-center">
-              <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="railroadCancerResponse.success" />
-              <label class="radio inline opt-in">
-                <input name="railroadCancer" id="optRailroadCancerYes" type="radio" value="Yes" [(ngModel)]="railroadCancer.answer" (change)="engageIqSelected(true, railroadCancer, railroadCancerRequest, railroadCancerResponse, railroadCancerform, $event);" />Yes
-              </label>
-              <label class="radio inline opt-in">
-                <input name="railroadCancer" id="optRailroadCancerNo" class="" type="radio" value="No" [(ngModel)]="railroadCancer.answer" (change)="engageIqSelected(false, railroadCancer, railroadCancerRequest, railroadCancerResponse, railroadCancerform, $event);" />No
-              </label>
-              <!--<input name="railroadCancer" id="optRailroadCancerNone" class="" type="radio" value="" [(ngModel)]="railroadCancer.answer" [hidden]="true" />-->
-            </div>
-          </div>
 
-        </form>
-        <div class="alert alert-danger" [hidden]="!railroadCancer.showUpdate">
-          <label>Please correct your zip code.</label>
-          <div [hidden]="!railroadCancerResponse.invalidZip">
-            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+              <div class="fine-print">
+                By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="railroadCancerResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="railroadCancer" id="optRailroadCancerYes" type="radio" value="Yes" [(ngModel)]="railroadCancer.answer" (change)="engageIqSelected(true, railroadCancer, railroadCancerRequest, railroadCancerResponse, railroadCancerform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="railroadCancer" id="optRailroadCancerNo" class="" type="radio" value="No" [(ngModel)]="railroadCancer.answer" (change)="engageIqSelected(false, railroadCancer, railroadCancerRequest, railroadCancerResponse, railroadCancerform, $event);" />No
+                </label>
+                <!--<input name="railroadCancer" id="optRailroadCancerNone" class="" type="radio" value="" [(ngModel)]="railroadCancer.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!railroadCancer.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!railroadCancerResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(railroadCancer, railroadCancerRequest, railroadCancerResponse)">
           </div>
-          <input type="button" value="Update" (click)="engageiqPostData(railroadCancer, railroadCancerRequest, railroadCancerResponse)">
         </div>
       </div>
-    </div>
-      
+
       <!--Hernia Mesh-->
-    <div class="offer-container row offer-container-row">
-      <div id="inputHerniaMesh" class="col-md-7 col-xs-12 well offer-container-well">
-        <form #herniaMeshform="ngForm"  id="herniaMeshform" name="herniaMeshform" class="row" novalidate>
-          <div>
-            <img src="../../../../assets/images/offers/engageiq/ciyqblue.png" />
-          </div>
-          <div class="offer-container-text">
-            <b>If you or your loved ones have experienced complications due to hernia Mesh, you may be entitled for compensation.</b>
-            <br />
-            Receive a FREE call from a representative to evaluate if you qualify. 
-          </div>
-          <div>
-            <b>Please fill out the form below:</b>
-          </div>
-          <div class="offer-container-consent" id="divConsentCheckherniaMesh" [hidden]="!herniaMesh.showQuestions">
+      <div class="offer-container row offer-container-row">
+        <div id="inputHerniaMesh" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #herniaMeshform="ngForm" id="herniaMeshform" name="herniaMeshform" class="row" novalidate>
             <div>
-              1. Did you have a hernia Mesh Surgery? 
-              <div class="options-select-container">
-                <div class="text-center">
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ1" id="optHerniaMeshQ1Yes" type="radio" value="Yes" [(ngModel)]="herniaMeshRequest.q1" #herniaMeshQ1="ngModel" required />Yes
-                  </label>
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ1" id="optHerniaMeshQ1No" class="" type="radio" value="No" [(ngModel)]="herniaMeshRequest.q1" #herniaMeshQ1="ngModel" />No
-                  </label>
-                </div>
-              </div>
-              <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ1.valid">This question is required</div>
+              <img src="../../../../assets/images/offers/engageiq/ciyqblue.png" />
             </div>
-            
+            <div class="offer-container-text">
+              <b>If you or your loved ones have experienced complications due to hernia Mesh, you may be entitled for compensation.</b>
+              <br />
+              Receive a FREE call from a representative to evaluate if you qualify.
+            </div>
             <div>
-              2. Did you have a hernia Mesh Surgery?
-              <div class="options-select-container">
-                <div class="text-center">
-                  <label class="radio inline" style="padding-left: 86px">
-                    <input name="herniaMeshQ2" id="optHerniaMeshQ2Yes" type="radio" value="2003" [(ngModel)]="herniaMeshRequest.q2" #herniaMeshQ2="ngModel" required />Before January 2004
-                  </label>
-                  <label class="radio inline" style="padding-left: 8px">
-                    <input name="herniaMeshQ2" id="optHerniaMeshQ2No" class="" type="radio" value="2004" [(ngModel)]="herniaMeshRequest.q2" #herniaMeshQ2="ngModel" />2004 or later
-                  </label>
+              <b>Please fill out the form below:</b>
+            </div>
+            <div class="offer-container-consent" id="divConsentCheckherniaMesh" [hidden]="!herniaMesh.showQuestions">
+              <div>
+                1. Did you have a hernia Mesh Surgery?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ1" id="optHerniaMeshQ1Yes" type="radio" value="Yes" [(ngModel)]="herniaMeshRequest.q1" #herniaMeshQ1="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ1" id="optHerniaMeshQ1No" class="" type="radio" value="No" [(ngModel)]="herniaMeshRequest.q1" #herniaMeshQ1="ngModel" />No
+                    </label>
+                  </div>
                 </div>
+                <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ1.valid">This question is required</div>
               </div>
-              <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ2.valid">This question is required</div>
+
+              <div>
+                2. Did you have a hernia Mesh Surgery?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline" style="padding-left: 86px">
+                      <input name="herniaMeshQ2" id="optHerniaMeshQ2Yes" type="radio" value="2003" [(ngModel)]="herniaMeshRequest.q2" #herniaMeshQ2="ngModel" required />Before January 2004
+                    </label>
+                    <label class="radio inline" style="padding-left: 8px">
+                      <input name="herniaMeshQ2" id="optHerniaMeshQ2No" class="" type="radio" value="2004" [(ngModel)]="herniaMeshRequest.q2" #herniaMeshQ2="ngModel" />2004 or later
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ2.valid">This question is required</div>
+              </div>
+
+              <div>
+                3.Was there a Revision (replaced or removed) Surgery?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ3" id="optHerniaMeshQ3Yes" type="radio" value="Yes" [(ngModel)]="herniaMeshRequest.q3" #herniaMeshQ3="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ3" id="optHerniaMeshQ3No" class="" type="radio" value="No" [(ngModel)]="herniaMeshRequest.q3" #herniaMeshQ3="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ3.valid">This question is required</div>
+              </div>
+              <div>
+                4.Are you currently represented by an attorney?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ4" id="optHerniaMeshQ4Yes" type="radio" value="1" [(ngModel)]="herniaMeshRequest.q4" #herniaMeshQ4="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="herniaMeshQ4" id="optHerniaMeshQ4No" class="" type="radio" value="0" [(ngModel)]="herniaMeshRequest.q4" #herniaMeshQ4="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ4.valid">This question is required</div>
+              </div>
+              <div class="fine-print">
+                By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="herniaMeshResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="herniaMesh" id="optHerniaMeshYes" type="radio" value="Yes" [(ngModel)]="herniaMesh.answer" (change)="engageIqSelected(true, herniaMesh, herniaMeshRequest, herniaMeshResponse, herniaMeshform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="herniaMesh" id="optHerniaMeshNo" class="" type="radio" value="No" [(ngModel)]="herniaMesh.answer" (change)="engageIqSelected(false, herniaMesh, herniaMeshRequest, herniaMeshResponse, herniaMeshform, $event);" />No
+                </label>
+                <!--<input name="herniaMesh" id="optHerniaMeshNone" class="" type="radio" value="" [(ngModel)]="herniaMesh.answer" [hidden]="true" />-->
+              </div>
             </div>
 
-            <div>
-              3.Was there a Revision (replaced or removed) Surgery? 
-              <div class="options-select-container">
-                <div class="text-center">
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ3" id="optHerniaMeshQ3Yes" type="radio" value="Yes" [(ngModel)]="herniaMeshRequest.q3" #herniaMeshQ3="ngModel" required />Yes
-                  </label>
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ3" id="optHerniaMeshQ3No" class="" type="radio" value="No" [(ngModel)]="herniaMeshRequest.q3" #herniaMeshQ3="ngModel" />No
-                  </label>
-                </div>
-              </div>
-              <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ3.valid">This question is required</div>
+          </form>
+          <div class="alert alert-danger" [hidden]="!herniaMesh.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!herniaMeshResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
             </div>
-            <div>
-              4.Are you currently represented by an attorney? 
-              <div class="options-select-container">
-                <div class="text-center">
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ4" id="optHerniaMeshQ4Yes" type="radio" value="1" [(ngModel)]="herniaMeshRequest.q4" #herniaMeshQ4="ngModel" required />Yes
-                  </label>
-                  <label class="radio inline opt-in">
-                    <input name="herniaMeshQ4" id="optHerniaMeshQ4No" class="" type="radio" value="0" [(ngModel)]="herniaMeshRequest.q4" #herniaMeshQ4="ngModel" />No
-                  </label>
-                </div>
-              </div>
-              <div class="alert alert-danger" [hidden]="!herniaMesh.validationOn || herniaMeshQ4.valid">This question is required</div>
-            </div>
-            <div class="fine-print">
-              By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
-            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(herniaMesh, herniaMeshRequest, herniaMeshResponse)">
           </div>
-          <div class="options-select-container">
-            <div class="text-center">
-              <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="herniaMeshResponse.success" />
-              <label class="radio inline opt-in">
-                <input name="herniaMesh" id="optHerniaMeshYes" type="radio" value="Yes" [(ngModel)]="herniaMesh.answer" (change)="engageIqSelected(true, herniaMesh, herniaMeshRequest, herniaMeshResponse, herniaMeshform, $event);" />Yes
-              </label>
-              <label class="radio inline opt-in">
-                <input name="herniaMesh" id="optHerniaMeshNo" class="" type="radio" value="No" [(ngModel)]="herniaMesh.answer" (change)="engageIqSelected(false, herniaMesh, herniaMeshRequest, herniaMeshResponse, herniaMeshform, $event);" />No
-              </label>
-              <!--<input name="herniaMesh" id="optHerniaMeshNone" class="" type="radio" value="" [(ngModel)]="herniaMesh.answer" [hidden]="true" />-->
-            </div>
-          </div>
-
-        </form>
-        <div class="alert alert-danger" [hidden]="!herniaMesh.showUpdate">
-          <label>Please correct your zip code.</label>
-          <div [hidden]="!herniaMeshResponse.invalidZip">
-            <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
-          </div>
-          <input type="button" value="Update" (click)="engageiqPostData(herniaMesh, herniaMeshRequest, herniaMeshResponse)">
         </div>
       </div>
+
+      <!--Xarelto-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputXarelto" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #xareltoform="ngForm" id="xareltoform" name="xareltoform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/legal6.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Were you or a loved one diagnosed with internal bleeding while taking the blood thinner Xarelto?</b>
+              <br />
+            </div>
+
+            <div class="offer-container-consent" id="divConsentCheckXarelto" [hidden]="!xarelto.showQuestions">
+              <div>
+                1. Did you suffer Internal Bleeding or a Hemorrhagic Stroke while using Xarelto?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="xareltoQ1" id="optXareltoQ1Yes" type="radio" value="Yes" [(ngModel)]="xareltoRequest.q1" #xareltoQ1="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="xareltoQ1" id="optXareltoQ1No" class="" type="radio" value="No" [(ngModel)]="xareltoRequest.q1" #xareltoQ1="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!xarelto.validationOn || xareltoQ1.valid">This question is required</div>
+              </div>
+              <div>
+                2. Have you consulted with an attorney on this case?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="xareltoQ2" id="optXareltoQ2Yes" type="radio" value="Yes" [(ngModel)]="xareltoRequest.q2" #xareltoQ2="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="xareltoQ2" id="optXareltoQ2No" class="" type="radio" value="No" [(ngModel)]="xareltoRequest.q2" #xareltoQ2="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!xarelto.validationOn || xareltoQ2.valid">This question is required</div>
+              </div>
+              <div class="fine-print">
+                By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="xareltoResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="xarelto" id="optXareltoYes" type="radio" value="Yes" [(ngModel)]="xarelto.answer" (change)="engageIqSelected(true, xarelto, xareltoRequest, xareltoResponse, xareltoform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="xarelto" id="optXareltoNo" class="" type="radio" value="No" [(ngModel)]="xarelto.answer" (change)="engageIqSelected(false, xarelto, xareltoRequest, xareltoResponse, xareltoform, $event);" />No
+                </label>
+                <!--<input name="xarelto" id="optXareltoNone" class="" type="radio" value="" [(ngModel)]="xarelto.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!xarelto.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!xareltoResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(xarelto, xareltoRequest, xareltoResponse)">
+          </div>
+        </div>
+      </div>
+
+      <!--Backbrace-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputBackbrace" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #backbraceform="ngForm" id="backbraceform" name="backbraceform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/med3.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>If you have arthritis or severe joint pain in your back or joints, we can help you relieve your pain, prevent injuries and improve the quality of your life! We work with your doctor and your insurance to help you find the best products available and maximize your insurance coverage so you can get these pain relieving products at little to no cost to you.</b>
+              <br />
+              To find out more about how to qualify for pain relief products covered by your insurance click "YES".
+            </div>
+
+            <div class="offer-container-consent" id="divConsentCheckBackbrace" [hidden]="!backbrace.showQuestions">
+
+              <div class="fine-print">
+                By clicking Yes you are agreeing to be called, emailed or texted by PAKmed Orthotics and USA Health Initiatives at the phone number and email address you provided using automated or pre-recorded technology even if you are on the do not call list, do not email list or provided a wireless number. This consent is not required for purchase.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="backbraceResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="backbrace" id="optBackbraceYes" type="radio" value="Yes" [(ngModel)]="backbrace.answer" (change)="engageIqSelected(true, backbrace, backbraceRequest, backbraceResponse, backbraceform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="backbrace" id="optBackbraceNo" class="" type="radio" value="No" [(ngModel)]="backbrace.answer" (change)="engageIqSelected(false, backbrace, backbraceRequest, backbraceResponse, backbraceform, $event);" />No
+                </label>
+                <!--<input name="backbrace" id="optBackbraceNone" class="" type="radio" value="" [(ngModel)]="backbrace.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!backbrace.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!backbraceResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(backbrace, backbraceRequest, backbraceResponse)">
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--MedicalAlert-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputMedicalAlert" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #medicalAlertform="ngForm" id="medicalAlertform" name="medicalAlertform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/med1.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>
+                A Medical Alert system is a life saving device that can connect you or a loved one to an operator within seconds in the event of a medical emergency with just a touch of a button.
+              </b>
+              <br />
+              If you have an active checking, credit card or debit card account, you can get the equipment at NO COST, all you would need to pay for is the cost of the monthly monitoring, which is less than $1 per day!
+            </div>
+            <div class="offer-container-consent" id="divConsentCheckMedicalAlert" [hidden]="!medicalAlert.showQuestions">
+              <div class="fine-print">
+                By clicking Yes, you consent and request to be contacted by Stay Safe Alert, by phone, email, and text/SMS to the home or mobile number(s) you provided even if your provided number is on a National or State Do Not Call List. In some cases, pre-recorded messages and automated technology may be used to contact you for marketing purposes.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="medicalAlertResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="medicalAlert" id="optMedicalAlertYes" type="radio" value="Yes" [(ngModel)]="medicalAlert.answer" (change)="engageIqSelected(true, medicalAlert, medicalAlertRequest, medicalAlertResponse, medicalAlertform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="medicalAlert" id="optMedicalAlertNo" class="" type="radio" value="No" [(ngModel)]="medicalAlert.answer" (change)="engageIqSelected(false, medicalAlert, medicalAlertRequest, medicalAlertResponse, medicalAlertform, $event);" />No
+                </label>
+                <!--<input name="medicalAlert" id="optMedicalAlertNone" class="" type="radio" value="" [(ngModel)]="medicalAlert.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!medicalAlert.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!medicalAlertResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(medicalAlert, medicalAlertRequest, medicalAlertResponse)">
+          </div>
+        </div>
+      </div>
+
+
+      <!--Paingel-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputPaingel" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #paingelform="ngForm" id="paingelform" name="paingelform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/med2.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Do you suffer from Chronic pain – Arthritis, Joint, Muscular, Back or Diabetic Neuropathy? </b>
+              <br />
+              If you have Prescription coverage through your health insurance, Click Yes to see if you may be eligible for a Prescription strength topical pain cream to treat yourself with. Free Shipping!
+            </div>
+
+            <div class="offer-container-consent" id="divConsentCheckPaingel" [hidden]="!paingel.showQuestions">
+              <div>
+                Do you have Prescription Coverage through your insurance?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="paingelQ1" id="optPaingelQ1Yes" type="radio" value="Yes" [(ngModel)]="paingelRequest.q1" #paingelQ1="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="paingelQ1" id="optPaingelQ1No" class="" type="radio" value="No" [(ngModel)]="paingelRequest.q1" #paingelQ1="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!paingel.validationOn || paingelQ1.valid">This question is required</div>
+              </div>
+
+              <div class="fine-print">
+                By clicking Yes, you agree that Instinctive Edge LLC may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. Your consent herein does not require a purchase and is solely a request for information.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="paingelResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="paingel" id="optPaingelYes" type="radio" value="Yes" [(ngModel)]="paingel.answer" (change)="engageIqSelected(true, paingel, paingelRequest, paingelResponse, paingelform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="paingel" id="optPaingelNo" class="" type="radio" value="No" [(ngModel)]="paingel.answer" (change)="engageIqSelected(false, paingel, paingelRequest, paingelResponse, paingelform, $event);" />No
+                </label>
+                <!--<input name="paingel" id="optPaingelNone" class="" type="radio" value="" [(ngModel)]="paingel.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!paingel.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!paingelResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(paingel, paingelRequest, paingelResponse)">
+          </div>
+        </div>
+      </div>
+
+
+      <!--Railroad Cancer-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputToluna" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #tolunaform="ngForm" id="tolunaform" name="tolunaform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/giftboxyellow.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Be one of the lucky testers to keep the test products from Toluna!</b>
+              <br />
+              Click YES now to sign up, confirm your email and keep any of these test products: Spontex Sponges, Essie Nail Polish, Colgate Toothbrush and many more!
+            </div>
+
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="tolunaResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="toluna" id="optTolunaYes" type="radio" value="Yes" [(ngModel)]="toluna.answer" (change)="engageIqSelected(true, toluna, tolunaRequest, tolunaResponse, tolunaform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="toluna" id="optTolunaNo" class="" type="radio" value="No" [(ngModel)]="toluna.answer" (change)="engageIqSelected(false, toluna, tolunaRequest, tolunaResponse, tolunaform, $event);" />No
+                </label>
+                <!--<input name="toluna" id="optTolunaNone" class="" type="radio" value="" [(ngModel)]="toluna.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!toluna.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!tolunaResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(toluna, tolunaRequest, tolunaResponse)">
+          </div>
+        </div>
+      </div>
+
+      <!--Motor Vehicle Accident-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputMotorVehicleAccident" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #motorVehicleAccidentform="ngForm" id="motorVehicleAccidentform" name="motorVehicleAccidentform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/nationalinjurybureau.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>WERE YOU OR A LOVED ONE INJURED IN AN ACCIDENT? YOU MAY QUALIFY TO RECOVER SIGNIFICANT COMPENSATION.</b>
+              <br />
+              It only takes 30 seconds to see if you qualify to recover significant compensation.
+            </div>
+            <div class="offer-container-consent" id="divConsentCheckmotorVehicleAccident" [hidden]="!motorVehicleAccident.showQuestions">
+              <div>
+                <b> Fill out the form below to get a call from your local legal expert and find out how you can get the largest settlement today!</b>
+              </div>
+              <div>
+                1. What type of vehicle did the accident occur in?
+                <div class="options-select-container">
+                  <div style="margin-left: 20px">
+                    <label class="radio inline opt-in" style="width: 50%">
+                      <input name="motorVehicleAccidentQ1" id="optMotorVehicleAccidentQ1Auto" type="radio" value="Auto" [(ngModel)]="motorVehicleAccidentRequest.q1" #motorVehicleAccidentQ1="ngModel" required />Auto
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ1" id="optMotorVehicleAccidentQ1Truck" class="" type="radio" value="Truck" [(ngModel)]="motorVehicleAccidentRequest.q1" #motorVehicleAccidentQ1="ngModel" required />Truck
+                    </label>
+                  </div>
+                  <div style="margin-left: 20px">
+                    <label class="radio inline opt-in" style="width: 50%">
+                      <input name="motorVehicleAccidentQ1" id="optMotorVehicleAccidentQ1Motorcycle" class="" type="radio" value="Motorcycle" [(ngModel)]="motorVehicleAccidentRequest.q1" #motorVehicleAccidentQ1="ngModel" required />Motorcycle
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ1" id="optMotorVehicleAccidentQ1Boat" class="" type="radio" value="Boat" [(ngModel)]="motorVehicleAccidentRequest.q1" #motorVehicleAccidentQ1="ngModel" required />Boat
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!motorVehicleAccident.validationOn || motorVehicleAccidentQ1.valid">This question is required</div>
+              </div>
+              <div>
+                2. What year did the accident happen?
+                <div class="options-select-container">
+                  <div class="options-select-container">
+                    <div style="margin-left: 20px">
+                      <label class="radio inline opt-in" style="width: 30%">
+                        <input name="motorVehicleAccidentQ2" id="optMotorVehicleAccidentQ12017" type="radio" value="2017" [(ngModel)]="motorVehicleAccidentRequest.q2" #motorVehicleAccidentQ2="ngModel" required />2017
+                      </label>
+                      <label class="radio inline opt-in">
+                        <input name="motorVehicleAccidentQ2" id="optMotorVehicleAccidentQ12016" class="" type="radio" value="2016" [(ngModel)]="motorVehicleAccidentRequest.q2" #motorVehicleAccidentQ2="ngModel" required />2016
+                      </label>
+                    </div>
+                    <div style="margin-left: 20px">
+                      <label class="radio inline opt-in" style="width: 30%">
+                        <input name="motorVehicleAccidentQ2" id="optMotorVehicleAccidentQ12015" class="" type="radio" value="2015" [(ngModel)]="motorVehicleAccidentRequest.q2" #motorVehicleAccidentQ2="ngModel" required />2015
+                      </label>
+                      <label class="radio inline opt-in" style="width: 63%">
+                        <input name="motorVehicleAccidentQ2" id="optMotorVehicleAccidentQ12014" class="" type="radio" value="2014" [(ngModel)]="motorVehicleAccidentRequest.q2" #motorVehicleAccidentQ2="ngModel" required />2014 or before
+                      </label>
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!motorVehicleAccident.validationOn || motorVehicleAccidentQ2.valid">This question is required</div>
+                </div>
+              </div>
+              <div>
+                3. Did the accident require you or a loved one to be hospitalized?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ3" id="optMotorVehicleAccidentQ3Yes" type="radio" value="Yes" [(ngModel)]="motorVehicleAccidentRequest.q4" #motorVehicleAccidentQ3="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ3" id="optMotorVehicleAccidentQ3No" class="" type="radio" value="No" [(ngModel)]="motorVehicleAccidentRequest.q4" #motorVehicleAccidentQ3="ngModel" required />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!motorVehicleAccident.validationOn || motorVehicleAccidentQ3.valid">This question is required</div>
+              </div>
+              <div>
+                4. Have you consulted with an attorney on this case?
+                <div class="options-select-container">
+                  <div class="text-center">
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ4" id="optMotorVehicleAccidentQ4Yes" type="radio" value="Yes" [(ngModel)]="motorVehicleAccidentRequest.q6" #motorVehicleAccidentQ4="ngModel" required />Yes
+                    </label>
+                    <label class="radio inline opt-in">
+                      <input name="motorVehicleAccidentQ4" id="optMotorVehicleAccidentQ4No" class="" type="radio" value="No" [(ngModel)]="motorVehicleAccidentRequest.q6" #motorVehicleAccidentQ4="ngModel" />No
+                    </label>
+                  </div>
+                </div>
+                <div class="alert alert-danger" [hidden]="!motorVehicleAccident.validationOn || motorVehicleAccidentQ4.valid">This question is required</div>
+              </div>
+              <div>
+                5. Briefly describe the details of the accident.
+                <div class="options-select-container">
+                  <input name="motorVehicleAccidentComments1" type="text" class="form-control" [(ngModel)]="motorVehicleAccidentRequest.comments1" #motorVehicleAccidentComments="ngModel" required />
+                </div>
+                <div class="alert alert-danger" [hidden]="!motorVehicleAccident.validationOn || motorVehicleAccidentComments.valid">This question is required</div>
+              </div>
+              <div class="fine-print">
+                By clicking Yes, you agree that law firms you are matched with may contact you by telephone, automated dialer, SMS Text and email even if you are on a federal or State Do Not Call Registry or the phone number provided is a cell phone. You may also be contacted by ProLegal Justice lead verification service to confirm the accuracy or completeness of the information you submit. Your consent herein does not require a purchase and is solely a request for information.
+              </div>
+              <div class="offer-container-consent fine-print" id="divConsentMotorVehicleAccident">
+                <div>
+                  <label class="checkbox inline">
+                    <input name="chkMotorVehicleAccidentConsent" type="checkbox" runat="server" id="chkMotorVehicleAccidentConsent" [(ngModel)]="motorVehicleAccident.consentChecked" />
+                    By checking this box, you consent and request to be contacted by Injury Bureau, third parties working on our behalf, and law firm(s) you are matched with by phone, email, and text/SMS to the home or mobile number(s) you provided even if your provided number is on a National or State Do Not Call List. In some cases, pre-recorded messages and automated technology may be used to contact you for marketing purposes. Please read our <a href="http://nationalinjurybureau.com/privacy-policy.html" target="_blank">Privacy Policy.</a>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="motorVehicleAccidentResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="motorVehicleAccident" id="optMotorVehicleAccidentYes" type="radio" value="Yes" [(ngModel)]="motorVehicleAccident.answer" (change)="engageIqSelected(true, motorVehicleAccident, motorVehicleAccidentRequest, motorVehicleAccidentResponse, motorVehicleAccidentform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="motorVehicleAccident" id="optMotorVehicleAccidentNo" class="" type="radio" value="No" [(ngModel)]="motorVehicleAccident.answer" (change)="engageIqSelected(false, motorVehicleAccident, motorVehicleAccidentRequest, motorVehicleAccidentResponse, motorVehicleAccidentform, $event);" />No
+                </label>
+                <!--<input name="motorVehicleAccident" id="optMotorVehicleAccidentNone" class="" type="radio" value="" [(ngModel)]="motorVehicleAccident.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!motorVehicleAccident.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!motorVehicleAccidentResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(motorVehicleAccident, motorVehicleAccidentRequest, motorVehicleAccidentResponse)">
+          </div>
+        </div>
+      </div>
+
+      <!--Sprint-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputSprint" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #sprintform="ngForm" id="sprintform" name="sprintform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/centerfieldmedia/sprint-logo.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Are you interested in a free phone and saving money on your wireless bill by switching to Sprint?</b>
+
+            </div>
+
+            <div class="offer-container-consent" id="divConsentCheckSprint" [hidden]="!sprint.showQuestions">
+
+              <div class="fine-print">
+                By clicking Yes below, I consent to receive from Sprint and any party on Sprint’s behalf telemarketing calls using an autodialer or pre-recordings and SMS text messages at any time, which could result in wireless charges, at the number provided above.  I understand that consent is not a condition of purchase.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="sprintResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="sprint" id="optSprintYes" type="radio" value="Yes" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(true, sprint, sprintRequest, sprintResponse, sprintform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="sprint" id="optSprintNo" class="" type="radio" value="No" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(false, sprint, sprintRequest, sprintResponse, sprintform, $event);" />No
+                </label>
+                <!--<input name="sprint" id="optSprintNone" class="" type="radio" value="" [(ngModel)]="sprint.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!sprint.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!sprintResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="centerfieldMediaPostData(sprint, sprintRequest, sprintResponse)">
+          </div>
+        </div>
+      </div>
+
+    <div class="text-center" style="margin-bottom: 20px;" >
+      <input class="bigbutton btn btn-primary" type="button" value="Continue" (click)="onContinue()">
     </div>
+
     </div>
   </div>
 </section>

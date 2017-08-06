@@ -1,5 +1,5 @@
 ﻿import { CoregLead } from './coreg-lead.model';
-import { CoregPostRequestBase } from '../models/coreg-post-request-base.model'
+import { CoregPostRequestBase } from '../models/coreg-post-request-base.model';
 
 export class ProvideMediaRequest extends CoregPostRequestBase {
     public trustedForm: string;
@@ -21,4 +21,3 @@ export class ProvideMediaUpdateRequest {
   public phone: string;
   public zip: string;
 }
-

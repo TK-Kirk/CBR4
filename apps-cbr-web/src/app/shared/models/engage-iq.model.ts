@@ -1,4 +1,4 @@
-﻿import { CoregPostRequestBase } from "./coreg-post-request-base.model";
+﻿import { CoregPostRequestBase } from './coreg-post-request-base.model';
 
 export class EngageIqRequest extends CoregPostRequestBase {
   public q1: string;

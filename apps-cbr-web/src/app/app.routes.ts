@@ -5,6 +5,7 @@ import { rev1Routes, Rev1RoutingModule } from './rev1/rev1-routing.module';
 import { Rev1SignupComponent } from './rev1/rev1-signup.component';
 import { Rev1EnterComponent } from './rev1/rev1-enter.component';
 import { Rev1RejectComponent } from './rev1/rev1-reject.component';
+import { Rev1OfferQ1Component } from './rev1/offers/rev1-offer1/rev1-offerq1.component';
 
 // const routes: Routes = [
 //    { path: '', pathMatch: 'full', redirectTo: '/rev1' },
@@ -40,13 +41,16 @@ const routes: Routes = [
     // ]
   },
   {
-    path: 'rev1enter', component: Rev1EnterComponent,
+    path: 'rev1enter', component: Rev1EnterComponent
   },
   {
-    path: 'offers1', component: Rev1Offer1Component,
+    path: 'offers1', component: Rev1Offer1Component
   },
   {
-    path: 'campaignComplete', component: Rev1RejectComponent,
+    path: 'offersq1', component: Rev1OfferQ1Component
+  },
+  {
+    path: 'campaignComplete', component: Rev1RejectComponent
   }
 ];
 

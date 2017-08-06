@@ -34,6 +34,7 @@ namespace CBR.Core.Entities.Enums
         EngageIQ_Toluna = 10,
         EngageIQ_MotorVehicleAccident = 11,
         Centerfield_Sprint = 12
+
     }
 
 

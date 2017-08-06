@@ -20,28 +20,9 @@ export class AppConfiguration {
     public testUserAccounts: string[];
 
     constructor() {
-        this.setConfigurationValues();
     }
 
-    private setConfigurationValues() {
 
-        //this.authToken = this.getConfigurationValueFromDOM('configAuthToken');
-        //this.auditToken = this.getConfigurationValueFromDOM('configAuditToken');
-        //this.serviceApi = this.getConfigurationValueFromDOM('configServiceApiUrl');
-        //this.accountInformationMartClientUrl = this.getConfigurationValueFromDOM('configAccountInformationMartClientUrl');
-        //this.relationshipClientUrl = this.getConfigurationValueFromDOM('configRelationshipClientUrl');
-        //this.finalRiskRatingClientUrl = this.getConfigurationValueFromDOM('configFinalRiskRatingClientUrl');
-        //this.customerAggregateLegalLiabilityClientUrl = this.getConfigurationValueFromDOM('configCustomerAggregateLegalLiabilityClientUrl');
-        //this.docuClickClientUrl = this.getConfigurationValueFromDOM('configDocuClickClientUrl');
-        //this.agDirectAgrilyticClientUrl = this.getConfigurationValueFromDOM('configAgDirectAgrilyticClientUrl');
-        //this.agrilyticClientUrl = this.getConfigurationValueFromDOM('configAgrilyticClientUrl');
-        //this.collateralHubClientUrl = this.getConfigurationValueFromDOM('collateralHubClientUrl');
-        //this.environment = this.getConfigurationValueFromDOM('configEnvironment');
-        //this.machineName = this.getConfigurationValueFromDOM('configMachineName');
-        //this.traceLevel = Number(this.getConfigurationValueFromDOM('configTraceLevel'));
-        //this.machineName = this.getConfigurationValueFromDOM('configMachineName');
-        //this.testUserAccounts = this.getConfigurationValueFromDOM('configTestUserAccounts').split(',');
-    }
 
     private getConfigurationValueFromDOM(elementId: string): string {
 
@@ -50,19 +31,19 @@ export class AppConfiguration {
 
         elementToFind = document.getElementById(elementId);
 
-        //Check if element exists in DOM
+        // Check if element exists in DOM
         if (!elementToFind) {
             throw new Error(`Element id:${elementId} not found in the DOM`);
         }
 
-        //Validate that the found element is an input type
+        // Validate that the found element is an input type
         if (elementToFind instanceof HTMLInputElement) {
             castedToHtmlInputElement = (elementToFind as HTMLInputElement);
         } else {
             throw new Error(`Element id:${elementId} is not an HTMLInputElement type.`);
         }
 
-        //Check that the value of the input element has a value
+        // Check that the value of the input element has a value
         if (castedToHtmlInputElement.value.trim().length === 0) {
             throw new Error(`The value attribute for element id:${elementId} was
                             not provided or has an empty string or only

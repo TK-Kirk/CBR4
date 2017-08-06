@@ -10,8 +10,10 @@ import { ProvideMediaRequest, ProvideMediaUpdateRequest } from '../../../shared/
 import { CoregLead } from '../../../shared/models/coreg-lead.model';
 import { CoregCampaignCode } from '../../../shared/models/coreg-campaign-code.model';
 import { CoregDisplay } from '../../../shared/models/coreg-display.model';
-import { EngageIqRequest } from "../../../shared/models/engage-iq.model";
-import { CoregPostResponse } from "../../../shared/models/coreg-post-response.model";
+import { EngageIqRequest } from '../../../shared/models/engage-iq.model';
+import { CoregPostResponse } from '../../../shared/models/coreg-post-response.model';
+import { CoregPostRequestBase } from '../../../shared/models/coreg-post-request-base.model';
+import { environment } from '../../../../environments/environment';
 
 
 
@@ -26,9 +28,9 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   campaignType: CoregCampaignType;
 
 
-  //private CAMPAIGN_CODE_DEBT_COM = 'wm9EdfezDE8RXU9Rxt21LA';
-  //private CAMPAIGN_CODE_SPRING_POWER_GAS = '6lIEmSzGTZ-OW52pU7Ir5g';
-  //private CAMPAIGN_CODE_DIRECT_ENERGY = 'yGK2ea4AmDf1fVJbMg05kQ';
+  // private CAMPAIGN_CODE_DEBT_COM = 'wm9EdfezDE8RXU9Rxt21LA';
+  // private CAMPAIGN_CODE_SPRING_POWER_GAS = '6lIEmSzGTZ-OW52pU7Ir5g';
+  // private CAMPAIGN_CODE_DIRECT_ENERGY = 'yGK2ea4AmDf1fVJbMg05kQ';
   private subIdTag = 'rev1';
   contact: CoregLead;
   campaignCodes: CoregCampaignCode;
@@ -44,26 +46,56 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   taxotere: CoregDisplay;
   taxotereResponse: CoregPostResponse;
   taxotereRequest: EngageIqRequest;
-  //@ViewChild('taxotereform') contactform: NgForm;
 
   railroadCancer: CoregDisplay;
   railroadCancerResponse: CoregPostResponse;
   railroadCancerRequest: EngageIqRequest;
- // @ViewChild('railroadCancerform') contactform: NgForm;
 
   herniaMesh: CoregDisplay;
   herniaMeshResponse: CoregPostResponse;
   herniaMeshRequest: EngageIqRequest;
 
+  xarelto: CoregDisplay;
+  xareltoResponse: CoregPostResponse;
+  xareltoRequest: EngageIqRequest;
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _postservice: PostService, @Inject(DOCUMENT) private document: any) {
+  backbrace: CoregDisplay;
+  backbraceResponse: CoregPostResponse;
+  backbraceRequest: EngageIqRequest;
+
+  medicalAlert: CoregDisplay;
+  medicalAlertResponse: CoregPostResponse;
+  medicalAlertRequest: EngageIqRequest;
+
+  paingel: CoregDisplay;
+  paingelResponse: CoregPostResponse;
+  paingelRequest: EngageIqRequest;
+
+  motorVehicleAccident: CoregDisplay;
+  motorVehicleAccidentResponse: CoregPostResponse;
+  motorVehicleAccidentRequest: EngageIqRequest;
+
+  toluna: CoregDisplay;
+  tolunaResponse: CoregPostResponse;
+  tolunaRequest: EngageIqRequest;
+
+
+  sprint: CoregDisplay;
+  sprintResponse: CoregPostResponse;
+  sprintRequest: EngageIqRequest;
+
+
+  constructor(private _route: ActivatedRoute,
+    private _router: Router,
+    private _postservice: PostService,
+    @Inject(DOCUMENT) private document: any) {
     this.contact = new CoregLead;
 
     this.initializeParameters();
 
     this.campaignCodes = new CoregCampaignCode();
 
-    //only set the prpperties that differ by campaign
+    // only set the prpperties that differ by campaign
     this.debtCom = new CoregDisplay();
     this.debtComResponse = new CoregPostResponse();
     this.debtComRequest = new ProvideMediaRequest();
@@ -93,6 +125,49 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
     this.herniaMeshRequest = new EngageIqRequest();
     this.herniaMeshRequest.campaignCodeId = CoregCampaignType.EngageIQ_HernaMesh;
     this.herniaMeshRequest.campaignCode = this.campaignCodes.EngageIQ_HernaMesh;
+
+    this.xarelto = new CoregDisplay();
+    this.xareltoResponse = new CoregPostResponse;
+    this.xareltoRequest = new EngageIqRequest();
+    this.xareltoRequest.campaignCodeId = CoregCampaignType.EngageIQ_Xarelto;
+    this.xareltoRequest.campaignCode = this.campaignCodes.EngageIQ_Xarelto;
+
+    this.backbrace = new CoregDisplay();
+    this.backbraceResponse = new CoregPostResponse;
+    this.backbraceRequest = new EngageIqRequest();
+    this.backbraceRequest.campaignCodeId = CoregCampaignType.EngageIQ_BackBrace;
+    this.backbraceRequest.campaignCode = this.campaignCodes.EngageIQ_BackBrace;
+
+    this.medicalAlert = new CoregDisplay();
+    this.medicalAlertResponse = new CoregPostResponse;
+    this.medicalAlertRequest = new EngageIqRequest();
+    this.medicalAlertRequest.campaignCodeId = CoregCampaignType.EngageIQ_MedicalAlert;
+    this.medicalAlertRequest.campaignCode = this.campaignCodes.EngageIQ_MedicalAlert;
+
+    this.paingel = new CoregDisplay();
+    this.paingelResponse = new CoregPostResponse;
+    this.paingelRequest = new EngageIqRequest();
+    this.paingelRequest.campaignCodeId = CoregCampaignType.EngageIQ_PainGel;
+    this.paingelRequest.campaignCode = this.campaignCodes.EngageIQ_PainGel;
+
+    this.motorVehicleAccident = new CoregDisplay();
+    this.motorVehicleAccidentResponse = new CoregPostResponse;
+    this.motorVehicleAccidentRequest = new EngageIqRequest();
+    this.motorVehicleAccidentRequest.campaignCodeId = CoregCampaignType.EngageIQ_MotorVehicleAccident;
+    this.motorVehicleAccidentRequest.campaignCode = this.campaignCodes.EngageIQ_MotorVehicleAccident;
+
+    this.toluna = new CoregDisplay();
+    this.tolunaResponse = new CoregPostResponse;
+    this.tolunaRequest = new EngageIqRequest();
+    this.tolunaRequest.campaignCodeId = CoregCampaignType.EngageIQ_Toluna;
+    this.tolunaRequest.campaignCode = this.campaignCodes.EngageIQ_Toluna;
+
+    this.sprint = new CoregDisplay();
+    this.sprintResponse = new CoregPostResponse;
+    this.sprintRequest = new EngageIqRequest();
+    this.sprintRequest.campaignCodeId = CoregCampaignType.Centerfield_Sprint;
+    this.sprintRequest.campaignCode = this.campaignCodes.Centerfield_Sprint;
+
   }
 
 
@@ -133,18 +208,22 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   }
 
 
-
-  engageIqSelected(selected: boolean, offer: CoregDisplay, request: EngageIqRequest, response: CoregPostResponse, form: NgForm, event: any) {
+  engageIqSelected(selected: boolean,
+    offer: CoregDisplay,
+    request: EngageIqRequest,
+    response: CoregPostResponse,
+    form: NgForm,
+    event: any) {
 
     // if they check NO then restore to original visibilty
     if (!selected) {
       offer.validationOn = false;
       offer.showQuestions = false;
-      response.success = true;
+      response.success = false;
       return true;
     }
 
-    //if selected = yes while thequestions are visible
+    // if selected = yes while thequestions are visible
     // then validate form. If valid then submit lead
     if (offer.showQuestions) {
 
@@ -160,8 +239,8 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
       return this.engageiqPostData(offer, request, response);
     }
 
-    //clicked yes with the questions hidden so show the questions
-    //and uncheck the yes button
+    // clicked yes with the questions hidden so show the questions
+    // and uncheck the yes button
     offer.showQuestions = true;
     offer.answer = null;
     event.target.checked = false;
@@ -199,7 +278,80 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
       });
   }
 
-  provideMediaSelected(selected: boolean, offer: CoregDisplay, request: ProvideMediaRequest, response: CoregPostResponse) {
+  centerfieldMediaSelected(selected: boolean,
+    offer: CoregDisplay,
+    request: CoregPostRequestBase,
+    response: CoregPostResponse,
+    form: NgForm,
+    event: any) {
+
+    // if they check NO then restore to original visibilty
+    if (!selected) {
+      offer.validationOn = false;
+      offer.showQuestions = false;
+      response.success = false;
+      return true;
+    }
+
+    // if selected = yes while thequestions are visible
+    // then validate form. If valid then submit lead
+    if (offer.showQuestions) {
+
+      offer.validationOn = true;
+
+      if (!form.valid) {
+        offer.answer = null;
+        event.target.checked = false;
+        return true;
+      }
+
+
+      return this.centerfieldMediaPostData(offer, request, response);
+    }
+
+    // clicked yes with the questions hidden so show the questions
+    // and uncheck the yes button
+    offer.showQuestions = true;
+    offer.answer = null;
+    event.target.checked = false;
+
+    return true;
+  }
+
+  centerfieldMediaPostData(offer: CoregDisplay, request: CoregPostRequestBase, response: CoregPostResponse) {
+
+    request.zip = this.contact.zip;
+    request.email = this.contact.email;
+    request.cbrLeadId = this.contact.cbrLeadId;
+    request.subIdTag = this.subIdTag;
+
+    this._postservice.postCenterfieldMedia(request)
+      .subscribe((data: CoregPostResponse) => {
+        response.success = data.success;
+        offer.showUpdate = false;
+
+        if (data.ipIsIrReputable) {
+          this._router.navigate(['/campaignComplete']);
+        }
+
+        if (data.zipIpVerificationFailed) {
+          if (offer.zipMatchAttempts === 0) {
+            offer.showUpdate = true;
+            response.invalidZip = true;
+            offer.zipMatchAttempts = 1;
+            return;
+          } else {
+            this._router.navigate(['/campaignComplete']);
+          }
+        }
+
+      });
+  }
+
+  provideMediaSelected(selected: boolean,
+    offer: CoregDisplay,
+    request: ProvideMediaRequest,
+    response: CoregPostResponse) {
     offer.showConsent = selected;
     if (!selected) {
       offer.showUpdate = false;
@@ -210,7 +362,7 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
     if (selected) {
 
       if (!offer.consentChecked) {
-        offer.answer = null;  // uncheck yes
+        offer.answer = null; // uncheck yes
         return;
       }
 
@@ -274,13 +426,31 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
           offer.showUpdate = true;
           response.invalidAddress = data.invalidAddress;
           response.invalidZip = data.invalidZip;
-          response.invalidPhone = data.invalidPhone;        }
+          response.invalidPhone = data.invalidPhone;
+        }
       });
   }
 
- 
+  onContinue() {
+    //this._router.navigate(['/offersq1']);
+
+    //this._router.navigate([`${environment.cbrURL}/SoiPath/Q1.aspx`], { queryParams: { 'email': this.contact.email, 
+    //'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 
+    //'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId,
+    //'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId, 'cbrid': this.contact.cbrLeadId
+
+    const c = this.contact;
+
+    //http://www.cashbackresearch.com/SoiPath/Q2.aspx?firstname=Thomas&lastname=Kirk&email=tk08062017.1@webhenmedia.com
+    //&offerid=51001&affiliateid=00000&subid=&country=US&address=132%20Street
+    //&zip=68135&gender=M&dob=1/3/2001
+
+    window.location.href = `${environment.cbrURL}/SoiPath/Q1.aspx?firstname=${c.firstname}
+&lastname=${c.lastname}&address=${c.address}&zip=${c.zip}&gender=${c.gender}&dob=${c.birthDate}
+&country=${c.countryId}&offerid=${c.offerId}&affiliate=${c.affiliateId}&subid=${c.subId}&cbrid=${c.cbrLeadId}`;
 
 
- 
+  }
+
 }
 
