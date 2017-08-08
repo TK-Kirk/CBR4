@@ -11,7 +11,7 @@ import { Rev1EnterComponent } from './rev1-enter.component';
 import { Rev1RejectComponent } from './rev1-reject.component';
 import { Rev1Offer1Component } from './offers/rev1-offer1/rev1-offer1.component';
 import { Rev1OfferQ1Component } from './offers/rev1-offer1/rev1-offerq1.component';
-import { Rev1Offer1BaseComponent } from './offers/rev1-offer1/rev1-offer1-base.component';
+//import { Rev1Offer1BaseComponent } from './offers/rev1-offer1/rev1-offer1-base.component';
 import { TiburonContentComponent } from './tiburon-content';
 import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';

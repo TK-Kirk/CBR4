@@ -34,9 +34,17 @@ namespace CBR.Core.Logic.Managers
             var lead = _db.CbrLeads.FirstOrDefault(l => l.EmailAddress == coreglead.Email && l.OfferId == coreglead.OfferId && l.AffiliateId == coreglead.AffiliateId);
             if (lead == null)
             {
-                lead  = new CbrLead();
+                lead = new CbrLead();
                 _db.CbrLeads.Add(lead);
             }
+            else
+            {
+                if (coreglead.OfferId != "57048")
+                {
+                    coreglead.IsDuplicate = true;
+                }
+            }
+
             if (string.IsNullOrEmpty(lead.CountryId))
             {
                 lead.CountryId = GetCountry(lead.Ip);

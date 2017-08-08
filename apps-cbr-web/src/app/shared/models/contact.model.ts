@@ -15,20 +15,20 @@
     public birthDateDay: number;
 
     public getBirthDateYear(): number {
-        if (!this.birthDate) {
-            return null;
+      if (!this.birthDate || this.birthDate.toString() === 'Invalid Date') {
+            return 0;
         }
         return this.birthDate.getFullYear();
     }
     public getBirthDateDay(): number {
-        if (!this.birthDate) {
-            return null;
+      if (!this.birthDate || this.birthDate.toString() === 'Invalid Date') {
+            return 0;
         }
         return this.birthDate.getDate() + 1;
     }
     public getBirthDateMonth(): number {
-        if (!this.birthDate) {
-            return null;
+      if (!this.birthDate || this.birthDate.toString() === 'Invalid Date') {
+            return 0;
         }
         return this.birthDate.getMonth() + 1;
     }

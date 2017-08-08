@@ -30,5 +30,6 @@ namespace CBR.Core.Entities.ResourceModels
 
         public string Device { get; set;}
 
+        public bool IsDuplicate { get; set; }
     }
 }

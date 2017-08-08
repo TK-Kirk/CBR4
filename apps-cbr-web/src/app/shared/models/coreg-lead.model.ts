@@ -8,5 +8,6 @@ export class CoregLead extends Contact {
     public countryId: string;
     public ip: string;
     public device: string;
+    public isDuplicate: boolean;
 }
 

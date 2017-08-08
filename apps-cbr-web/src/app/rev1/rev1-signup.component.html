@@ -1,4 +1,4 @@
-﻿<section id="intro" class="intro-parallax">
+﻿<section id="intro" class="intro-parallax" style="background-position: 50% 10px;">
     <div class="container">
 
         <rev1-header></rev1-header>
@@ -38,40 +38,47 @@
                         </div>
                         <div id="input_name" class="col-md-12">
                             <input id="txtFirstname" [(ngModel)]="contact.firstname" class="form-control" type="text" name="txtFirstname" #firstName="ngModel" placeholder="First name" required />
-                            <div class="alert alert-danger" [hidden]="firstName.pristine || firstName.valid">First Name is required</div>
+                            <div class="alert alert-danger" [hidden]="!validationOn || firstName.valid">First Name is required</div>
                         </div>
                         <div id="input_name2" class="col-md-12">
                             <input id="txtLastname" [(ngModel)]="contact.lastname" class="form-control" type="text" name="txtLastname"  #lastName="ngModel" placeholder="Last name" required />
-                            <div class="alert alert-danger" [hidden]="lastName.pristine || lastName.valid">Last Name is required</div>
+                            <div class="alert alert-danger" [hidden]="!validationOn || lastName.valid">Last Name is required</div>
                         </div>
                         <div id="input_email" class="col-md-12">
                             <input id="txtEmail" [(ngModel)]="contact.email" (change)="verifyEmail()" class="form-control" type="text" name="txtEmail" placeholder="Email" #email="ngModel" required />
-                            <div class="alert alert-danger" [hidden]="email.pristine || email.valid">Email is required</div>
+                            <div class="alert alert-danger" [hidden]="!validationOn || email.valid">Email is required</div>
                             <div class="alert alert-danger" [hidden]="!invalidEmail || !email.valid">Email is not valid</div>
                         </div>
                         <div id="input_address" class="col-md-12">
                             <input id="txtAddress" [(ngModel)]="contact.address" class="form-control" type="text" name="txtAddress" placeholder="Address" #address="ngModel" required maxlength="100" />
-                            <div class="alert alert-danger" [hidden]="address.pristine || address.valid">Address is required</div>
+                            <div class="alert alert-danger" [hidden]="!validationOn || address.valid">Address is required</div>
                         </div>
                         <div id="input_zip" class="col-md-12">
-                            <input id="txtZip" [(ngModel)]="contact.zip" class="form-control" type="text" name="txtZip" placeholder="Zip Code" #zip="ngModel" required maxlength="5" />
-                            <div class="alert alert-danger" [hidden]="zip.pristine || zip.valid">Zip is required</div>
+                            <input  id="txtZip" [(ngModel)]="contact.zip" class="form-control" type="number" pattern="[0-9]*" name="txtZip" placeholder="Zip Code" #zip="ngModel" required maxlength="5" />
+                            <div class="alert alert-danger" [hidden]="!validationOn || zip.valid">Zip is required</div>
                         </div>
-                        <div id="input_phone" class="col-md-12">
-                            <input id="txtPhone" [(ngModel)]="contact.phone" class="form-control" type="text" name="txtPhone" placeholder="Phone Number" #phone="ngModel" required MaxLength="10" />
-                            <div class="alert alert-danger" [hidden]="phone.valid || !validationOn">Phone is required</div>
-                        </div>
-                        <div id="input_birthdate" class="col-md-12" style="margin-top: 4px;">
+                      <div id="input_phone" class="col-md-12">
+                        <input id="txtPhone" [(ngModel)]="contact.phone" class="form-control"  type="number" pattern="[0-9]*" name="txtPhone" placeholder="Phone Number" #phone="ngModel" required MaxLength="10" />
+                        <div class="alert alert-danger" [hidden]="phone.valid || !validationOn">Phone is required</div>
+                      </div>
+                      
+                      <!--<div id="input_dob" class="col-md-12">
+                        <input id="txtDOB" [(ngModel)]="contact.birthdate" class="form-control"  type="date" name="txtDOB" placeholder="Birthdate" #dob="ngModel" required  />
+                        <div class="alert alert-danger" [hidden]="dob.valid || !validationOn">B is required</div>
+                      </div>-->
+                      
+
+                      <div id="input_birthdate" class="col-md-12" style="margin-top: 4px;">
                             <p>Birthdate</p>
                             <div>
-                            <select id="ddlMonth" [(ngModel)]="contact.birthDateMonth" class="form-control col-md-3" name="ddlMonth" placeholder="Month" required style="height: 33px; width: 41%;">
-                                <option [value]="month.value" [label]="month.text" *ngFor="let month of monthlist"></option>
+                            <select id="ddlMonth" [(ngModel)]="contact.birthDateMonth" class="col-md-3 form-control" style="color: black;" name="ddlMonth" placeholder="Month" required style="height: 33px; width: 41%;">
+                                <option [value]="month.value" [label]="month.text" *ngFor="let month of monthlist">{{month.text}}</option>
                             </select>
                             <select id="ddlDay" [(ngModel)]="contact.birthDateDay" class="form-control  col-md-3" name="ddlDay" placeholder="Day" required style="height: 33px;width:25%">
-                                <option [value]="day.value" [label]="day.text" *ngFor="let day of daylist"></option>
+                                <option [value]="day.value" [label]="day.text" *ngFor="let day of daylist">{{day.text}}</option>
                             </select>
                             <select id="ddlYear" [(ngModel)]="contact.birthDateYear" class="form-control col-md-3" name="ddlYear" placeholder="Year" required style="height: 33px; width: 27%">
-                                <option [value]="year.value" [label]="year.text" *ngFor="let year of yearlist"></option>
+                                <option [value]="year.value" [label]="year.text" *ngFor="let year of yearlist">{{year.text}}</option>
                             </select>
                             </div>
                             <div class="alert alert-danger" [hidden]="!invalidBirthdate">Birthdate is invalid</div>
@@ -83,14 +90,14 @@
                             <span>Male</span>
                             <input value="female" [(ngModel)]="contact.gender" name="sex" type="radio" id="radFemale"  #gender="ngModel"  required />
                             Female
-                            <div class="alert alert-danger" [hidden]="gender.pristine || gender.valid">Gender is required</div>
+                            <div class="alert alert-danger" [hidden]="!validationOn || gender.valid">Gender is required</div>
                         </div>
 
 <!-- 
                         <script-hack type="text/javascript" src="http://ldsapi.tmginteractive.com/generateplacementscript.aspx?placement=48999100&publisher=572055&affid=&subid=&redirect="></script-hack>
 -->
                         <!-- Submit Button -->
-                      <div id="form_register_btn" class="text-center">
+                      <div id="form_register_btn" class="text-center"style="margin-top: 15px;">
                         <!--<input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button" onclick='javascript: document.getElementById("contactform").submit();'>-->
                         <!--<input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button" onClick='return TMG_CheckForClick();' [disabled]="contactForm.pristine || !contactForm.valid">-->
                         <input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button">
@@ -98,7 +105,10 @@
                       <!--<tiburon-content>
                       </tiburon-content>
                       <div id="tiburonContent"></div>-->
+                      
+                      <div class="alert alert-danger" [hidden]="!isDuplicate"  style="margin-top: 10px;">This email address is already signed up.</div>
                     </form>
+                  
 
                 </div>
                 <div class="terms">

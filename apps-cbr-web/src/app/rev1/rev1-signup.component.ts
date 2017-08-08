@@ -32,7 +32,7 @@ export class Rev1SignupComponent implements OnInit {
     monthlist: TextValue[] = [];
     daylist: TextValue[] = [];
     transactionid: string;
-
+    isDuplicate: boolean;
 
     constructor(private _cookieService: CookieService, private _route: ActivatedRoute, private _router: Router,
     private _xverifyService: XVerifyService, private _rev1Service: Rev1Service, private _listrakService: ListrakService) {
@@ -140,10 +140,13 @@ export class Rev1SignupComponent implements OnInit {
         if (this.validateBirthdate() && this.contactform.valid) {
             this._rev1Service.postLead(this.contact)
                 .subscribe((data: CoregLead) => {
-                    const cbrId = data.cbrLeadId;
+                  const cbrId = data.cbrLeadId;
+                  if (!data.isDuplicate) {
                     this._listrakService.postToLists(data, [ListrakLists.CBR_US_Certified, ListrakLists.CBR_US_Non_Cert], 'rev1signup').subscribe();
 
                     this._router.navigate(['/rev1enter'], { queryParams: { 'email': this.contact.email, 'firstname': this.contact.firstname, 'lastname': this.contact.lastname, 'address': this.contact.address, 'zip': this.contact.zip, 'gender': this.contact.gender, 'birthdate': this.contact.birthDate, 'country': this.contact.countryId, 'offerid': this.contact.offerId, 'affiliateid': this.contact.affiliateId, 'subid': this.contact.subId, 'cbrid': cbrId } });
+                  }
+                  this.isDuplicate = true;
                 });
 
         }
@@ -191,19 +194,19 @@ export class Rev1SignupComponent implements OnInit {
         const today: Date = new Date();
         // the min age is 14
 
-        this.yearlist.push({ text: 'Year', value: null });
+        this.yearlist.push({ text: 'Year', value: '0' });
         const year: number = today.getFullYear() - 14;
         for (let i = year; i > year - 86; i--) {
             this.yearlist.push({ text: i.toString(), value: i.toString() });
         }
 
 
-        this.daylist.push({ text: 'Day', value: null });
-        for (let i = 0; i <= 31; i++) {
+        this.daylist.push({ text: 'Day', value: '0' });
+        for (let i = 1; i <= 31; i++) {
             this.daylist.push({ text: i.toString(), value: i.toString() });
         }
 
-        this.monthlist.push({ text: 'Month', value: null });
+        this.monthlist.push({ text: 'Month', value: '0' });
         for (let i = 1; i <= 12; i++) {
             switch (i) {
                 case 1:
