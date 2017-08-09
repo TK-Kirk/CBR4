@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,7 @@ namespace CBR.Core.Logic.Managers
             //Rail road cancer  &s1=rev1&eiq_campaign_id=632&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=3048806079&ip=192.168.1.1&q1=Yes
             //Hernia Mesh       &s1=rev1&eiq_campaign_id=548&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=3048806079&ip=192.168.1.1&state=AL&q1=Yes&q2=2004+or+later&q3=Yes&q4=0
             //Xarelto           &s1=rev1&eiq_campaign_id=514&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=2056532345&zip=35126&state=AL&q1=Yes&q2=No
+
             //back brace        &s1=rev1&eiq_campaign_id=341&eiq_email=tk66@webhenmedia.com     &first_name=Romnick&last_name=Sars&phone=4026804444&address=125+Broadway&zip=10016&city=New York&state=NY&ip=192.168.1.2
             //medical alert     &s1=rev1&eiq_campaign_id=561&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=3048806079&address=5911+Marches&zip=35126&city=Pinson  &state=AL&dob=1971-01-03&gender=M&datetime=2017-7-19&leadid=20170719123212
             //pain gel          &s1=rev1&eiq_campaign_id=401&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=2126532345&address=125+Broadway&zip=10016&city=New York&state=NY&ip=104.173.123.246&dob=06/11/1943&gender=M&
@@ -126,7 +128,7 @@ namespace CBR.Core.Logic.Managers
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&zip={l.Zip}&gender={gender}&birth_date={dob_YMD_dash}";
                     break;
                 case CoregCampaignType.EngageIQ_MotorVehicleAccident:
-                    postLead = IsGreaterThan(r.Q2, 2014) && r.Q6 == "No";
+                    postLead = IsGreaterThan(r.Q2, 2014) && r.Q6 == "No" && ZipIsAllowed(l.Zip,@"~\OfferValidation\EngageIQ\zips_mva.txt");
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&address={l.Address}&city={l.City}&state={l.State}&ip={ipAddress}&lr=new&program_name=National+Injury+Bureau+MVA(1170)&program_id=1170&q1={r.Q1}&q2={r.Q2}&q3={r.Q3}&q4={r.Q4}&q5={r.Q5}&q6={r.Q6}&comments={r.Comments1}&terms=Yes";
                     break;
@@ -159,6 +161,13 @@ namespace CBR.Core.Logic.Managers
             //lead was not posted due to wrong answers on custom questions
             WriteCoregError("EngageIQ", postData, baseurl, "No response.");
             return new CoregPostResponse() { Success = true };
+        }
+
+        private bool ZipIsAllowed(string zip, string path)
+        {
+            string mappedPath = System.Web.HttpContext.Current.Request.MapPath(path);
+            string[] zips =  File.ReadAllLines(mappedPath);
+            return  zips.Contains(zip);
         }
 
         private bool CheckPrePing(string email)
@@ -211,5 +220,8 @@ namespace CBR.Core.Logic.Managers
                 request.Comments1 = request.Comments1.Replace(" ", "+");
             }
         }
+
+
+      
     }
 }

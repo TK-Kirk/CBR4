@@ -22,7 +22,8 @@
       "prefix": "app",
       "styles": [
         "responsive.css",
-        "styles.css"
+        "styles.css",
+        "../node_modules/font-awesome/css/font-awesome.css" 
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
