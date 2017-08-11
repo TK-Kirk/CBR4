@@ -17,6 +17,7 @@ import { Rev1Service } from './services/rev1.service';
 import { ScriptComponent } from '../shared/components/script.component';
 import { Rev1RoutingModule, rev1Routes } from './rev1-routing.module';
 
+import { CoregService } from '../shared/services/coreg.service';
 import { PostService } from '../shared/services/post.service';
 import { XVerifyService } from '../shared/services/xverify.service';
 import { ListrakService } from '../shared/services/listrak.service';
@@ -45,7 +46,7 @@ export { Rev1Component };
     TiburonContentComponent
   ],
   providers: [
-    Rev1Service, XVerifyService, ListrakService, PostService
+    Rev1Service, XVerifyService, ListrakService, PostService, CoregService
   ],
   exports: [
     Rev1Component,

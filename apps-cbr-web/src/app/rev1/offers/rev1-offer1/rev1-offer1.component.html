@@ -19,12 +19,12 @@
         </div>
 
         <!-- End Intro Section Description -->
-        <div id="intro_form" class="col-sm-5 col-md-5">
+        <!--<div id="intro_form" class="col-sm-5 col-md-5">
 
-        </div>
+        </div>-->
 
         <!--Debt.com-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(debtComRequest.campaignCodeId)">
           <div id="inputDebtCom" class="col-md-7 col-xs-12 well offer-container-well">
             <div>
               <img src="../../../../assets/images/offers/providemedia/debtcom.png" />
@@ -69,10 +69,8 @@
           </div>
         </div>
 
-
-
       <!--Direct Energy-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(directEnergyRequest.campaignCodeId)">
           <div id="inputDirectEnergy" class="col-md-7 col-xs-12 well offer-container-well">
             <div>
               <img src="../../../../assets/images/offers/providemedia/directEnergy.png" />
@@ -116,9 +114,8 @@
           </div>
         </div>
 
-
         <!--Taxotere-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(taxotereRequest.campaignCodeId)">
           <div id="inputTaxotere" class="col-md-7 col-xs-12 well offer-container-well">
             <form #taxotereform="ngForm" id="taxotereform" name="taxotereform" class="row" novalidate>
               <div>
@@ -188,7 +185,7 @@
         </div>
 
         <!--Railroad Cancer-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(railroadCancerRequest.campaignCodeId)">
           <div id="inputRailroadCancer" class="col-md-7 col-xs-12 well offer-container-well">
             <form #railroadCancerform="ngForm" id="railroadCancerform" name="railroadCancerform" class="row" novalidate>
               <div>
@@ -242,7 +239,7 @@
         </div>
 
         <!--Hernia Mesh-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(herniaMeshRequest.campaignCodeId)">
           <div id="inputHerniaMesh" class="col-md-7 col-xs-12 well offer-container-well">
             <form #herniaMeshform="ngForm" id="herniaMeshform" name="herniaMeshform" class="row" novalidate>
               <div>
@@ -344,7 +341,7 @@
         </div>
 
         <!--Xarelto-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(xareltoRequest.campaignCodeId)">
           <div id="inputXarelto" class="col-md-7 col-xs-12 well offer-container-well">
             <form #xareltoform="ngForm" id="xareltoform" name="xareltoform" class="row" novalidate>
               <div>
@@ -413,7 +410,7 @@
         </div>
 
         <!--Backbrace-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(xareltoRequest.campaignCodeId)">
           <div id="inputBackbrace" class="col-md-7 col-xs-12 well offer-container-well">
             <form #backbraceform="ngForm" id="backbraceform" name="backbraceform" class="row" novalidate>
               <div>
@@ -455,11 +452,9 @@
           </div>
         </div>
 
-
-
         <!--MedicalAlert-->
         <div class="offer-container row offer-container-row">
-          <div id="inputMedicalAlert" class="col-md-7 col-xs-12 well offer-container-well">
+          <div id="inputMedicalAlert" class="col-md-7 col-xs-12 well offer-container-well" [hidden]="offerIsHidden(medicalAlertRequest.campaignCodeId)">
             <form #medicalAlertform="ngForm" id="medicalAlertform" name="medicalAlertform" class="row" novalidate>
               <div>
                 <img src="../../../../assets/images/offers/engageiq/med1.png" />
@@ -500,9 +495,8 @@
           </div>
         </div>
 
-
         <!--Paingel-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(paingelRequest.campaignCodeId)">
           <div id="inputPaingel" class="col-md-7 col-xs-12 well offer-container-well">
             <form #paingelform="ngForm" id="paingelform" name="paingelform" class="row" novalidate>
               <div>
@@ -558,9 +552,8 @@
           </div>
         </div>
 
-
-        <!--Railroad Cancer-->
-        <div class="offer-container row offer-container-row">
+        <!--Toluna-->
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(tolunaRequest.campaignCodeId)">
           <div id="inputToluna" class="col-md-7 col-xs-12 well offer-container-well">
             <form #tolunaform="ngForm" id="tolunaform" name="tolunaform" class="row" novalidate>
               <div>
@@ -597,7 +590,7 @@
         </div>
 
         <!--Motor Vehicle Accident-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(motorVehicleAccidentRequest.campaignCodeId)">
           <div id="inputMotorVehicleAccident" class="col-md-7 col-xs-12 well offer-container-well">
             <form #motorVehicleAccidentform="ngForm" id="motorVehicleAccidentform" name="motorVehicleAccidentform" class="row" novalidate>
               <div>
@@ -730,7 +723,7 @@
         </div>
 
         <!--Sprint-->
-        <div class="offer-container row offer-container-row">
+        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(sprintRequest.campaignCodeId)">
           <div id="inputSprint" class="col-md-7 col-xs-12 well offer-container-well">
             <form #sprintform="ngForm" id="sprintform" name="sprintform" class="row" novalidate>
               <div>

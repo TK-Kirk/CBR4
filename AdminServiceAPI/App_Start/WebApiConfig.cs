@@ -13,7 +13,7 @@ namespace AdminServiceAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            string origins = "http://devadmin.cashbackresearch.com,http://testadmin.cashbackresearch.com,http://admin.cashbackresearch.com";
+            string origins = "http://devadmin.cashbackresearch.com,http://testadmin.cashbackresearch.com,http://admin.cashbackresearch.com,http://devcoreg.cashbackresearch.com,http://apps.cashbackresearch.com";
             var cors = new EnableCorsAttribute(origins, "*", "*");
             config.EnableCors(cors);
 

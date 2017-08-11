@@ -7,5 +7,6 @@ export const environment = {
   production: false,
   host: 'http://devapi.cashbackresearch.com/',
   baseurl: 'http://devcoreg.cashbackresearch.com/',
+  adminapiurl: 'http://devadminapi.cashbackresearch.com/',
   cbrURL: 'http://devwww.cashbackresearch.com/'
 };

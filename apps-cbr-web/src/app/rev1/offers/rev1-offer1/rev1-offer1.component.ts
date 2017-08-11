@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 import { CoregCampaignType } from '../../../shared/enums/coreg-campaign-type.enum';
 import { ScriptComponent } from '../../../shared/components/script.component';
+import { CoregService } from '../../../shared/services/coreg.service';
 import { PostService } from '../../../shared/services/post.service';
 import { ProvideMediaRequest, ProvideMediaUpdateRequest } from '../../../shared/models/provide-media.model';
 import { CoregLead } from '../../../shared/models/coreg-lead.model';
@@ -18,6 +19,7 @@ import { environment } from '../../../../environments/environment';
 
 
 import * as postscribe from 'postscribe';
+import { CoregCampaignDetail } from '../../../shared/models/coreg-campaign-detail.model'
 
 @Component({
   selector: 'app-rev1-offer1',
@@ -26,11 +28,8 @@ import * as postscribe from 'postscribe';
 })
 export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   campaignType: CoregCampaignType;
+  campaigns: CoregCampaignDetail[];
 
-
-  // private CAMPAIGN_CODE_DEBT_COM = 'wm9EdfezDE8RXU9Rxt21LA';
-  // private CAMPAIGN_CODE_SPRING_POWER_GAS = '6lIEmSzGTZ-OW52pU7Ir5g';
-  // private CAMPAIGN_CODE_DIRECT_ENERGY = 'yGK2ea4AmDf1fVJbMg05kQ';
   private subIdTag = 'rev1';
   contact: CoregLead;
   campaignCodes: CoregCampaignCode;
@@ -88,9 +87,13 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   constructor(private _route: ActivatedRoute,
     private _router: Router,
     private _postservice: PostService,
+    private _coregservice: CoregService,
     @Inject(DOCUMENT) private document: any) {
-    this.contact = new CoregLead;
 
+    this.contact = new CoregLead;
+    this.campaigns = [];
+
+    this.getCampaigns();
     this.initializeParameters();
 
     this.campaignCodes = new CoregCampaignCode();
@@ -207,6 +210,23 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
       });
   }
 
+  offerIsHidden(id: CoregCampaignType): boolean {
+    if (this.campaigns.length === 0) {
+      return false;
+    }
+    const c = this.campaigns.find(x => x.coregCampaignId === id);
+    if (c == undefined) {
+      return false;
+    }
+    return !c.active;
+  }
+
+  getCampaigns() {
+    this._coregservice.getCampaigns()
+      .subscribe((data: CoregCampaignDetail[]) => {
+        this.campaigns = data;
+      });
+  }
 
   engageIqSelected(selected: boolean,
     offer: CoregDisplay,
