@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminResourceModels\CoregCampaignDetail.cs" />
     <Compile Include="Enums\CoregEnums.cs" />
     <Compile Include="ExternalResouceModels\CoregPostRequestBase.cs" />
     <Compile Include="ExternalResouceModels\CoregPostResponse.cs" />

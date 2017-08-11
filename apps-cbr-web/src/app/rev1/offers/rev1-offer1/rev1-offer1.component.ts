@@ -445,8 +445,15 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
     //&offerid=51001&affiliateid=00000&subid=&country=US&address=132%20Street
     //&zip=68135&gender=M&dob=1/3/2001
 
-    window.location.href = `${environment.cbrURL}/SoiPath/Q1.aspx?firstname=${c.firstname}
-&lastname=${c.lastname}&address=${c.address}&zip=${c.zip}&gender=${c.gender}&dob=${c.birthDate}
+    var gender = 'M';
+    if (this.contact.gender === 'female') {
+      gender = 'F';
+    }
+
+    const dob = `${this.contact.getBirthDateMonth()}/${this.contact.getBirthDateDay()}/${this.contact.getBirthDateYear()}`;
+
+    window.location.href = `${environment.cbrURL}/SoiPath/Q1.aspx?email=${c.email}&firstname=${c.firstname}
+&lastname=${c.lastname}&address=${c.address}&zip=${c.zip}&gender=${gender}&dob=${dob}
 &country=${c.countryId}&offerid=${c.offerId}&affiliate=${c.affiliateId}&subid=${c.subId}&cbrid=${c.cbrLeadId}`;
 
 

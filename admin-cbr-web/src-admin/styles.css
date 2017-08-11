@@ -1,0 +1,20 @@
+﻿.task-grid-header {
+  background: #333;
+  color: #CCC;
+  font-size: 13px;
+}
+
+.task-grid-header label {
+  font-weight: bold;
+}
+
+.task-grid-border {
+  border-color: $task-gridborder-grey;
+  border-width: 1px;
+  border-style: solid;
+}
+
+
+.centered {
+  text-align: center;
+}

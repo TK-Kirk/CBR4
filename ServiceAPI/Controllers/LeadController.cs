@@ -29,8 +29,16 @@ namespace ServiceAPI.Controllers
             catch (Exception e)
             {
                 if (e.InnerException != null)
+                {
+                    if (e.InnerException.InnerException != null)
+                    {
+                        return Ok(e.InnerException.InnerException.Message);
+                    }
                     return Ok(e.InnerException.Message);
+                }
+
                 return Ok(e.Message);
+
             }
 
         }

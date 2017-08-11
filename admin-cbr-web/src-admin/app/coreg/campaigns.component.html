@@ -1,0 +1,53 @@
+﻿<div style="width: 80%; margin-left: 15px;"><table class="table table-hover ">
+  <thead>
+  <tr>
+    <th>Partner</th>
+    <th>Campaign</th>
+    <th>Active</th>
+    <th>On</th>
+    <th>Off</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of campaigns;let index=index;">
+    <td>{{c.partnerName}}</td>
+    <td>{{c.name}}</td>
+    <td>{{c.active}}</td>
+    <td>
+      <input type="radio" name="{{index}}" [(ngModel)]="c.active" [value]="true"
+             (ngModelChange)="onRadioClick(true, c)">
+    </td>
+    <td>
+      <input type="radio" name="{{index}}" [(ngModel)]="c.active" [value]="false"
+             (ngModelChange)="onRadioClick(false, c)">
+    </td>
+  </tr>
+  </tbody>
+</table></div>
+
+
+
+<!--<div class="col-xs-9">
+  <div class="row task-grid-header alert-grid-past-due-header">
+    <label class="col-xs-3">Partner</label>
+    <label class="col-xs-3">Campaign</label>
+    <label class="col-xs-2">Active</label>
+    <label class="col-xs-2">On</label>
+    <label class="col-xs-2">Off</label>
+  </div>
+  <div *ngFor="let c of campaigns;let even = even; let odd = odd; let index=index;" class="row alert-grid"
+       [class.tasklist-odd]="odd" [class.tasklist-even]="even">
+    <div class="col-xs-3"><span>{{c.partnerName}}</span></div>
+    <div class="col-xs-3"><span>{{c.name}}</span></div>
+    <div class="col-xs-2"><span>{{c.active}}</span></div>
+
+    <div class="col-xs-2 centered">
+      <input type="radio" name="{{index}}" [(ngModel)]="c.active" [value]="true"
+             (ngModelChange)="onRadioClick(true)">
+    </div>
+    <div class="col-xs-2 centered">
+      <input type="radio" name="{{index}}" [(ngModel)]="c.active" [value]="false"
+             (ngModelChange)="onRadioClick(false)">
+    </div>
+  </div>
+</div>-->

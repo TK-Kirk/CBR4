@@ -32,6 +32,31 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src", "apps-cbr-web\src\", 
 		SlnRelativePath = "apps-cbr-web\src\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src-admin", "admin-cbr-web\src-admin\", "{57646A79-AD4F-418A-A41A-876439EB47DD}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_18386"
+		Debug.AspNetCompiler.PhysicalPath = "admin-cbr-web\src-admin\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_18386\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_18386"
+		Release.AspNetCompiler.PhysicalPath = "admin-cbr-web\src-admin\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_18386\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "18386"
+		SlnRelativePath = "admin-cbr-web\src-admin\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServiceAPI", "AdminServiceAPI\AdminServiceAPI.csproj", "{5AFFB9E4-22D4-46C4-86FB-F6D631C6BB19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Logic", "Admin.Logic\Admin.Logic.csproj", "{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +82,18 @@ Global
 		{1B794D16-7163-4065-BB92-1989208B4571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B794D16-7163-4065-BB92-1989208B4571}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B794D16-7163-4065-BB92-1989208B4571}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{57646A79-AD4F-418A-A41A-876439EB47DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57646A79-AD4F-418A-A41A-876439EB47DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57646A79-AD4F-418A-A41A-876439EB47DD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{57646A79-AD4F-418A-A41A-876439EB47DD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5AFFB9E4-22D4-46C4-86FB-F6D631C6BB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AFFB9E4-22D4-46C4-86FB-F6D631C6BB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AFFB9E4-22D4-46C4-86FB-F6D631C6BB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AFFB9E4-22D4-46C4-86FB-F6D631C6BB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
