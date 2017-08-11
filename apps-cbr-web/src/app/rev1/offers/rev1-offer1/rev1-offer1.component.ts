@@ -77,12 +77,18 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
   toluna: CoregDisplay;
   tolunaResponse: CoregPostResponse;
   tolunaRequest: EngageIqRequest;
-
-
+  
   sprint: CoregDisplay;
   sprintResponse: CoregPostResponse;
-  sprintRequest: EngageIqRequest;
+  sprintRequest: CoregPostRequestBase;
 
+  mySurvey: CoregDisplay;
+  mySurveyResponse: CoregPostResponse;
+  mySurveyRequest: EngageIqRequest;
+
+  globalTestMarket: CoregDisplay;
+  globalTestMarketResponse: CoregPostResponse;
+  globalTestMarketRequest: EngageIqRequest;
 
   constructor(private _route: ActivatedRoute,
     private _router: Router,
@@ -167,10 +173,24 @@ export class Rev1Offer1Component implements OnInit, AfterViewChecked {
 
     this.sprint = new CoregDisplay();
     this.sprintResponse = new CoregPostResponse;
-    this.sprintRequest = new EngageIqRequest();
+    this.sprintRequest = new CoregPostRequestBase();
     this.sprintRequest.campaignCodeId = CoregCampaignType.Centerfield_Sprint;
     this.sprintRequest.campaignCode = this.campaignCodes.Centerfield_Sprint;
 
+
+    this.mySurvey = new CoregDisplay();
+    this.mySurvey.showQuestions = true; //  this is because there are no questions to show
+    this.mySurveyResponse = new CoregPostResponse;
+    this.mySurveyRequest = new EngageIqRequest();
+    this.mySurveyRequest.campaignCodeId = CoregCampaignType.EngageIQ_MySurvey;
+    this.mySurveyRequest.campaignCode = this.campaignCodes.EngageIQ_MySurvey;
+
+    this.globalTestMarket = new CoregDisplay();
+    this.globalTestMarket.showQuestions = true; //  this is because there are no questions to show
+    this.globalTestMarketResponse = new CoregPostResponse;
+    this.globalTestMarketRequest = new EngageIqRequest();
+    this.globalTestMarketRequest.campaignCodeId = CoregCampaignType.EngageIQ_GlobalTestMarket;
+    this.globalTestMarketRequest.campaignCode = this.campaignCodes.EngageIQ_GlobalTestMarket;
   }
 
 

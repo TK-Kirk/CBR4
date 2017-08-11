@@ -82,7 +82,8 @@ namespace CBR.Core.Logic.Managers
             //pain gel          &s1=rev1&eiq_campaign_id=401&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=2126532345&address=125+Broadway&zip=10016&city=New York&state=NY&ip=104.173.123.246&dob=06/11/1943&gender=M&
             //toluna            &s1=rev1&eiq_campaign_id=1&  eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&zip=01516&gender=M&birth_date=1960-05-16
             //motorveh accid    &s1=rev1&eiq_campaign_id=204&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars&phone=2056532345&address=5911+Marchester+circle&zip=35126&city=Pinson&state=AL&ip=104.173.123.246&lr=new&program_name=National+Injury+Bureau+MVA(1170)&program_id=1170&q1=Auto&q2=2015&q4=no&q5=Fred Panopio&q6=no&comments=I+was+hit+from+behind+by+a+truck&s1=yourSudID1&terms=Yes
-
+            //my survey         &s1=rev1&eiq_campaign_id=2&  eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars
+            //GlobalTestmarket  &s1=rev1&eiq_campaign_id=4&p_value=CD1&eiq_email=Romnick21.Sar32@yahoo.com&first_name=Romnick&last_name=Sars
             var r = request;
             var l = lead;
 
@@ -132,7 +133,18 @@ namespace CBR.Core.Logic.Managers
                     postData =
                         $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&phone={l.Phone}&zip={l.Zip}&address={l.Address}&city={l.City}&state={l.State}&ip={ipAddress}&lr=new&program_name=National+Injury+Bureau+MVA(1170)&program_id=1170&q1={r.Q1}&q2={r.Q2}&q3={r.Q3}&q4={r.Q4}&q5={r.Q5}&q6={r.Q6}&comments={r.Comments1}&terms=Yes";
                     break;
-
+                case CoregCampaignType.EngageIQ_MySurvey:
+                    //needs pre ping
+                    postLead = CheckPrePing(l.EmailAddress);
+                    postData =
+                        $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}";
+                    break;
+                case CoregCampaignType.EngageIQ_GlobalTestMarket:
+                    //needs pre ping
+                    postLead = CheckPrePing(l.EmailAddress);
+                    postData =
+                        $"&s1={r.SubIdTag}&eiq_campaign_id={r.CampaignCode}&eiq_email={l.EmailAddress}&first_name={l.Firstname}&last_name={l.Lastname}&p_value=CD295";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

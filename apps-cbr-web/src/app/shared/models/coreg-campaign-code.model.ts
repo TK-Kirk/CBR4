@@ -24,4 +24,8 @@
   EngageIQ_MotorVehicleAccident = '204';
 
   Centerfield_Sprint = '100657';
+
+  EngageIQ_MySurvey = '2';
+
+  EngageIQ_GlobalTestMarket = '4';
 }

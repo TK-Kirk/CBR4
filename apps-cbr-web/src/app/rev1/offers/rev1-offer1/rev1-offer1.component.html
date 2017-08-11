@@ -723,48 +723,128 @@
         </div>
 
         <!--Sprint-->
-        <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(sprintRequest.campaignCodeId)">
-          <div id="inputSprint" class="col-md-7 col-xs-12 well offer-container-well">
-            <form #sprintform="ngForm" id="sprintform" name="sprintform" class="row" novalidate>
+      <div class="offer-container row offer-container-row" [hidden]="offerIsHidden(sprintRequest.campaignCodeId)">
+        <div id="inputSprint" class="col-md-7 col-xs-12 well offer-container-well">
+          <form #sprintform="ngForm" id="sprintform" name="sprintform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/centerfieldmedia/sprint-logo.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>Are you interested in a free phone and saving money on your wireless bill by switching to Sprint?</b>
+
+            </div>
+
+            <div class="offer-container-consent" id="divConsentCheckSprint" [hidden]="!sprint.showQuestions">
+
+              <div class="fine-print">
+                By clicking Yes below, I consent to receive from Sprint and any party on Sprint’s behalf telemarketing calls using an autodialer or pre-recordings and SMS text messages at any time, which could result in wireless charges, at the number provided above.  I understand that consent is not a condition of purchase.
+              </div>
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="sprintResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="sprint" id="optSprintYes" type="radio" value="Yes" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(true, sprint, sprintRequest, sprintResponse, sprintform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="sprint" id="optSprintNo" class="" type="radio" value="No" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(false, sprint, sprintRequest, sprintResponse, sprintform, $event);" />No
+                </label>
+                <!--<input name="sprint" id="optSprintNone" class="" type="radio" value="" [(ngModel)]="sprint.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!sprint.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!sprintResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="centerfieldMediaPostData(sprint, sprintRequest, sprintResponse)">
+          </div>
+        </div>
+      </div>
+        
+        
+        
+      <!--My Survey-->
+      <div class="offer-container row offer-container-row">
+        <div id="inputMySurvey" class="col-md-7 col-xs-12 well offer-container-well" [hidden]="offerIsHidden(mySurveyRequest.campaignCodeId)">
+          <form #mySurveyform="ngForm" id="mySurveyform" name="mySurveyform" class="row" novalidate>
+            <div>
+              <img src="../../../../assets/images/offers/engageiq/sticker-green-survey-dollars.png" />
+            </div>
+            <div class="offer-container-text">
+              <b>
+                Join MySurvey, and you could win up to $2000!
+              </b>
+              <br />
+              Sell us your opinions! Fill out a few surveys and redeem your points for $50 through your PayPal. Register now!
+            </div>
+            <div class="options-select-container">
+              <div class="text-center">
+                <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="mySurveyResponse.success" />
+                <label class="radio inline opt-in">
+                  <input name="mySurvey" id="optMySurveyYes" type="radio" value="Yes" [(ngModel)]="mySurvey.answer" (change)="engageIqSelected(true, mySurvey, mySurveyRequest, mySurveyResponse, mySurveyform, $event);" />Yes
+                </label>
+                <label class="radio inline opt-in">
+                  <input name="mySurvey" id="optMySurveyNo" class="" type="radio" value="No" [(ngModel)]="mySurvey.answer" (change)="engageIqSelected(false, mySurvey, mySurveyRequest, mySurveyResponse, mySurveyform, $event);" />No
+                </label>
+                <!--<input name="mySurvey" id="optMySurveyNone" class="" type="radio" value="" [(ngModel)]="mySurvey.answer" [hidden]="true" />-->
+              </div>
+            </div>
+
+          </form>
+          <div class="alert alert-danger" [hidden]="!mySurvey.showUpdate">
+            <label>Please correct your zip code.</label>
+            <div [hidden]="!mySurveyResponse.invalidZip">
+              <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
+            </div>
+            <input type="button" value="Update" (click)="engageiqPostData(mySurvey, mySurveyRequest, mySurveyResponse)">
+          </div>
+        </div>
+      </div>
+        
+        
+        
+        <!--Global Test Market-->
+        <div class="offer-container row offer-container-row">
+          <div id="inputGlobalTestMarket" class="col-md-7 col-xs-12 well offer-container-well" [hidden]="offerIsHidden(globalTestMarketRequest.campaignCodeId)">
+            <form #globalTestMarketform="ngForm" id="globalTestMarketform" name="globalTestMarketform" class="row" novalidate>
               <div>
-                <img src="../../../../assets/images/offers/centerfieldmedia/sprint-logo.png" />
+                <img src="../../../../assets/images/offers/engageiq/sticker-green-survey-dollars.png" />
               </div>
               <div class="offer-container-text">
-                <b>Are you interested in a free phone and saving money on your wireless bill by switching to Sprint?</b>
-
-              </div>
-
-              <div class="offer-container-consent" id="divConsentCheckSprint" [hidden]="!sprint.showQuestions">
-
-                <div class="fine-print">
-                  By clicking Yes below, I consent to receive from Sprint and any party on Sprint’s behalf telemarketing calls using an autodialer or pre-recordings and SMS text messages at any time, which could result in wireless charges, at the number provided above.  I understand that consent is not a condition of purchase.
-                </div>
+                <b>
+                  Get paid to voice your opinion with Global Test Market!
+                </b>
+                <br />
+                Do you want to get paid to your voice your opinion on movies, restaurants, auto mobiles, consumer products, current events, and many more topics that interest you?
               </div>
               <div class="options-select-container">
                 <div class="text-center">
-                  <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="sprintResponse.success" />
+                  <img class="checkmark" src="../../../../assets/images/offers/greenCheckmark.png" *ngIf="globalTestMarketResponse.success" />
                   <label class="radio inline opt-in">
-                    <input name="sprint" id="optSprintYes" type="radio" value="Yes" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(true, sprint, sprintRequest, sprintResponse, sprintform, $event);" />Yes
+                    <input name="globalTestMarket" id="optGlobalTestMarketYes" type="radio" value="Yes" [(ngModel)]="globalTestMarket.answer" (change)="engageIqSelected(true, globalTestMarket, globalTestMarketRequest, globalTestMarketResponse, globalTestMarketform, $event);" />Yes
                   </label>
                   <label class="radio inline opt-in">
-                    <input name="sprint" id="optSprintNo" class="" type="radio" value="No" [(ngModel)]="sprint.answer" (change)="centerfieldMediaSelected(false, sprint, sprintRequest, sprintResponse, sprintform, $event);" />No
+                    <input name="globalTestMarket" id="optGlobalTestMarketNo" class="" type="radio" value="No" [(ngModel)]="globalTestMarket.answer" (change)="engageIqSelected(false, globalTestMarket, globalTestMarketRequest, globalTestMarketResponse, globalTestMarketform, $event);" />No
                   </label>
-                  <!--<input name="sprint" id="optSprintNone" class="" type="radio" value="" [(ngModel)]="sprint.answer" [hidden]="true" />-->
+                  <!--<input name="globalTestMarket" id="optGlobalTestMarketNone" class="" type="radio" value="" [(ngModel)]="globalTestMarket.answer" [hidden]="true" />-->
                 </div>
               </div>
 
             </form>
-            <div class="alert alert-danger" [hidden]="!sprint.showUpdate">
+            <div class="alert alert-danger" [hidden]="!globalTestMarket.showUpdate">
               <label>Please correct your zip code.</label>
-              <div [hidden]="!sprintResponse.invalidZip">
+              <div [hidden]="!globalTestMarketResponse.invalidZip">
                 <input class="form-control data-update-control" type="text" [(ngModel)]="contact.zip">
               </div>
-              <input type="button" value="Update" (click)="centerfieldMediaPostData(sprint, sprintRequest, sprintResponse)">
+              <input type="button" value="Update" (click)="engageiqPostData(globalTestMarket, globalTestMarketRequest, globalTestMarketResponse)">
             </div>
           </div>
         </div>
 
-        <div class="text-center" style="margin-bottom: 20px;">
+      <div class="text-center" style="margin-bottom: 20px;">
           <input class="bigbutton btn btn-primary" type="button" value="Continue" (click)="onContinue()">
         </div>
 
