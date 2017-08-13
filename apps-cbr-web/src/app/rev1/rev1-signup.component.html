@@ -86,9 +86,9 @@
                         
                         <div id="input_gender" class="col-md-12">
                             <label>Gender</label>
-                            <input value="male" [(ngModel)]="contact.gender" name="sex" type="radio" id="radMale" #gender="ngModel" required />
+                            <input value="M" [(ngModel)]="contact.gender" name="sex" type="radio"  #gender="ngModel" required />
                             <span>Male</span>
-                            <input value="female" [(ngModel)]="contact.gender" name="sex" type="radio" id="radFemale"  #gender="ngModel"  required />
+                            <input value="F" [(ngModel)]="contact.gender" name="sex" type="radio" #gender="ngModel"  required />
                             Female
                             <div class="alert alert-danger" [hidden]="!validationOn || gender.valid">Gender is required</div>
                         </div>

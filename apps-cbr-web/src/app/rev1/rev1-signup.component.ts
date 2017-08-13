@@ -105,15 +105,15 @@ export class Rev1SignupComponent implements OnInit {
           this.contact.zip = null;
         }
 
-        if (this.contact.gender != null) {
-          this.contact.gender = this.contact.gender.toLowerCase();
-          if (this.contact.gender === 'm') {
-            this.contact.gender = 'male';
-          }
-          if (this.contact.gender === 'f') {
-            this.contact.gender = 'female';
-          }
-        }
+        //if (this.contact.gender != null) {
+        //  this.contact.gender = this.contact.gender.toLowerCase();
+        //  if (this.contact.gender === 'm') {
+        //    this.contact.gender = 'male';
+        //  }
+        //  if (this.contact.gender === 'f') {
+        //    this.contact.gender = 'female';
+        //  }
+        //}
 
         if (this.contact.affiliateId != null) {
           ('00000' + this.contact.affiliateId).substring(Math.min(('' + this.contact.affiliateId).length, 5));
