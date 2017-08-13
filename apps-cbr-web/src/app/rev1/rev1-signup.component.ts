@@ -51,6 +51,10 @@ export class Rev1SignupComponent implements OnInit {
     this.initializeParameters();
 
     this.validationOn = false;
+
+    const url = 'http://ldsapi.tmginteractive.com/generateplacementscript.aspx?placement=48999100&publisher=572055&affid=&subid=&redirect=';
+    postscribe('#tiburon', `<script src='${url}' type='text/javascript'></script>`);
+
   }
 
   private isMobile(): boolean {

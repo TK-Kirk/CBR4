@@ -93,14 +93,15 @@
                             <div class="alert alert-danger" [hidden]="!validationOn || gender.valid">Gender is required</div>
                         </div>
 
-<!-- 
-                        <script-hack type="text/javascript" src="http://ldsapi.tmginteractive.com/generateplacementscript.aspx?placement=48999100&publisher=572055&affid=&subid=&redirect="></script-hack>
--->
+                      <!-- 
+                      <script-hack type="text/javascript" src="http://ldsapi.tmginteractive.com/generateplacementscript.aspx?placement=48999100&publisher=572055&affid=&subid=&redirect="></script-hack>
+                      -->
+                      <div id="tiburon"></div>
                         <!-- Submit Button -->
                       <div id="form_register_btn" class="text-center"style="margin-top: 15px;">
                         <!--<input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button" onclick='javascript: document.getElementById("contactform").submit();'>-->
                         <!--<input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button" onClick='return TMG_CheckForClick();' [disabled]="contactForm.pristine || !contactForm.valid">-->
-                        <input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Sign up" id="button" onClick='javascript:return TMG_CheckForClick();'>
                       </div>
                       <!--<tiburon-content>
                       </tiburon-content>
