@@ -35,6 +35,7 @@ namespace CBR.Core.Logic.Managers
             if (lead == null)
             {
                 lead = new CbrLead();
+                lead.CountryId = GetCountry(coreglead.Ip);
                 _db.CbrLeads.Add(lead);
             }
             else
@@ -47,7 +48,7 @@ namespace CBR.Core.Logic.Managers
 
             if (string.IsNullOrEmpty(lead.CountryId))
             {
-                lead.CountryId = GetCountry(lead.Ip);
+                lead.CountryId = GetCountry(coreglead.Ip);
             }
             LeadMapper.Map(coreglead, lead);
 

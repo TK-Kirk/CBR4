@@ -30,7 +30,7 @@ namespace CBR.Core.Logic.Mapping
                 cbrLead.BirthdayMonth = lead.BirthDate.Value.Month;
                 cbrLead.BirthdayYear = lead.BirthDate.Value.Year;
             }
-            cbrLead.CountryId = lead.CountryId;
+            //cbrLead.CountryId = lead.CountryId;
             cbrLead.EmailAddress = lead.Email;
             cbrLead.Firstname = lead.Firstname;
             cbrLead.Lastname = lead.Lastname;

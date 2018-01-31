@@ -179,3 +179,5 @@ $RECYCLE.BIN/
 .DS_Store
 *.stackdump
 Source/.vs/config/applicationhost.config
+AdminServiceAPI/aspnet_client/
+ServiceAPI/aspnet_client/
