@@ -181,3 +181,5 @@ $RECYCLE.BIN/
 Source/.vs/config/applicationhost.config
 AdminServiceAPI/aspnet_client/
 ServiceAPI/aspnet_client/
+.vs/Coreg.CashbaskResearch/v15/Server/sqlite3/db.lock
+.vs/Coreg.CashbaskResearch/v15/Server/sqlite3/storage.ide
