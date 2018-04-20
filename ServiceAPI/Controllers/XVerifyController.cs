@@ -42,7 +42,6 @@ namespace ServiceAPI.Controllers
         {
             try
             {
-
                 return Ok(_xverifyRepository.GetEmailVerification(email));
             }
             catch (Exception e)

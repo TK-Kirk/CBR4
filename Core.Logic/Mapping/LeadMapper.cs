@@ -75,7 +75,7 @@ namespace CBR.Core.Logic.Mapping
         private static DateTime? GetBirthDate(int? birthdayDay, int? birthdayMonth, int? birthdayYear)
         {
             DateTime returnDate;
-            if (DateTime.TryParse($"{birthdayDay}/{birthdayMonth}/{birthdayYear}", out returnDate)) {
+            if (DateTime.TryParse($"{birthdayMonth}/{birthdayDay}/{birthdayYear}", out returnDate)) {
                 return returnDate;
             }
             return null;

@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "DataAccess\App.config"
 //     Connection String Name: "GloshareContext"
-//     Connection String:      "data source=bluebeam;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+//     Connection String:      "data source=localhost;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Developer Edition (64-bit)
 // Database Engine Edition: Enterprise
@@ -48,6 +48,8 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<CbrEmailDailyBatchCounter> CbrEmailDailyBatchCounters { get; set; } // CBREmailDailyBatchCounter
         System.Data.Entity.DbSet<CbrJobCode> CbrJobCodes { get; set; } // CBRJobCode
         System.Data.Entity.DbSet<CbrLead> CbrLeads { get; set; } // CBRLead
+        System.Data.Entity.DbSet<CbrLeadStageInsert> CbrLeadStageInserts { get; set; } // CBRLeadStageInsert
+        System.Data.Entity.DbSet<CbrLeadStageUpdate> CbrLeadStageUpdates { get; set; } // CBRLeadStageUpdate
         System.Data.Entity.DbSet<CbrPayout> CbrPayouts { get; set; } // CBRPayout
         System.Data.Entity.DbSet<CbrQuestion> CbrQuestions { get; set; } // CBRQuestion
         System.Data.Entity.DbSet<CbrQuestionAnswer> CbrQuestionAnswers { get; set; } // CBRQuestionAnswers
@@ -55,11 +57,14 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<CbrSignup> CbrSignups { get; set; } // CBRSignup
         System.Data.Entity.DbSet<CbrSignupError> CbrSignupErrors { get; set; } // CBRSignupError
         System.Data.Entity.DbSet<CbrSurvey> CbrSurveys { get; set; } // CBRSurvey
+        System.Data.Entity.DbSet<CbrSurveyBackup> CbrSurveyBackups { get; set; } // CBRSurveyBackup
         System.Data.Entity.DbSet<CbrSurveyInstruction> CbrSurveyInstructions { get; set; } // CBRSurveyInstruction
         System.Data.Entity.DbSet<CbrSurveyQuestion> CbrSurveyQuestions { get; set; } // CBRSurveyQuestion
         System.Data.Entity.DbSet<CbrSurveyStatu> CbrSurveyStatus { get; set; } // CBRSurveyStatus
         System.Data.Entity.DbSet<CbrSurveyStatusOutput> CbrSurveyStatusOutputs { get; set; } // cbrSurveyStatusOutput
         System.Data.Entity.DbSet<CbrSurveyStatusType> CbrSurveyStatusTypes { get; set; } // CBRSurveyStatusType
+        System.Data.Entity.DbSet<CbrSurveyStatusWithBadEmail> CbrSurveyStatusWithBadEmails { get; set; } // CBRSurveyStatusWithBadEmail
+        System.Data.Entity.DbSet<CbrSurveyStatusWithDupPay> CbrSurveyStatusWithDupPays { get; set; } // CBRSurveyStatusWithDupPay
         System.Data.Entity.DbSet<CbrSurveyTarget> CbrSurveyTargets { get; set; } // CBRSurveyTarget
         System.Data.Entity.DbSet<CbrSurveyWithdraw> CbrSurveyWithdraws { get; set; } // CBRSurveyWithdraw
         System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
@@ -101,14 +106,15 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<GeoLiteCityLocation> GeoLiteCityLocations { get; set; } // GeoLiteCity-Location
         System.Data.Entity.DbSet<InstructionBullet> InstructionBullets { get; set; } // InstructionBullet
         System.Data.Entity.DbSet<IpCountry> IpCountries { get; set; } // IPCountry
-        System.Data.Entity.DbSet<IpCountryNew> IpCountryNews { get; set; } // IPCountryNew
         System.Data.Entity.DbSet<IpCountryOld> IpCountryOlds { get; set; } // IPCountryOld
+        System.Data.Entity.DbSet<IpCountyBackup> IpCountyBackups { get; set; } // IPCountyBackup
         System.Data.Entity.DbSet<IpCountyNewBackup> IpCountyNewBackups { get; set; } // IPCountyNewBackup
         System.Data.Entity.DbSet<IpLog> IpLogs { get; set; } // IpLog
         System.Data.Entity.DbSet<JobData> JobDatas { get; set; } // JobData
         System.Data.Entity.DbSet<Language> Languages { get; set; } // Language
         System.Data.Entity.DbSet<LeadReversal> LeadReversals { get; set; } // LeadReversal
         System.Data.Entity.DbSet<LoggedInFromClik> LoggedInFromCliks { get; set; } // LoggedInFromClik
+        System.Data.Entity.DbSet<MobilelLead> MobilelLeads { get; set; } // MobilelLead
         System.Data.Entity.DbSet<Occupation> Occupations { get; set; } // Occupation
         System.Data.Entity.DbSet<OccupationEducation> OccupationEducations { get; set; } // OccupationEducation
         System.Data.Entity.DbSet<OccupationIncome> OccupationIncomes { get; set; } // OccupationIncome
@@ -119,9 +125,7 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<OptInEmailVerbageListrakQueue> OptInEmailVerbageListrakQueues { get; set; } // OptInEmailVerbageListrakQueue
         System.Data.Entity.DbSet<OptInEmailVerbageTestSend> OptInEmailVerbageTestSends { get; set; } // OptInEmailVerbageTestSend
         System.Data.Entity.DbSet<OptInLead> OptInLeads { get; set; } // OptInLead
-        System.Data.Entity.DbSet<OptInLeadBackup> OptInLeadBackups { get; set; } // OptInLeadBackup
         System.Data.Entity.DbSet<PostQueue> PostQueues { get; set; } // PostQueue
-        System.Data.Entity.DbSet<PqToBeDeleted> PqToBeDeleteds { get; set; } // PQ_ToBeDeleted
         System.Data.Entity.DbSet<ProcessedSurveyId> ProcessedSurveyIds { get; set; } // ProcessedSurveyIDs
         System.Data.Entity.DbSet<ProregAdvertiser> ProregAdvertisers { get; set; } // ProregAdvertiser
         System.Data.Entity.DbSet<ProregAdvertiserFieldXref> ProregAdvertiserFieldXrefs { get; set; } // ProregAdvertiserFieldXref
@@ -132,6 +136,15 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<ProregOfferTarget> ProregOfferTargets { get; set; } // ProregOfferTarget
         System.Data.Entity.DbSet<Referral> Referrals { get; set; } // Referral
         System.Data.Entity.DbSet<ReUploadElab> ReUploadElabs { get; set; } // ReUploadElabs
+        System.Data.Entity.DbSet<RouterAction> RouterActions { get; set; } // RouterAction
+        System.Data.Entity.DbSet<RouterContact> RouterContacts { get; set; } // RouterContact
+        System.Data.Entity.DbSet<RouterContactPrecisionSample> RouterContactPrecisionSamples { get; set; } // RouterContactPrecisionSample
+        System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
+        System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
+        System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
+        System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
+        System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
         System.Data.Entity.DbSet<ScrubLead> ScrubLeads { get; set; } // ScrubLead
         System.Data.Entity.DbSet<ScrubReportConfig> ScrubReportConfigs { get; set; } // ScrubReportConfig
         System.Data.Entity.DbSet<SiteBlacklist> SiteBlacklists { get; set; } // SiteBlacklist
@@ -151,8 +164,6 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<SmartWebLinkTarget> SmartWebLinkTargets { get; set; } // SmartWebLinkTarget
         System.Data.Entity.DbSet<State> States { get; set; } // States
         System.Data.Entity.DbSet<UserNew> UserNews { get; set; } // UserNews
-        System.Data.Entity.DbSet<UserSurveyCountAfter> UserSurveyCountAfters { get; set; } // UserSurveyCountAfter
-        System.Data.Entity.DbSet<UserSurveyCountBefore> UserSurveyCountBefores { get; set; } // UserSurveyCountBefore
         System.Data.Entity.DbSet<VerifyZipFailure> VerifyZipFailures { get; set; } // VerifyZipFailure
         System.Data.Entity.DbSet<VwCbrSurveyStatusWithPending> VwCbrSurveyStatusWithPendings { get; set; } // vwCBRSurveyStatusWithPending
         System.Data.Entity.DbSet<VwDebugIp> VwDebugIps { get; set; } // vwDebugIP
@@ -161,6 +172,7 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<VwOptInLeadPjDegree> VwOptInLeadPjDegrees { get; set; } // vwOptInLeadPJDegree
         System.Data.Entity.DbSet<VwOptInLeadSurvey> VwOptInLeadSurveys { get; set; } // vwOptInLeadSurveys
         System.Data.Entity.DbSet<VwOptInLeadUser> VwOptInLeadUsers { get; set; } // vwOptInLeadUsers
+        System.Data.Entity.DbSet<VwRouterStatusPrecisionSurvey> VwRouterStatusPrecisionSurveys { get; set; } // vwRouterStatusPrecisionSurvey
         System.Data.Entity.DbSet<WeeklySurveyAnswer> WeeklySurveyAnswers { get; set; } // WeeklySurveyAnswers
         System.Data.Entity.DbSet<WeeklySurveyConfig> WeeklySurveyConfigs { get; set; } // WeeklySurveyConfig
         System.Data.Entity.DbSet<WithdrawReason> WithdrawReasons { get; set; } // WithdrawReason
@@ -181,6 +193,10 @@ namespace CBR.DataAccess
         // Stored Procedures
         int CommandExecute(string command, string comment, int? mode, string execute);
         // CommandExecuteAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        System.Collections.Generic.List<DailyReportCostCpaReturnModel> DailyReportCostCpa(System.DateTime? startDate, System.DateTime? endDate);
+        System.Collections.Generic.List<DailyReportCostCpaReturnModel> DailyReportCostCpa(System.DateTime? startDate, System.DateTime? endDate, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DailyReportCostCpaReturnModel>> DailyReportCostCpaAsync(System.DateTime? startDate, System.DateTime? endDate);
 
         System.Collections.Generic.List<DailyReportCostOfLeadsReturnModel> DailyReportCostOfLeads(string type, System.DateTime? startDate, System.DateTime? endDate, string countryId);
         System.Collections.Generic.List<DailyReportCostOfLeadsReturnModel> DailyReportCostOfLeads(string type, System.DateTime? startDate, System.DateTime? endDate, string countryId, out int procResult);
@@ -217,10 +233,6 @@ namespace CBR.DataAccess
         System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel> GetRoiForLast100Signups(string affiliateId, string offerId, string subId, int? sampleNumber, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel>> GetRoiForLast100SignupsAsync(string affiliateId, string offerId, string subId, int? sampleNumber);
 
-        System.Collections.Generic.List<GetShippingAddressReturnModel> GetShippingAddress(string emailAddress);
-        System.Collections.Generic.List<GetShippingAddressReturnModel> GetShippingAddress(string emailAddress, out int procResult);
-        System.Threading.Tasks.Task<System.Collections.Generic.List<GetShippingAddressReturnModel>> GetShippingAddressAsync(string emailAddress);
-
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList);
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetSignupsWithRevenueReturnModel>> GetSignupsWithRevenueAsync(string affiliateId, string offerId, string subId, string emailList);
@@ -234,9 +246,6 @@ namespace CBR.DataAccess
 
         int IndexOptimize(string databases, string fragmentationHighLob, string fragmentationHighNonLob, string fragmentationMediumLob, string fragmentationMediumNonLob, string fragmentationLowLob, string fragmentationLowNonLob, int? fragmentationLevel1, int? fragmentationLevel2, int? pageCountLevel, string sortInTempdb, int? maxDop, int? fillFactor, string lobCompaction, int? statisticsSample, string partitionLevel, int? timeLimit, string indexes, string padIndex, string statisticsResample, string updateColumnStatistics, string onlyModifiedStatistics, string execute);
         // IndexOptimizeAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
-
-        int InsertGiftCardRequest(string emailAddress, string countryId, decimal? requestAmount, int? optionId, string ip);
-        // InsertGiftCardRequestAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
 
         int InsertOptInLeadForClik(string emailAddress, string firstname, string lastname, string zip, int? birthdayDay, int? birthdayMonth, int? birthdayYear, string gender, string offerId, string affiliateId, string subId, decimal? cost, string countryId, string ip, bool? clik, System.DateTime? insertDate, string address);
         // InsertOptInLeadForClikAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
@@ -288,17 +297,9 @@ namespace CBR.DataAccess
         System.Collections.Generic.List<ProcessClickCreditReturnModel> ProcessClickCredit(string clickCode, string email, int? surveyId, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<ProcessClickCreditReturnModel>> ProcessClickCreditAsync(string clickCode, string email, int? surveyId);
 
-        int SearchAllTables(string searchStr);
-        // SearchAllTablesAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
-
-        int SearchAllTablesExact(string searchStr);
-        // SearchAllTablesExactAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
-
-        int SeedAfterCountsForUserSurvey(int? daysBackToQuery);
-        // SeedAfterCountsForUserSurveyAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
-
-        int SeedBeforeCountsFromAfter();
-        // SeedBeforeCountsFromAfterAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+        System.Collections.Generic.List<RouterContactInsertsReturnModel> RouterContactInserts(int? interval);
+        System.Collections.Generic.List<RouterContactInsertsReturnModel> RouterContactInserts(int? interval, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<RouterContactInsertsReturnModel>> RouterContactInsertsAsync(int? interval);
 
         int SpDoi2ApplySignupBonus(string emailAddress);
         // SpDoi2ApplySignupBonusAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
@@ -340,9 +341,6 @@ namespace CBR.DataAccess
         System.Collections.Generic.List<SpToaGetSurveyPanelSignupCountReturnModel> SpToaGetSurveyPanelSignupCount(string emailAddress, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<SpToaGetSurveyPanelSignupCountReturnModel>> SpToaGetSurveyPanelSignupCountAsync(string emailAddress);
 
-        int UpdateShippingInfo(string emailAddress, string firstname, string lastname, string address, string address2, string city, string state, string zip);
-        // UpdateShippingInfoAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
-
         int UpdateUserNewsWithPayout(string emailAddress, System.DateTime? requestDate);
         // UpdateUserNewsWithPayoutAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
 
@@ -366,6 +364,8 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<CbrEmailDailyBatchCounter> CbrEmailDailyBatchCounters { get; set; } // CBREmailDailyBatchCounter
         public System.Data.Entity.DbSet<CbrJobCode> CbrJobCodes { get; set; } // CBRJobCode
         public System.Data.Entity.DbSet<CbrLead> CbrLeads { get; set; } // CBRLead
+        public System.Data.Entity.DbSet<CbrLeadStageInsert> CbrLeadStageInserts { get; set; } // CBRLeadStageInsert
+        public System.Data.Entity.DbSet<CbrLeadStageUpdate> CbrLeadStageUpdates { get; set; } // CBRLeadStageUpdate
         public System.Data.Entity.DbSet<CbrPayout> CbrPayouts { get; set; } // CBRPayout
         public System.Data.Entity.DbSet<CbrQuestion> CbrQuestions { get; set; } // CBRQuestion
         public System.Data.Entity.DbSet<CbrQuestionAnswer> CbrQuestionAnswers { get; set; } // CBRQuestionAnswers
@@ -373,11 +373,14 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<CbrSignup> CbrSignups { get; set; } // CBRSignup
         public System.Data.Entity.DbSet<CbrSignupError> CbrSignupErrors { get; set; } // CBRSignupError
         public System.Data.Entity.DbSet<CbrSurvey> CbrSurveys { get; set; } // CBRSurvey
+        public System.Data.Entity.DbSet<CbrSurveyBackup> CbrSurveyBackups { get; set; } // CBRSurveyBackup
         public System.Data.Entity.DbSet<CbrSurveyInstruction> CbrSurveyInstructions { get; set; } // CBRSurveyInstruction
         public System.Data.Entity.DbSet<CbrSurveyQuestion> CbrSurveyQuestions { get; set; } // CBRSurveyQuestion
         public System.Data.Entity.DbSet<CbrSurveyStatu> CbrSurveyStatus { get; set; } // CBRSurveyStatus
         public System.Data.Entity.DbSet<CbrSurveyStatusOutput> CbrSurveyStatusOutputs { get; set; } // cbrSurveyStatusOutput
         public System.Data.Entity.DbSet<CbrSurveyStatusType> CbrSurveyStatusTypes { get; set; } // CBRSurveyStatusType
+        public System.Data.Entity.DbSet<CbrSurveyStatusWithBadEmail> CbrSurveyStatusWithBadEmails { get; set; } // CBRSurveyStatusWithBadEmail
+        public System.Data.Entity.DbSet<CbrSurveyStatusWithDupPay> CbrSurveyStatusWithDupPays { get; set; } // CBRSurveyStatusWithDupPay
         public System.Data.Entity.DbSet<CbrSurveyTarget> CbrSurveyTargets { get; set; } // CBRSurveyTarget
         public System.Data.Entity.DbSet<CbrSurveyWithdraw> CbrSurveyWithdraws { get; set; } // CBRSurveyWithdraw
         public System.Data.Entity.DbSet<CbrVerification> CbrVerifications { get; set; } // CBRVerification
@@ -419,14 +422,15 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<GeoLiteCityLocation> GeoLiteCityLocations { get; set; } // GeoLiteCity-Location
         public System.Data.Entity.DbSet<InstructionBullet> InstructionBullets { get; set; } // InstructionBullet
         public System.Data.Entity.DbSet<IpCountry> IpCountries { get; set; } // IPCountry
-        public System.Data.Entity.DbSet<IpCountryNew> IpCountryNews { get; set; } // IPCountryNew
         public System.Data.Entity.DbSet<IpCountryOld> IpCountryOlds { get; set; } // IPCountryOld
+        public System.Data.Entity.DbSet<IpCountyBackup> IpCountyBackups { get; set; } // IPCountyBackup
         public System.Data.Entity.DbSet<IpCountyNewBackup> IpCountyNewBackups { get; set; } // IPCountyNewBackup
         public System.Data.Entity.DbSet<IpLog> IpLogs { get; set; } // IpLog
         public System.Data.Entity.DbSet<JobData> JobDatas { get; set; } // JobData
         public System.Data.Entity.DbSet<Language> Languages { get; set; } // Language
         public System.Data.Entity.DbSet<LeadReversal> LeadReversals { get; set; } // LeadReversal
         public System.Data.Entity.DbSet<LoggedInFromClik> LoggedInFromCliks { get; set; } // LoggedInFromClik
+        public System.Data.Entity.DbSet<MobilelLead> MobilelLeads { get; set; } // MobilelLead
         public System.Data.Entity.DbSet<Occupation> Occupations { get; set; } // Occupation
         public System.Data.Entity.DbSet<OccupationEducation> OccupationEducations { get; set; } // OccupationEducation
         public System.Data.Entity.DbSet<OccupationIncome> OccupationIncomes { get; set; } // OccupationIncome
@@ -437,9 +441,7 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<OptInEmailVerbageListrakQueue> OptInEmailVerbageListrakQueues { get; set; } // OptInEmailVerbageListrakQueue
         public System.Data.Entity.DbSet<OptInEmailVerbageTestSend> OptInEmailVerbageTestSends { get; set; } // OptInEmailVerbageTestSend
         public System.Data.Entity.DbSet<OptInLead> OptInLeads { get; set; } // OptInLead
-        public System.Data.Entity.DbSet<OptInLeadBackup> OptInLeadBackups { get; set; } // OptInLeadBackup
         public System.Data.Entity.DbSet<PostQueue> PostQueues { get; set; } // PostQueue
-        public System.Data.Entity.DbSet<PqToBeDeleted> PqToBeDeleteds { get; set; } // PQ_ToBeDeleted
         public System.Data.Entity.DbSet<ProcessedSurveyId> ProcessedSurveyIds { get; set; } // ProcessedSurveyIDs
         public System.Data.Entity.DbSet<ProregAdvertiser> ProregAdvertisers { get; set; } // ProregAdvertiser
         public System.Data.Entity.DbSet<ProregAdvertiserFieldXref> ProregAdvertiserFieldXrefs { get; set; } // ProregAdvertiserFieldXref
@@ -450,6 +452,15 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<ProregOfferTarget> ProregOfferTargets { get; set; } // ProregOfferTarget
         public System.Data.Entity.DbSet<Referral> Referrals { get; set; } // Referral
         public System.Data.Entity.DbSet<ReUploadElab> ReUploadElabs { get; set; } // ReUploadElabs
+        public System.Data.Entity.DbSet<RouterAction> RouterActions { get; set; } // RouterAction
+        public System.Data.Entity.DbSet<RouterContact> RouterContacts { get; set; } // RouterContact
+        public System.Data.Entity.DbSet<RouterContactPrecisionSample> RouterContactPrecisionSamples { get; set; } // RouterContactPrecisionSample
+        public System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
+        public System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
+        public System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        public System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
+        public System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
+        public System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
         public System.Data.Entity.DbSet<ScrubLead> ScrubLeads { get; set; } // ScrubLead
         public System.Data.Entity.DbSet<ScrubReportConfig> ScrubReportConfigs { get; set; } // ScrubReportConfig
         public System.Data.Entity.DbSet<SiteBlacklist> SiteBlacklists { get; set; } // SiteBlacklist
@@ -469,8 +480,6 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<SmartWebLinkTarget> SmartWebLinkTargets { get; set; } // SmartWebLinkTarget
         public System.Data.Entity.DbSet<State> States { get; set; } // States
         public System.Data.Entity.DbSet<UserNew> UserNews { get; set; } // UserNews
-        public System.Data.Entity.DbSet<UserSurveyCountAfter> UserSurveyCountAfters { get; set; } // UserSurveyCountAfter
-        public System.Data.Entity.DbSet<UserSurveyCountBefore> UserSurveyCountBefores { get; set; } // UserSurveyCountBefore
         public System.Data.Entity.DbSet<VerifyZipFailure> VerifyZipFailures { get; set; } // VerifyZipFailure
         public System.Data.Entity.DbSet<VwCbrSurveyStatusWithPending> VwCbrSurveyStatusWithPendings { get; set; } // vwCBRSurveyStatusWithPending
         public System.Data.Entity.DbSet<VwDebugIp> VwDebugIps { get; set; } // vwDebugIP
@@ -479,6 +488,7 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<VwOptInLeadPjDegree> VwOptInLeadPjDegrees { get; set; } // vwOptInLeadPJDegree
         public System.Data.Entity.DbSet<VwOptInLeadSurvey> VwOptInLeadSurveys { get; set; } // vwOptInLeadSurveys
         public System.Data.Entity.DbSet<VwOptInLeadUser> VwOptInLeadUsers { get; set; } // vwOptInLeadUsers
+        public System.Data.Entity.DbSet<VwRouterStatusPrecisionSurvey> VwRouterStatusPrecisionSurveys { get; set; } // vwRouterStatusPrecisionSurvey
         public System.Data.Entity.DbSet<WeeklySurveyAnswer> WeeklySurveyAnswers { get; set; } // WeeklySurveyAnswers
         public System.Data.Entity.DbSet<WeeklySurveyConfig> WeeklySurveyConfigs { get; set; } // WeeklySurveyConfig
         public System.Data.Entity.DbSet<WithdrawReason> WithdrawReasons { get; set; } // WithdrawReason
@@ -547,6 +557,8 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrEmailDailyBatchCounterConfiguration());
             modelBuilder.Configurations.Add(new CbrJobCodeConfiguration());
             modelBuilder.Configurations.Add(new CbrLeadConfiguration());
+            modelBuilder.Configurations.Add(new CbrLeadStageInsertConfiguration());
+            modelBuilder.Configurations.Add(new CbrLeadStageUpdateConfiguration());
             modelBuilder.Configurations.Add(new CbrPayoutConfiguration());
             modelBuilder.Configurations.Add(new CbrQuestionConfiguration());
             modelBuilder.Configurations.Add(new CbrQuestionAnswerConfiguration());
@@ -554,11 +566,14 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrSignupConfiguration());
             modelBuilder.Configurations.Add(new CbrSignupErrorConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyConfiguration());
+            modelBuilder.Configurations.Add(new CbrSurveyBackupConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyInstructionConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyQuestionConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyStatuConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyStatusOutputConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyStatusTypeConfiguration());
+            modelBuilder.Configurations.Add(new CbrSurveyStatusWithBadEmailConfiguration());
+            modelBuilder.Configurations.Add(new CbrSurveyStatusWithDupPayConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyTargetConfiguration());
             modelBuilder.Configurations.Add(new CbrSurveyWithdrawConfiguration());
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration());
@@ -600,14 +615,15 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new GeoLiteCityLocationConfiguration());
             modelBuilder.Configurations.Add(new InstructionBulletConfiguration());
             modelBuilder.Configurations.Add(new IpCountryConfiguration());
-            modelBuilder.Configurations.Add(new IpCountryNewConfiguration());
             modelBuilder.Configurations.Add(new IpCountryOldConfiguration());
+            modelBuilder.Configurations.Add(new IpCountyBackupConfiguration());
             modelBuilder.Configurations.Add(new IpCountyNewBackupConfiguration());
             modelBuilder.Configurations.Add(new IpLogConfiguration());
             modelBuilder.Configurations.Add(new JobDataConfiguration());
             modelBuilder.Configurations.Add(new LanguageConfiguration());
             modelBuilder.Configurations.Add(new LeadReversalConfiguration());
             modelBuilder.Configurations.Add(new LoggedInFromClikConfiguration());
+            modelBuilder.Configurations.Add(new MobilelLeadConfiguration());
             modelBuilder.Configurations.Add(new OccupationConfiguration());
             modelBuilder.Configurations.Add(new OccupationEducationConfiguration());
             modelBuilder.Configurations.Add(new OccupationIncomeConfiguration());
@@ -618,9 +634,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new OptInEmailVerbageListrakQueueConfiguration());
             modelBuilder.Configurations.Add(new OptInEmailVerbageTestSendConfiguration());
             modelBuilder.Configurations.Add(new OptInLeadConfiguration());
-            modelBuilder.Configurations.Add(new OptInLeadBackupConfiguration());
             modelBuilder.Configurations.Add(new PostQueueConfiguration());
-            modelBuilder.Configurations.Add(new PqToBeDeletedConfiguration());
             modelBuilder.Configurations.Add(new ProcessedSurveyIdConfiguration());
             modelBuilder.Configurations.Add(new ProregAdvertiserConfiguration());
             modelBuilder.Configurations.Add(new ProregAdvertiserFieldXrefConfiguration());
@@ -631,6 +645,15 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new ProregOfferTargetConfiguration());
             modelBuilder.Configurations.Add(new ReferralConfiguration());
             modelBuilder.Configurations.Add(new ReUploadElabConfiguration());
+            modelBuilder.Configurations.Add(new RouterActionConfiguration());
+            modelBuilder.Configurations.Add(new RouterContactConfiguration());
+            modelBuilder.Configurations.Add(new RouterContactPrecisionSampleConfiguration());
+            modelBuilder.Configurations.Add(new RouterHostConfiguration());
+            modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration());
+            modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration());
+            modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration());
+            modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration());
+            modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration());
             modelBuilder.Configurations.Add(new ScrubLeadConfiguration());
             modelBuilder.Configurations.Add(new ScrubReportConfigConfiguration());
             modelBuilder.Configurations.Add(new SiteBlacklistConfiguration());
@@ -650,8 +673,6 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new SmartWebLinkTargetConfiguration());
             modelBuilder.Configurations.Add(new StateConfiguration());
             modelBuilder.Configurations.Add(new UserNewConfiguration());
-            modelBuilder.Configurations.Add(new UserSurveyCountAfterConfiguration());
-            modelBuilder.Configurations.Add(new UserSurveyCountBeforeConfiguration());
             modelBuilder.Configurations.Add(new VerifyZipFailureConfiguration());
             modelBuilder.Configurations.Add(new VwCbrSurveyStatusWithPendingConfiguration());
             modelBuilder.Configurations.Add(new VwDebugIpConfiguration());
@@ -660,6 +681,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new VwOptInLeadPjDegreeConfiguration());
             modelBuilder.Configurations.Add(new VwOptInLeadSurveyConfiguration());
             modelBuilder.Configurations.Add(new VwOptInLeadUserConfiguration());
+            modelBuilder.Configurations.Add(new VwRouterStatusPrecisionSurveyConfiguration());
             modelBuilder.Configurations.Add(new WeeklySurveyAnswerConfiguration());
             modelBuilder.Configurations.Add(new WeeklySurveyConfigConfiguration());
             modelBuilder.Configurations.Add(new WithdrawReasonConfiguration());
@@ -680,6 +702,8 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrEmailDailyBatchCounterConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrJobCodeConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrLeadConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrLeadStageInsertConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrLeadStageUpdateConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrPayoutConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrQuestionAnswerConfiguration(schema));
@@ -687,11 +711,14 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new CbrSignupConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSignupErrorConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrSurveyBackupConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyInstructionConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyStatuConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyStatusOutputConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyStatusTypeConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrSurveyStatusWithBadEmailConfiguration(schema));
+            modelBuilder.Configurations.Add(new CbrSurveyStatusWithDupPayConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyTargetConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrSurveyWithdrawConfiguration(schema));
             modelBuilder.Configurations.Add(new CbrVerificationConfiguration(schema));
@@ -733,14 +760,15 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new GeoLiteCityLocationConfiguration(schema));
             modelBuilder.Configurations.Add(new InstructionBulletConfiguration(schema));
             modelBuilder.Configurations.Add(new IpCountryConfiguration(schema));
-            modelBuilder.Configurations.Add(new IpCountryNewConfiguration(schema));
             modelBuilder.Configurations.Add(new IpCountryOldConfiguration(schema));
+            modelBuilder.Configurations.Add(new IpCountyBackupConfiguration(schema));
             modelBuilder.Configurations.Add(new IpCountyNewBackupConfiguration(schema));
             modelBuilder.Configurations.Add(new IpLogConfiguration(schema));
             modelBuilder.Configurations.Add(new JobDataConfiguration(schema));
             modelBuilder.Configurations.Add(new LanguageConfiguration(schema));
             modelBuilder.Configurations.Add(new LeadReversalConfiguration(schema));
             modelBuilder.Configurations.Add(new LoggedInFromClikConfiguration(schema));
+            modelBuilder.Configurations.Add(new MobilelLeadConfiguration(schema));
             modelBuilder.Configurations.Add(new OccupationConfiguration(schema));
             modelBuilder.Configurations.Add(new OccupationEducationConfiguration(schema));
             modelBuilder.Configurations.Add(new OccupationIncomeConfiguration(schema));
@@ -751,9 +779,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new OptInEmailVerbageListrakQueueConfiguration(schema));
             modelBuilder.Configurations.Add(new OptInEmailVerbageTestSendConfiguration(schema));
             modelBuilder.Configurations.Add(new OptInLeadConfiguration(schema));
-            modelBuilder.Configurations.Add(new OptInLeadBackupConfiguration(schema));
             modelBuilder.Configurations.Add(new PostQueueConfiguration(schema));
-            modelBuilder.Configurations.Add(new PqToBeDeletedConfiguration(schema));
             modelBuilder.Configurations.Add(new ProcessedSurveyIdConfiguration(schema));
             modelBuilder.Configurations.Add(new ProregAdvertiserConfiguration(schema));
             modelBuilder.Configurations.Add(new ProregAdvertiserFieldXrefConfiguration(schema));
@@ -764,6 +790,15 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new ProregOfferTargetConfiguration(schema));
             modelBuilder.Configurations.Add(new ReferralConfiguration(schema));
             modelBuilder.Configurations.Add(new ReUploadElabConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterActionConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterContactConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterContactPrecisionSampleConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterHostConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration(schema));
             modelBuilder.Configurations.Add(new ScrubLeadConfiguration(schema));
             modelBuilder.Configurations.Add(new ScrubReportConfigConfiguration(schema));
             modelBuilder.Configurations.Add(new SiteBlacklistConfiguration(schema));
@@ -783,8 +818,6 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new SmartWebLinkTargetConfiguration(schema));
             modelBuilder.Configurations.Add(new StateConfiguration(schema));
             modelBuilder.Configurations.Add(new UserNewConfiguration(schema));
-            modelBuilder.Configurations.Add(new UserSurveyCountAfterConfiguration(schema));
-            modelBuilder.Configurations.Add(new UserSurveyCountBeforeConfiguration(schema));
             modelBuilder.Configurations.Add(new VerifyZipFailureConfiguration(schema));
             modelBuilder.Configurations.Add(new VwCbrSurveyStatusWithPendingConfiguration(schema));
             modelBuilder.Configurations.Add(new VwDebugIpConfiguration(schema));
@@ -793,6 +826,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new VwOptInLeadPjDegreeConfiguration(schema));
             modelBuilder.Configurations.Add(new VwOptInLeadSurveyConfiguration(schema));
             modelBuilder.Configurations.Add(new VwOptInLeadUserConfiguration(schema));
+            modelBuilder.Configurations.Add(new VwRouterStatusPrecisionSurveyConfiguration(schema));
             modelBuilder.Configurations.Add(new WeeklySurveyAnswerConfiguration(schema));
             modelBuilder.Configurations.Add(new WeeklySurveyConfigConfiguration(schema));
             modelBuilder.Configurations.Add(new WithdrawReasonConfiguration(schema));
@@ -826,6 +860,44 @@ namespace CBR.DataAccess
             Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[CommandExecute] @Command, @Comment, @Mode, @Execute", commandParam, commentParam, modeParam, executeParam, procResultParam);
 
             return (int) procResultParam.Value;
+        }
+
+        public System.Collections.Generic.List<DailyReportCostCpaReturnModel> DailyReportCostCpa(System.DateTime? startDate, System.DateTime? endDate)
+        {
+            int procResult;
+            return DailyReportCostCpa(startDate, endDate, out procResult);
+        }
+
+        public System.Collections.Generic.List<DailyReportCostCpaReturnModel> DailyReportCostCpa(System.DateTime? startDate, System.DateTime? endDate, out int procResult)
+        {
+            var startDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@StartDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = startDate.GetValueOrDefault() };
+            if (!startDate.HasValue)
+                startDateParam.Value = System.DBNull.Value;
+
+            var endDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EndDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = endDate.GetValueOrDefault() };
+            if (!endDate.HasValue)
+                endDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<DailyReportCostCpaReturnModel>("EXEC @procResult = [dbo].[DailyReportCostCPA] @StartDate, @EndDate", startDateParam, endDateParam, procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<DailyReportCostCpaReturnModel>> DailyReportCostCpaAsync(System.DateTime? startDate, System.DateTime? endDate)
+        {
+            var startDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@StartDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = startDate.GetValueOrDefault() };
+            if (!startDate.HasValue)
+                startDateParam.Value = System.DBNull.Value;
+
+            var endDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EndDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = endDate.GetValueOrDefault() };
+            if (!endDate.HasValue)
+                endDateParam.Value = System.DBNull.Value;
+
+            var procResultData = await Database.SqlQuery<DailyReportCostCpaReturnModel>("EXEC [dbo].[DailyReportCostCPA] @StartDate, @EndDate", startDateParam, endDateParam).ToListAsync();
+
+            return procResultData;
         }
 
         public System.Collections.Generic.List<DailyReportCostOfLeadsReturnModel> DailyReportCostOfLeads(string type, System.DateTime? startDate, System.DateTime? endDate, string countryId)
@@ -1197,36 +1269,6 @@ namespace CBR.DataAccess
             return procResultData;
         }
 
-        public System.Collections.Generic.List<GetShippingAddressReturnModel> GetShippingAddress(string emailAddress)
-        {
-            int procResult;
-            return GetShippingAddress(emailAddress, out procResult);
-        }
-
-        public System.Collections.Generic.List<GetShippingAddressReturnModel> GetShippingAddress(string emailAddress, out int procResult)
-        {
-            var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 250 };
-            if (emailAddressParam.Value == null)
-                emailAddressParam.Value = System.DBNull.Value;
-
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-            var procResultData = Database.SqlQuery<GetShippingAddressReturnModel>("EXEC @procResult = [dbo].[GetShippingAddress] @EmailAddress", emailAddressParam, procResultParam).ToList();
-
-            procResult = (int) procResultParam.Value;
-            return procResultData;
-        }
-
-        public async System.Threading.Tasks.Task<System.Collections.Generic.List<GetShippingAddressReturnModel>> GetShippingAddressAsync(string emailAddress)
-        {
-            var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 250 };
-            if (emailAddressParam.Value == null)
-                emailAddressParam.Value = System.DBNull.Value;
-
-            var procResultData = await Database.SqlQuery<GetShippingAddressReturnModel>("EXEC [dbo].[GetShippingAddress] @EmailAddress", emailAddressParam).ToListAsync();
-
-            return procResultData;
-        }
-
         public System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList)
         {
             int procResult;
@@ -1468,35 +1510,6 @@ namespace CBR.DataAccess
             return (int) procResultParam.Value;
         }
 
-        public int InsertGiftCardRequest(string emailAddress, string countryId, decimal? requestAmount, int? optionId, string ip)
-        {
-            var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 255 };
-            if (emailAddressParam.Value == null)
-                emailAddressParam.Value = System.DBNull.Value;
-
-            var countryIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@CountryID", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = countryId, Size = 2 };
-            if (countryIdParam.Value == null)
-                countryIdParam.Value = System.DBNull.Value;
-
-            var requestAmountParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@RequestAmount", SqlDbType = System.Data.SqlDbType.Money, Direction = System.Data.ParameterDirection.Input, Value = requestAmount.GetValueOrDefault(), Precision = 19, Scale = 4 };
-            if (!requestAmount.HasValue)
-                requestAmountParam.Value = System.DBNull.Value;
-
-            var optionIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@OptionID", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = optionId.GetValueOrDefault(), Precision = 10, Scale = 0 };
-            if (!optionId.HasValue)
-                optionIdParam.Value = System.DBNull.Value;
-
-            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 15 };
-            if (ipParam.Value == null)
-                ipParam.Value = System.DBNull.Value;
-
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[InsertGiftCardRequest] @EmailAddress, @CountryID, @RequestAmount, @OptionID, @IP", emailAddressParam, countryIdParam, requestAmountParam, optionIdParam, ipParam, procResultParam);
-
-            return (int) procResultParam.Value;
-        }
-
         public int InsertOptInLeadForClik(string emailAddress, string firstname, string lastname, string zip, int? birthdayDay, int? birthdayMonth, int? birthdayYear, string gender, string offerId, string affiliateId, string subId, decimal? cost, string countryId, string ip, bool? clik, System.DateTime? insertDate, string address)
         {
             var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 255 };
@@ -1551,7 +1564,7 @@ namespace CBR.DataAccess
             if (countryIdParam.Value == null)
                 countryIdParam.Value = System.DBNull.Value;
 
-            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 15 };
+            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 50 };
             if (ipParam.Value == null)
                 ipParam.Value = System.DBNull.Value;
 
@@ -1600,7 +1613,7 @@ namespace CBR.DataAccess
             if (countryIdParam.Value == null)
                 countryIdParam.Value = System.DBNull.Value;
 
-            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 15 };
+            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 50 };
             if (ipParam.Value == null)
                 ipParam.Value = System.DBNull.Value;
 
@@ -1999,7 +2012,7 @@ namespace CBR.DataAccess
             if (!insertDate.HasValue)
                 insertDateParam.Value = System.DBNull.Value;
 
-            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 15 };
+            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 50 };
             if (ipParam.Value == null)
                 ipParam.Value = System.DBNull.Value;
 
@@ -2319,52 +2332,34 @@ namespace CBR.DataAccess
             return procResultData;
         }
 
-        public int SearchAllTables(string searchStr)
+        public System.Collections.Generic.List<RouterContactInsertsReturnModel> RouterContactInserts(int? interval)
         {
-            var searchStrParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@SearchStr", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = searchStr, Size = 100 };
-            if (searchStrParam.Value == null)
-                searchStrParam.Value = System.DBNull.Value;
-
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[SearchAllTables] @SearchStr", searchStrParam, procResultParam);
-
-            return (int) procResultParam.Value;
+            int procResult;
+            return RouterContactInserts(interval, out procResult);
         }
 
-        public int SearchAllTablesExact(string searchStr)
+        public System.Collections.Generic.List<RouterContactInsertsReturnModel> RouterContactInserts(int? interval, out int procResult)
         {
-            var searchStrParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@SearchStr", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = searchStr, Size = 100 };
-            if (searchStrParam.Value == null)
-                searchStrParam.Value = System.DBNull.Value;
+            var intervalParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Interval", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = interval.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!interval.HasValue)
+                intervalParam.Value = System.DBNull.Value;
 
             var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<RouterContactInsertsReturnModel>("EXEC @procResult = [dbo].[RouterContactInserts] @Interval", intervalParam, procResultParam).ToList();
 
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[SearchAllTablesExact] @SearchStr", searchStrParam, procResultParam);
-
-            return (int) procResultParam.Value;
+            procResult = (int) procResultParam.Value;
+            return procResultData;
         }
 
-        public int SeedAfterCountsForUserSurvey(int? daysBackToQuery)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<RouterContactInsertsReturnModel>> RouterContactInsertsAsync(int? interval)
         {
-            var daysBackToQueryParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@DaysBackToQuery", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = daysBackToQuery.GetValueOrDefault(), Precision = 10, Scale = 0 };
-            if (!daysBackToQuery.HasValue)
-                daysBackToQueryParam.Value = System.DBNull.Value;
+            var intervalParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Interval", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = interval.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!interval.HasValue)
+                intervalParam.Value = System.DBNull.Value;
 
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = await Database.SqlQuery<RouterContactInsertsReturnModel>("EXEC [dbo].[RouterContactInserts] @Interval", intervalParam).ToListAsync();
 
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[SeedAfterCountsForUserSurvey] @DaysBackToQuery", daysBackToQueryParam, procResultParam);
-
-            return (int) procResultParam.Value;
-        }
-
-        public int SeedBeforeCountsFromAfter()
-        {
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[SeedBeforeCountsFromAfter] ", procResultParam);
-
-            return (int) procResultParam.Value;
+            return procResultData;
         }
 
         public int SpDoi2ApplySignupBonus(string emailAddress)
@@ -2646,47 +2641,6 @@ namespace CBR.DataAccess
             var procResultData = await Database.SqlQuery<SpToaGetSurveyPanelSignupCountReturnModel>("EXEC [dbo].[sp_toa_GetSurveyPanelSignupCount] @EmailAddress", emailAddressParam).ToListAsync();
 
             return procResultData;
-        }
-
-        public int UpdateShippingInfo(string emailAddress, string firstname, string lastname, string address, string address2, string city, string state, string zip)
-        {
-            var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 255 };
-            if (emailAddressParam.Value == null)
-                emailAddressParam.Value = System.DBNull.Value;
-
-            var firstnameParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Firstname", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = firstname, Size = 100 };
-            if (firstnameParam.Value == null)
-                firstnameParam.Value = System.DBNull.Value;
-
-            var lastnameParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Lastname", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = lastname, Size = 100 };
-            if (lastnameParam.Value == null)
-                lastnameParam.Value = System.DBNull.Value;
-
-            var addressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Address", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = address, Size = 100 };
-            if (addressParam.Value == null)
-                addressParam.Value = System.DBNull.Value;
-
-            var address2Param = new System.Data.SqlClient.SqlParameter { ParameterName = "@Address2", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = address2, Size = 100 };
-            if (address2Param.Value == null)
-                address2Param.Value = System.DBNull.Value;
-
-            var cityParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@City", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = city, Size = 100 };
-            if (cityParam.Value == null)
-                cityParam.Value = System.DBNull.Value;
-
-            var stateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@State", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = state, Size = 100 };
-            if (stateParam.Value == null)
-                stateParam.Value = System.DBNull.Value;
-
-            var zipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@Zip", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = zip, Size = 100 };
-            if (zipParam.Value == null)
-                zipParam.Value = System.DBNull.Value;
-
-            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
-            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[UpdateShippingInfo] @EmailAddress, @Firstname, @Lastname, @Address, @Address2, @City, @State, @Zip", emailAddressParam, firstnameParam, lastnameParam, addressParam, address2Param, cityParam, stateParam, zipParam, procResultParam);
-
-            return (int) procResultParam.Value;
         }
 
         public int UpdateUserNewsWithPayout(string emailAddress, System.DateTime? requestDate)

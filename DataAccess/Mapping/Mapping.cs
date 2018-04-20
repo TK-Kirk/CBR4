@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "DataAccess\App.config"
 //     Connection String Name: "GloshareContext"
-//     Connection String:      "data source=bluebeam;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+//     Connection String:      "data source=localhost;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Developer Edition (64-bit)
 // Database Engine Edition: Enterprise
@@ -272,9 +272,71 @@ namespace CBR.DataAccess.Mapping
         public CbrLeadConfiguration(string schema)
         {
             ToTable("CBRLead", schema);
-            HasKey(x => x.CbrLeadId);
+            HasKey(x => new { x.CbrLeadId, x.EmailAddress, x.CountryId, x.SelectedLanguageId, x.OptInDate, x.LastRunDate, x.LastSendOnDay, x.DoNotSendTo, x.ThirdPartyListsUpdated, x.InsertDate });
 
             Property(x => x.CbrLeadId).HasColumnName(@"CBRLeadId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Salutation).HasColumnName(@"Salutation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Lastname).HasColumnName(@"Lastname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Address2).HasColumnName(@"Address2").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Phone).HasColumnName(@"Phone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Mobilephone).HasColumnName(@"Mobilephone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.SmartPhone).HasColumnName(@"SmartPhone").HasColumnType("bit").IsOptional();
+            Property(x => x.BirthdayDay).HasColumnName(@"BirthdayDay").HasColumnType("int").IsOptional();
+            Property(x => x.BirthdayMonth).HasColumnName(@"BirthdayMonth").HasColumnType("int").IsOptional();
+            Property(x => x.BirthdayYear).HasColumnName(@"BirthdayYear").HasColumnType("int").IsOptional();
+            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.Occupation).HasColumnName(@"Occupation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Income).HasColumnName(@"Income").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.HomeOwnership).HasColumnName(@"HomeOwnership").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Education).HasColumnName(@"Education").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.MaritalStatus).HasColumnName(@"MaritalStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Children).HasColumnName(@"Children").HasColumnType("int").IsOptional();
+            Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Password).HasColumnName(@"Password").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.OfferId).HasColumnName(@"OfferID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.AffiliateId).HasColumnName(@"AffiliateID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.SubId).HasColumnName(@"SubID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.Cost).HasColumnName(@"Cost").HasColumnType("money").IsOptional().HasPrecision(19,4);
+            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.SelectedLanguageId).HasColumnName(@"SelectedLanguageID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.OptInDate).HasColumnName(@"OptInDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.LastRunDate).HasColumnName(@"LastRunDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.LastSendOnDay).HasColumnName(@"LastSendOnDay").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.OptOutDate).HasColumnName(@"OptOutDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.DoNotSendTo).HasColumnName(@"DoNotSendTo").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CBRLeadStageInsert
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrLeadStageInsertConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrLeadStageInsert>
+    {
+        public CbrLeadStageInsertConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrLeadStageInsertConfiguration(string schema)
+        {
+            ToTable("CBRLeadStageInsert", schema);
+            HasKey(x => x.CbrLeadStageInsertId);
+
+            Property(x => x.CbrLeadStageInsertId).HasColumnName(@"CBRLeadStageInsertId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.CbrLeadId).HasColumnName(@"CbrLeadId").HasColumnType("int").IsRequired();
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
             Property(x => x.Salutation).HasColumnName(@"Salutation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
             Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
@@ -313,7 +375,69 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
             Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CBRLeadStageUpdate
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrLeadStageUpdateConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrLeadStageUpdate>
+    {
+        public CbrLeadStageUpdateConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrLeadStageUpdateConfiguration(string schema)
+        {
+            ToTable("CBRLeadStageUpdate", schema);
+            HasKey(x => x.CbrLeadStageUpdateId);
+
+            Property(x => x.CbrLeadStageUpdateId).HasColumnName(@"CBRLeadStageUpdateId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.CbrLeadId).HasColumnName(@"CbrLeadId").HasColumnType("int").IsRequired();
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.Salutation).HasColumnName(@"Salutation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Lastname).HasColumnName(@"Lastname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Address2).HasColumnName(@"Address2").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Phone).HasColumnName(@"Phone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Mobilephone).HasColumnName(@"Mobilephone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.SmartPhone).HasColumnName(@"SmartPhone").HasColumnType("bit").IsOptional();
+            Property(x => x.BirthdayDay).HasColumnName(@"BirthdayDay").HasColumnType("int").IsOptional();
+            Property(x => x.BirthdayMonth).HasColumnName(@"BirthdayMonth").HasColumnType("int").IsOptional();
+            Property(x => x.BirthdayYear).HasColumnName(@"BirthdayYear").HasColumnType("int").IsOptional();
+            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.Occupation).HasColumnName(@"Occupation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Income).HasColumnName(@"Income").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.HomeOwnership).HasColumnName(@"HomeOwnership").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Education).HasColumnName(@"Education").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.MaritalStatus).HasColumnName(@"MaritalStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Children).HasColumnName(@"Children").HasColumnType("int").IsOptional();
+            Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Password).HasColumnName(@"Password").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.OfferId).HasColumnName(@"OfferID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.AffiliateId).HasColumnName(@"AffiliateID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.SubId).HasColumnName(@"SubID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.Cost).HasColumnName(@"Cost").HasColumnType("money").IsOptional().HasPrecision(19,4);
+            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.SelectedLanguageId).HasColumnName(@"SelectedLanguageID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.OptInDate).HasColumnName(@"OptInDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastRunDate).HasColumnName(@"LastRunDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastSendOnDay).HasColumnName(@"LastSendOnDay").HasColumnType("int").IsRequired();
+            Property(x => x.OptOutDate).HasColumnName(@"OptOutDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.DoNotSendTo).HasColumnName(@"DoNotSendTo").HasColumnType("bit").IsRequired();
+            Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
             InitializePartial();
@@ -343,7 +467,7 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.Type).HasColumnName(@"Type").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.RequestForPaymentDate).HasColumnName(@"RequestForPaymentDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.PaidDate).HasColumnName(@"PaidDate").HasColumnType("datetime").IsOptional();
-            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             InitializePartial();
         }
         partial void InitializePartial();
@@ -523,6 +647,53 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
+    // CBRSurveyBackup
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyBackupConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrSurveyBackup>
+    {
+        public CbrSurveyBackupConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrSurveyBackupConfiguration(string schema)
+        {
+            ToTable("CBRSurveyBackup", schema);
+            HasKey(x => new { x.Id, x.Title, x.CountryId, x.ClickPayoutValue, x.ClickReceiveValue, x.ClickCode, x.PayoutValue, x.ReceiveValue, x.AffiliateCampaignId, x.Type, x.Url, x.ImageWidth, x.ImageHeight, x.QuestionCount, x.DailyCapPerUser, x.Rank, x.Hide, x.Enabled, x.Approved, x.CausesConversion, x.CreateDate });
+
+            Property(x => x.Id).HasColumnName(@"ID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Title).HasColumnName(@"Title").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(511).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Description).HasColumnName(@"Description").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1536);
+            Property(x => x.Requirements).HasColumnName(@"Requirements").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1536);
+            Property(x => x.Category).HasColumnName(@"Category").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ClickPayoutValue).HasColumnName(@"ClickPayoutValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ClickReceiveValue).HasColumnName(@"ClickReceiveValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ClickCode).HasColumnName(@"ClickCode").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PayoutValue).HasColumnName(@"PayoutValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ReceiveValue).HasColumnName(@"ReceiveValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AffiliateCampaignId).HasColumnName(@"AffiliateCampaignID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Type).HasColumnName(@"Type").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Url).HasColumnName(@"URL").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ImageUrl).HasColumnName(@"ImageURL").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.ImageWidth).HasColumnName(@"ImageWidth").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ImageHeight).HasColumnName(@"ImageHeight").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.QuestionCount).HasColumnName(@"QuestionCount").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.QuestionPageTitle).HasColumnName(@"QuestionPageTitle").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.QuestionPageHeader).HasColumnName(@"QuestionPageHeader").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(8000);
+            Property(x => x.QuestionPageFooter).HasColumnName(@"QuestionPageFooter").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(8000);
+            Property(x => x.DailyCapPerUser).HasColumnName(@"DailyCapPerUser").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Rank).HasColumnName(@"Rank").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Hide).HasColumnName(@"Hide").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Enabled).HasColumnName(@"Enabled").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Approved).HasColumnName(@"Approved").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CausesConversion).HasColumnName(@"CausesConversion").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
     // CBRSurveyInstruction
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class CbrSurveyInstructionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrSurveyInstruction>
@@ -652,6 +823,60 @@ namespace CBR.DataAccess.Mapping
 
             Property(x => x.Id).HasColumnName(@"ID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Description).HasColumnName(@"Description").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CBRSurveyStatusWithBadEmail
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyStatusWithBadEmailConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrSurveyStatusWithBadEmail>
+    {
+        public CbrSurveyStatusWithBadEmailConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrSurveyStatusWithBadEmailConfiguration(string schema)
+        {
+            ToTable("CBRSurveyStatusWithBadEmail", schema);
+            HasKey(x => new { x.EmailAddress, x.SurveyId, x.PayoutValue });
+
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.GoodEm).HasColumnName(@"goodEM").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.SurveyId).HasColumnName(@"SurveyID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PayoutValue).HasColumnName(@"PayoutValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // CBRSurveyStatusWithDupPay
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyStatusWithDupPayConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CbrSurveyStatusWithDupPay>
+    {
+        public CbrSurveyStatusWithDupPayConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CbrSurveyStatusWithDupPayConfiguration(string schema)
+        {
+            ToTable("CBRSurveyStatusWithDupPay", schema);
+            HasKey(x => new { x.Id, x.EmailAddress, x.SurveyId, x.PayoutValue, x.ReceiveValue, x.StatusId, x.InsertDate });
+
+            Property(x => x.Id).HasColumnName(@"ID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.SurveyId).HasColumnName(@"SurveyID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PayoutValue).HasColumnName(@"PayoutValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.ReceiveValue).HasColumnName(@"ReceiveValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.StatusId).HasColumnName(@"StatusID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DtCookieId).HasColumnName(@"DTCookieID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.RandomId).HasColumnName(@"RandomID").HasColumnType("int").IsOptional();
+            Property(x => x.AffCookieId).HasColumnName(@"AffCookieID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CompletedDate).HasColumnName(@"CompletedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.DeniedDate).HasColumnName(@"DeniedDate").HasColumnType("datetime").IsOptional();
             InitializePartial();
         }
         partial void InitializePartial();
@@ -852,7 +1077,6 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.DateSubmitted).HasColumnName(@"DateSubmitted").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasRequired(a => a.CbrLead).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CbrLeadId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CBRLead
             HasRequired(a => a.CoregCampaign).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CoregCampaignId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CoregCampaign
             HasRequired(a => a.CoregPartner).WithMany(b => b.CoregLeadAccepteds).HasForeignKey(c => c.CoregPartnerId).WillCascadeOnDelete(false); // FK_CoregLeadAccepted_CoregPartner
             InitializePartial();
@@ -1818,18 +2042,18 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
-    // IPCountryNew
+    // IPCountryOld
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class IpCountryNewConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IpCountryNew>
+    public partial class IpCountryOldConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IpCountryOld>
     {
-        public IpCountryNewConfiguration()
+        public IpCountryOldConfiguration()
             : this("dbo")
         {
         }
 
-        public IpCountryNewConfiguration(string schema)
+        public IpCountryOldConfiguration(string schema)
         {
-            ToTable("IPCountryNew", schema);
+            ToTable("IPCountryOld", schema);
             HasKey(x => new { x.StartIp, x.EndIp, x.StartNum, x.EndNum, x.CountryId, x.CountryName });
 
             Property(x => x.StartIp).HasColumnName(@"StartIP").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -1843,18 +2067,18 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
-    // IPCountryOld
+    // IPCountyBackup
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class IpCountryOldConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IpCountryOld>
+    public partial class IpCountyBackupConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IpCountyBackup>
     {
-        public IpCountryOldConfiguration()
+        public IpCountyBackupConfiguration()
             : this("dbo")
         {
         }
 
-        public IpCountryOldConfiguration(string schema)
+        public IpCountyBackupConfiguration(string schema)
         {
-            ToTable("IPCountryOld", schema);
+            ToTable("IPCountyBackup", schema);
             HasKey(x => new { x.StartIp, x.EndIp, x.StartNum, x.EndNum, x.CountryId, x.CountryName });
 
             Property(x => x.StartIp).HasColumnName(@"StartIP").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -2008,6 +2232,43 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.LoggedInFromClikId).HasColumnName(@"LoggedInFromClikID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // MobilelLead
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class MobilelLeadConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<MobilelLead>
+    {
+        public MobilelLeadConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public MobilelLeadConfiguration(string schema)
+        {
+            ToTable("MobilelLead", schema);
+            HasKey(x => x.MobileLeadId);
+
+            Property(x => x.MobileLeadId).HasColumnName(@"MobileLeadId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RouterContactId).HasColumnName(@"RouterContactID").HasColumnType("int").IsOptional();
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Lastname).HasColumnName(@"Lastname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Dob).HasColumnName(@"Dob").HasColumnType("date").IsOptional();
+            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasOptional(a => a.RouterContact).WithMany(b => b.MobilelLeads).HasForeignKey(c => c.RouterContactId).WillCascadeOnDelete(false); // FK_MobilelLead_RouterContact
             InitializePartial();
         }
         partial void InitializePartial();
@@ -2288,68 +2549,7 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
             Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
-            Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // OptInLeadBackup
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class OptInLeadBackupConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<OptInLeadBackup>
-    {
-        public OptInLeadBackupConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public OptInLeadBackupConfiguration(string schema)
-        {
-            ToTable("OptInLeadBackup", schema);
-            HasKey(x => new { x.SiteVertical, x.EmailAddress, x.CountryId, x.SelectedLanguageId, x.OptInDate, x.LastRunDate, x.LastSendOnDay, x.DoNotSendTo, x.ThirdPartyListsUpdated, x.InsertDate });
-
-            Property(x => x.SiteVertical).HasColumnName(@"SiteVertical").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Salutation).HasColumnName(@"Salutation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Firstname).HasColumnName(@"Firstname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Lastname).HasColumnName(@"Lastname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Address2).HasColumnName(@"Address2").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Phone).HasColumnName(@"Phone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Mobilephone).HasColumnName(@"Mobilephone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.SmartPhone).HasColumnName(@"SmartPhone").HasColumnType("bit").IsOptional();
-            Property(x => x.BirthdayDay).HasColumnName(@"BirthdayDay").HasColumnType("int").IsOptional();
-            Property(x => x.BirthdayMonth).HasColumnName(@"BirthdayMonth").HasColumnType("int").IsOptional();
-            Property(x => x.BirthdayYear).HasColumnName(@"BirthdayYear").HasColumnType("int").IsOptional();
-            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1);
-            Property(x => x.Occupation).HasColumnName(@"Occupation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Income).HasColumnName(@"Income").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.HomeOwnership).HasColumnName(@"HomeOwnership").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Education).HasColumnName(@"Education").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.MaritalStatus).HasColumnName(@"MaritalStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.Children).HasColumnName(@"Children").HasColumnType("int").IsOptional();
-            Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.Password).HasColumnName(@"Password").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.OfferId).HasColumnName(@"OfferID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
-            Property(x => x.AffiliateId).HasColumnName(@"AffiliateID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
-            Property(x => x.SubId).HasColumnName(@"SubID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
-            Property(x => x.Cost).HasColumnName(@"Cost").HasColumnType("money").IsOptional().HasPrecision(19,4);
-            Property(x => x.CountryId).HasColumnName(@"CountryID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.SelectedLanguageId).HasColumnName(@"SelectedLanguageID").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(2).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.OptInDate).HasColumnName(@"OptInDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.LastRunDate).HasColumnName(@"LastRunDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.LastSendOnDay).HasColumnName(@"LastSendOnDay").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.OptOutDate).HasColumnName(@"OptOutDate").HasColumnType("datetime").IsOptional();
-            Property(x => x.DoNotSendTo).HasColumnName(@"DoNotSendTo").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.ConfirmedDate).HasColumnName(@"ConfirmedDate").HasColumnType("datetime").IsOptional();
-            Property(x => x.ThirdPartyListsUpdated).HasColumnName(@"ThirdPartyListsUpdated").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Uid).HasColumnName(@"UID").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
             InitializePartial();
@@ -2384,27 +2584,6 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.ReturnString).HasColumnName(@"ReturnString").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // PQ_ToBeDeleted
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class PqToBeDeletedConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PqToBeDeleted>
-    {
-        public PqToBeDeletedConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public PqToBeDeletedConfiguration(string schema)
-        {
-            ToTable("PQ_ToBeDeleted", schema);
-            HasKey(x => x.Id);
-
-            Property(x => x.Id).HasColumnName(@"ID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
             InitializePartial();
         }
         partial void InitializePartial();
@@ -2631,6 +2810,257 @@ namespace CBR.DataAccess.Mapping
             HasKey(x => x.LastProcessedDate);
 
             Property(x => x.LastProcessedDate).HasColumnName(@"LastProcessedDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterAction
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterActionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterAction>
+    {
+        public RouterActionConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterActionConfiguration(string schema)
+        {
+            ToTable("RouterAction", schema);
+            HasKey(x => x.RouterActionId);
+
+            Property(x => x.RouterActionId).HasColumnName(@"RouterActionId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RouterContactId).HasColumnName(@"RouterContactId").HasColumnType("int").IsRequired();
+            Property(x => x.RouterHostId).HasColumnName(@"RouterHostId").HasColumnType("int").IsRequired();
+            Property(x => x.RouterSurveyYourSurveyId).HasColumnName(@"RouterSurveyYourSurveyId").HasColumnType("int").IsOptional();
+            Property(x => x.RouterSurveyPrecisionSampleId).HasColumnName(@"RouterSurveyPrecisionSampleId").HasColumnType("int").IsOptional();
+            Property(x => x.Ip).HasColumnName(@"IP").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("date").IsRequired();
+            Property(x => x.PostedUrl).HasColumnName(@"PostedUrl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(500);
+
+            // Foreign keys
+            HasOptional(a => a.RouterSurveyPrecisionSample).WithMany(b => b.RouterActions).HasForeignKey(c => c.RouterSurveyPrecisionSampleId).WillCascadeOnDelete(false); // FK_RouterAction_RouterSurveyPrecisionSample
+            HasOptional(a => a.RouterSurveyYourSurvey).WithMany(b => b.RouterActions).HasForeignKey(c => c.RouterSurveyYourSurveyId).WillCascadeOnDelete(false); // FK_RouterAction_RouterSurveyYourSurvey
+            HasRequired(a => a.RouterContact).WithMany(b => b.RouterActions).HasForeignKey(c => c.RouterContactId).WillCascadeOnDelete(false); // FK_RouterAction_RouterContact
+            HasRequired(a => a.RouterHost).WithMany(b => b.RouterActions).HasForeignKey(c => c.RouterHostId).WillCascadeOnDelete(false); // FK_RouterAction_RouterHost
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterContact
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterContactConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterContact>
+    {
+        public RouterContactConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterContactConfiguration(string schema)
+        {
+            ToTable("RouterContact", schema);
+            HasKey(x => x.RouterContactId);
+
+            Property(x => x.RouterContactId).HasColumnName(@"RouterContactId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
+            Property(x => x.UniqueId).HasColumnName(@"UniqueId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.DailySurveyEmailSentDate).HasColumnName(@"DailySurveyEmailSentDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.Removed).HasColumnName(@"Removed").HasColumnType("bit").IsOptional();
+            Property(x => x.ErrorOut).HasColumnName(@"ErrorOut").HasColumnType("bit").IsOptional();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterContactPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterContactPrecisionSampleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterContactPrecisionSample>
+    {
+        public RouterContactPrecisionSampleConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterContactPrecisionSampleConfiguration(string schema)
+        {
+            ToTable("RouterContactPrecisionSample", schema);
+            HasKey(x => x.RouterContactPrecisionSampleId);
+
+            Property(x => x.RouterContactPrecisionSampleId).HasColumnName(@"RouterContactPrecisionSampleId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RouterContactId).HasColumnName(@"RouterContactId").HasColumnType("int").IsRequired();
+            Property(x => x.UserGuid).HasColumnName(@"UserGuid").HasColumnType("uniqueidentifier").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.RouterContact).WithMany(b => b.RouterContactPrecisionSamples).HasForeignKey(c => c.RouterContactId).WillCascadeOnDelete(false); // FK_RouterContactPrecisionSample_RouterContact
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterHost
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterHostConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterHost>
+    {
+        public RouterHostConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterHostConfiguration(string schema)
+        {
+            ToTable("RouterHost", schema);
+            HasKey(x => x.RouterHostId);
+
+            Property(x => x.RouterHostId).HasColumnName(@"RouterHostId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
+            Property(x => x.Enabled).HasColumnName(@"Enabled").HasColumnType("bit").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterPostBackPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterPostBackPrecisionSampleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterPostBackPrecisionSample>
+    {
+        public RouterPostBackPrecisionSampleConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterPostBackPrecisionSampleConfiguration(string schema)
+        {
+            ToTable("RouterPostBackPrecisionSample", schema);
+            HasKey(x => x.RouterPostbackPrecisionSampleId);
+
+            Property(x => x.RouterPostbackPrecisionSampleId).HasColumnName(@"RouterPostbackPrecisionSampleId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.UserGuid).HasColumnName(@"UserGuid").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.Reward).HasColumnName(@"Reward").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("nchar").IsRequired().IsFixedLength().HasMaxLength(1);
+            Property(x => x.Reversed).HasColumnName(@"Reversed").HasColumnType("bit").IsRequired();
+            Property(x => x.ProjectId).HasColumnName(@"ProjectId").HasColumnType("int").IsRequired();
+            Property(x => x.Gross).HasColumnName(@"Gross").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.PostbackDate).HasColumnName(@"PostbackDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.ReverseDate).HasColumnName(@"ReverseDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.Processed).HasColumnName(@"Processed").HasColumnType("bit").IsOptional();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterPostBackYourSurveys
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterPostBackYourSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterPostBackYourSurvey>
+    {
+        public RouterPostBackYourSurveyConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterPostBackYourSurveyConfiguration(string schema)
+        {
+            ToTable("RouterPostBackYourSurveys", schema);
+            HasKey(x => x.RouterPostBackYourSurveysId);
+
+            Property(x => x.RouterPostBackYourSurveysId).HasColumnName(@"RouterPostBackYourSurveysId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.TransactionIdYs).HasColumnName(@"TransactionIdYS").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.IpAddress).HasColumnName(@"IpAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.SignatureMd5).HasColumnName(@"signatureMd5").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
+            Property(x => x.PostbackDate).HasColumnName(@"PostbackDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.Processed).HasColumnName(@"Processed").HasColumnType("bit").IsOptional();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterStatusYourSurveys
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterStatusYourSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterStatusYourSurvey>
+    {
+        public RouterStatusYourSurveyConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterStatusYourSurveyConfiguration(string schema)
+        {
+            ToTable("RouterStatusYourSurveys", schema);
+            HasKey(x => new { x.Email, x.Name, x.Cpi, x.PostbackDate, x.TransactionId });
+
+            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Cpi).HasColumnName(@"cpi").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PostbackDate).HasColumnName(@"PostbackDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Processed).HasColumnName(@"Processed").HasColumnType("bit").IsOptional();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterSurveyPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterSurveyPrecisionSampleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterSurveyPrecisionSample>
+    {
+        public RouterSurveyPrecisionSampleConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterSurveyPrecisionSampleConfiguration(string schema)
+        {
+            ToTable("RouterSurveyPrecisionSample", schema);
+            HasKey(x => x.RouterSurveyPrecisionSampleId);
+
+            Property(x => x.RouterSurveyPrecisionSampleId).HasColumnName(@"RouterSurveyPrecisionSampleId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.ProjectId).HasColumnName(@"ProjectId").HasColumnType("int").IsRequired();
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.SurveyLength).HasColumnName(@"SurveyLength").HasColumnType("int").IsRequired();
+            Property(x => x.GrossRevenue).HasColumnName(@"GrossRevenue").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.RewardValue).HasColumnName(@"RewardValue").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.TrafficType).HasColumnName(@"TrafficType").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.ConversionRate).HasColumnName(@"ConversionRate").HasColumnType("int").IsRequired();
+            Property(x => x.VerityCheckRequired).HasColumnName(@"VerityCheckRequired").HasColumnType("bit").IsRequired();
+            Property(x => x.Url).HasColumnName(@"Url").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(500);
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // RouterSurveyYourSurvey
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterSurveyYourSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterSurveyYourSurvey>
+    {
+        public RouterSurveyYourSurveyConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterSurveyYourSurveyConfiguration(string schema)
+        {
+            ToTable("RouterSurveyYourSurvey", schema);
+            HasKey(x => x.RouterSurveyYourSurveyId);
+
+            Property(x => x.RouterSurveyYourSurveyId).HasColumnName(@"RouterSurveyYourSurveyId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Cpi).HasColumnName(@"Cpi").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.ConversionRate).HasColumnName(@"ConversionRate").HasColumnType("money").IsRequired().HasPrecision(19,4);
+            Property(x => x.Loi).HasColumnName(@"Loi").HasColumnType("int").IsRequired();
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.StudyType).HasColumnName(@"StudyType").HasColumnType("int").IsRequired();
+            Property(x => x.RemainingCompletes).HasColumnName(@"RemainingCompletes").HasColumnType("int").IsRequired();
+            Property(x => x.ProjectId).HasColumnName(@"ProjectId").HasColumnType("int").IsRequired();
+            Property(x => x.Url).HasColumnName(@"Url").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(500);
+            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("date").IsRequired();
             InitializePartial();
         }
         partial void InitializePartial();
@@ -3136,52 +3566,6 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
-    // UserSurveyCountAfter
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class UserSurveyCountAfterConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UserSurveyCountAfter>
-    {
-        public UserSurveyCountAfterConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public UserSurveyCountAfterConfiguration(string schema)
-        {
-            ToTable("UserSurveyCountAfter", schema);
-            HasKey(x => x.UserSurveyCountAfterId);
-
-            Property(x => x.UserSurveyCountAfterId).HasColumnName(@"UserSurveyCountAfterID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
-            Property(x => x.SurveyCount).HasColumnName(@"SurveyCount").HasColumnType("int").IsRequired();
-            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // UserSurveyCountBefore
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class UserSurveyCountBeforeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UserSurveyCountBefore>
-    {
-        public UserSurveyCountBeforeConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public UserSurveyCountBeforeConfiguration(string schema)
-        {
-            ToTable("UserSurveyCountBefore", schema);
-            HasKey(x => x.UserSurveyCountBeforeId);
-
-            Property(x => x.UserSurveyCountBeforeId).HasColumnName(@"UserSurveyCountBeforeID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250);
-            Property(x => x.SurveyCount).HasColumnName(@"SurveyCount").HasColumnType("int").IsRequired();
-            Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
     // VerifyZipFailure
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class VerifyZipFailureConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<VerifyZipFailure>
@@ -3198,12 +3582,14 @@ namespace CBR.DataAccess.Mapping
 
             Property(x => x.VerifyZipFailureId).HasColumnName(@"VerifyZipFailureId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.Street).HasColumnName(@"Street").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(500);
             Property(x => x.IpAddress).HasColumnName(@"IpAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Zip).HasColumnName(@"Zip").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.IpVerifyResultJson).HasColumnName(@"IpVerifyResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
             Property(x => x.ZipLookupResultJson).HasColumnName(@"ZipLookupResultJson").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1000);
             Property(x => x.InvalidIp).HasColumnName(@"InvalidIP").HasColumnType("bit").IsRequired();
             Property(x => x.InvalidZip).HasColumnName(@"InvalidZip").HasColumnType("bit").IsRequired();
+            Property(x => x.InValidAddress).HasColumnName(@"InValidAddress").HasColumnType("bit").IsRequired();
             Property(x => x.NoMatch).HasColumnName(@"NoMatch").HasColumnType("bit").IsRequired();
             Property(x => x.InsertDate).HasColumnName(@"InsertDate").HasColumnType("datetime").IsRequired();
             Property(x => x.IrreputableIp).HasColumnName(@"IrreputableIP").HasColumnType("bit").IsRequired();
@@ -3518,6 +3904,31 @@ namespace CBR.DataAccess.Mapping
             Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Password).HasColumnName(@"Password").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.Clik).HasColumnName(@"Clik").HasColumnType("bit").IsOptional();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // vwRouterStatusPrecisionSurvey
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class VwRouterStatusPrecisionSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<VwRouterStatusPrecisionSurvey>
+    {
+        public VwRouterStatusPrecisionSurveyConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public VwRouterStatusPrecisionSurveyConfiguration(string schema)
+        {
+            ToTable("vwRouterStatusPrecisionSurvey", schema);
+            HasKey(x => new { x.Email, x.UserGuid, x.Name, x.Status, x.Reward, x.Gross });
+
+            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.UserGuid).HasColumnName(@"UserGuid").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("nchar").IsRequired().IsFixedLength().HasMaxLength(1).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Reward).HasColumnName(@"Reward").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Gross).HasColumnName(@"Gross").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             InitializePartial();
         }
         partial void InitializePartial();

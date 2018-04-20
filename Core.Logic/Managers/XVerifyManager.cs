@@ -120,6 +120,12 @@ namespace CBR.Core.Logic.Managers
         //    return _zipIpVerifyResult;
         //}
 
+        public ZipcodeLookupResponse GetZipcodeLookup(string zip)
+        {
+            ZipcodeLookupResponse result = _xverifyRepository.GetZipcodeLookup(zip);
+            return result;
+        }
+
         public ZipIpVerifyResult VerifyZipAndIpAddress(string ip, string zip, string email)
         {
             if (_db.CbrZipVerifieds.Any(z => z.EmailAddress == email && z.ValidZip == zip && z.ValidIpAddress == ip))
@@ -192,6 +198,16 @@ namespace CBR.Core.Logic.Managers
             return _xverifyRepository.GetIpVerification(ip);
         }
 
+
+        public bool GetEmailVerification(string email)
+        {
+            return _xverifyRepository.GetEmailVerification(email);
+        }
+
+        public string GetCountryFromIP(string ipAddress)
+        {
+            return _xverifyRepository.GetCountryFromIp(ipAddress);
+        }
     }
 
 }

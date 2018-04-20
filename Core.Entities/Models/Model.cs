@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "Core.Entities\App.config"
 //     Connection String Name: "GloshareContext"
-//     Connection String:      "data source=bluebeam;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+//     Connection String:      "data source=localhost;initial catalog=Gloshare;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Developer Edition (64-bit)
 // Database Engine Edition: Enterprise
@@ -213,6 +213,72 @@ namespace CBR.Core.Entities.Models
     public partial class CbrLead
     {
         public int CbrLeadId { get; set; } // CBRLeadId (Primary key)
+        public string EmailAddress { get; set; } // EmailAddress (Primary key) (length: 255)
+        public string Salutation { get; set; } // Salutation (length: 100)
+        public string Firstname { get; set; } // Firstname (length: 100)
+        public string Lastname { get; set; } // Lastname (length: 100)
+        public string Address { get; set; } // Address (length: 100)
+        public string Address2 { get; set; } // Address2 (length: 100)
+        public string City { get; set; } // City (length: 100)
+        public string State { get; set; } // State (length: 100)
+        public string Zip { get; set; } // Zip (length: 100)
+        public string Phone { get; set; } // Phone (length: 100)
+        public string Mobilephone { get; set; } // Mobilephone (length: 100)
+        public bool? SmartPhone { get; set; } // SmartPhone
+        public int? BirthdayDay { get; set; } // BirthdayDay
+        public int? BirthdayMonth { get; set; } // BirthdayMonth
+        public int? BirthdayYear { get; set; } // BirthdayYear
+        public string Gender { get; set; } // Gender (length: 1)
+        public string Occupation { get; set; } // Occupation (length: 100)
+        public string Income { get; set; } // Income (length: 100)
+        public string HomeOwnership { get; set; } // HomeOwnership (length: 100)
+        public string Education { get; set; } // Education (length: 100)
+        public string MaritalStatus { get; set; } // MaritalStatus (length: 100)
+        public int? Children { get; set; } // Children
+        public string Ethnicity { get; set; } // Ethnicity (length: 50)
+        public string Password { get; set; } // Password (length: 50)
+        public string OfferId { get; set; } // OfferID (length: 100)
+        public string AffiliateId { get; set; } // AffiliateID (length: 255)
+        public string SubId { get; set; } // SubID (length: 255)
+        public decimal? Cost { get; set; } // Cost
+        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
+        public string SelectedLanguageId { get; set; } // SelectedLanguageID (Primary key) (length: 2)
+        public System.DateTime OptInDate { get; set; } // OptInDate (Primary key)
+        public System.DateTime LastRunDate { get; set; } // LastRunDate (Primary key)
+        public int LastSendOnDay { get; set; } // LastSendOnDay (Primary key)
+        public System.DateTime? OptOutDate { get; set; } // OptOutDate
+        public bool DoNotSendTo { get; set; } // DoNotSendTo (Primary key)
+        public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
+        public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated (Primary key)
+        public System.DateTime InsertDate { get; set; } // InsertDate (Primary key)
+        public string Ip { get; set; } // IP (length: 50)
+        public string Uid { get; set; } // UID (length: 50)
+        public bool? Clik { get; set; } // Clik
+
+        public CbrLead()
+        {
+            SmartPhone = false;
+            Cost = 0m;
+            CountryId = "US";
+            SelectedLanguageId = "EN";
+            OptInDate = System.DateTime.Now;
+            LastRunDate = System.DateTime.Now;
+            LastSendOnDay = 0;
+            DoNotSendTo = false;
+            ThirdPartyListsUpdated = false;
+            InsertDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CBRLeadStageInsert
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrLeadStageInsert
+    {
+        public int CbrLeadStageInsertId { get; set; } // CBRLeadStageInsertId (Primary key)
+        public int CbrLeadId { get; set; } // CbrLeadId
         public string EmailAddress { get; set; } // EmailAddress (length: 255)
         public string Salutation { get; set; } // Salutation (length: 100)
         public string Firstname { get; set; } // Firstname (length: 100)
@@ -251,18 +317,11 @@ namespace CBR.Core.Entities.Models
         public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
         public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated
         public System.DateTime InsertDate { get; set; } // InsertDate
-        public string Ip { get; set; } // IP (length: 15)
+        public string Ip { get; set; } // IP (length: 50)
         public string Uid { get; set; } // UID (length: 50)
         public bool? Clik { get; set; } // Clik
 
-        // Reverse navigation
-
-        /// <summary>
-        /// Child CoregLeadAccepteds where [CoregLeadAccepted].[CBRLeadId] point to this entity (FK_CoregLeadAccepted_CBRLead)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<CoregLeadAccepted> CoregLeadAccepteds { get; set; } // CoregLeadAccepted.FK_CoregLeadAccepted_CBRLead
-
-        public CbrLead()
+        public CbrLeadStageInsert()
         {
             SmartPhone = false;
             Cost = 0m;
@@ -274,7 +333,72 @@ namespace CBR.Core.Entities.Models
             DoNotSendTo = false;
             ThirdPartyListsUpdated = false;
             InsertDate = System.DateTime.Now;
-            CoregLeadAccepteds = new System.Collections.Generic.List<CoregLeadAccepted>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CBRLeadStageUpdate
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrLeadStageUpdate
+    {
+        public int CbrLeadStageUpdateId { get; set; } // CBRLeadStageUpdateId (Primary key)
+        public int CbrLeadId { get; set; } // CbrLeadId
+        public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public string Salutation { get; set; } // Salutation (length: 100)
+        public string Firstname { get; set; } // Firstname (length: 100)
+        public string Lastname { get; set; } // Lastname (length: 100)
+        public string Address { get; set; } // Address (length: 100)
+        public string Address2 { get; set; } // Address2 (length: 100)
+        public string City { get; set; } // City (length: 100)
+        public string State { get; set; } // State (length: 100)
+        public string Zip { get; set; } // Zip (length: 100)
+        public string Phone { get; set; } // Phone (length: 100)
+        public string Mobilephone { get; set; } // Mobilephone (length: 100)
+        public bool? SmartPhone { get; set; } // SmartPhone
+        public int? BirthdayDay { get; set; } // BirthdayDay
+        public int? BirthdayMonth { get; set; } // BirthdayMonth
+        public int? BirthdayYear { get; set; } // BirthdayYear
+        public string Gender { get; set; } // Gender (length: 1)
+        public string Occupation { get; set; } // Occupation (length: 100)
+        public string Income { get; set; } // Income (length: 100)
+        public string HomeOwnership { get; set; } // HomeOwnership (length: 100)
+        public string Education { get; set; } // Education (length: 100)
+        public string MaritalStatus { get; set; } // MaritalStatus (length: 100)
+        public int? Children { get; set; } // Children
+        public string Ethnicity { get; set; } // Ethnicity (length: 50)
+        public string Password { get; set; } // Password (length: 50)
+        public string OfferId { get; set; } // OfferID (length: 100)
+        public string AffiliateId { get; set; } // AffiliateID (length: 255)
+        public string SubId { get; set; } // SubID (length: 255)
+        public decimal? Cost { get; set; } // Cost
+        public string CountryId { get; set; } // CountryID (length: 2)
+        public string SelectedLanguageId { get; set; } // SelectedLanguageID (length: 2)
+        public System.DateTime OptInDate { get; set; } // OptInDate
+        public System.DateTime LastRunDate { get; set; } // LastRunDate
+        public int LastSendOnDay { get; set; } // LastSendOnDay
+        public System.DateTime? OptOutDate { get; set; } // OptOutDate
+        public bool DoNotSendTo { get; set; } // DoNotSendTo
+        public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
+        public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated
+        public System.DateTime InsertDate { get; set; } // InsertDate
+        public string Ip { get; set; } // IP (length: 50)
+        public string Uid { get; set; } // UID (length: 50)
+        public bool? Clik { get; set; } // Clik
+
+        public CbrLeadStageUpdate()
+        {
+            SmartPhone = false;
+            Cost = 0m;
+            CountryId = "US";
+            SelectedLanguageId = "EN";
+            OptInDate = System.DateTime.Now;
+            LastRunDate = System.DateTime.Now;
+            LastSendOnDay = 0;
+            DoNotSendTo = false;
+            ThirdPartyListsUpdated = false;
+            InsertDate = System.DateTime.Now;
             InitializePartial();
         }
 
@@ -301,7 +425,7 @@ namespace CBR.Core.Entities.Models
         public int Type { get; set; } // Type (Primary key)
         public System.DateTime RequestForPaymentDate { get; set; } // RequestForPaymentDate (Primary key)
         public System.DateTime? PaidDate { get; set; } // PaidDate
-        public string Ip { get; set; } // IP (length: 15)
+        public string Ip { get; set; } // IP (length: 50)
 
         public CbrPayout()
         {
@@ -478,6 +602,47 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
+    // CBRSurveyBackup
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyBackup
+    {
+        public int Id { get; set; } // ID (Primary key)
+        public string Title { get; set; } // Title (Primary key) (length: 511)
+        public string Description { get; set; } // Description (length: 1536)
+        public string Requirements { get; set; } // Requirements (length: 1536)
+        public string Category { get; set; } // Category (length: 20)
+        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
+        public decimal ClickPayoutValue { get; set; } // ClickPayoutValue (Primary key)
+        public decimal ClickReceiveValue { get; set; } // ClickReceiveValue (Primary key)
+        public System.Guid ClickCode { get; set; } // ClickCode (Primary key)
+        public decimal PayoutValue { get; set; } // PayoutValue (Primary key)
+        public decimal ReceiveValue { get; set; } // ReceiveValue (Primary key)
+        public int AffiliateCampaignId { get; set; } // AffiliateCampaignID (Primary key)
+        public bool Type { get; set; } // Type (Primary key)
+        public string Url { get; set; } // URL (Primary key) (length: 255)
+        public string ImageUrl { get; set; } // ImageURL (length: 255)
+        public int ImageWidth { get; set; } // ImageWidth (Primary key)
+        public int ImageHeight { get; set; } // ImageHeight (Primary key)
+        public int QuestionCount { get; set; } // QuestionCount (Primary key)
+        public string QuestionPageTitle { get; set; } // QuestionPageTitle (length: 255)
+        public string QuestionPageHeader { get; set; } // QuestionPageHeader (length: 8000)
+        public string QuestionPageFooter { get; set; } // QuestionPageFooter (length: 8000)
+        public int DailyCapPerUser { get; set; } // DailyCapPerUser (Primary key)
+        public int Rank { get; set; } // Rank (Primary key)
+        public bool Hide { get; set; } // Hide (Primary key)
+        public bool Enabled { get; set; } // Enabled (Primary key)
+        public bool Approved { get; set; } // Approved (Primary key)
+        public bool CausesConversion { get; set; } // CausesConversion (Primary key)
+        public System.DateTime CreateDate { get; set; } // CreateDate (Primary key)
+
+        public CbrSurveyBackup()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // CBRSurveyInstruction
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class CbrSurveyInstruction
@@ -594,6 +759,48 @@ namespace CBR.Core.Entities.Models
         public string Description { get; set; } // Description (Primary key) (length: 50)
 
         public CbrSurveyStatusType()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CBRSurveyStatusWithBadEmail
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyStatusWithBadEmail
+    {
+        public string EmailAddress { get; set; } // EmailAddress (Primary key) (length: 255)
+        public string GoodEm { get; set; } // goodEM (length: 255)
+        public int SurveyId { get; set; } // SurveyID (Primary key)
+        public decimal PayoutValue { get; set; } // PayoutValue (Primary key)
+
+        public CbrSurveyStatusWithBadEmail()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // CBRSurveyStatusWithDupPay
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class CbrSurveyStatusWithDupPay
+    {
+        public int Id { get; set; } // ID (Primary key)
+        public string EmailAddress { get; set; } // EmailAddress (Primary key) (length: 255)
+        public int SurveyId { get; set; } // SurveyID (Primary key)
+        public decimal PayoutValue { get; set; } // PayoutValue (Primary key)
+        public decimal ReceiveValue { get; set; } // ReceiveValue (Primary key)
+        public int StatusId { get; set; } // StatusID (Primary key)
+        public string DtCookieId { get; set; } // DTCookieID (length: 32)
+        public int? RandomId { get; set; } // RandomID
+        public string AffCookieId { get; set; } // AffCookieID (length: 50)
+        public System.DateTime InsertDate { get; set; } // InsertDate (Primary key)
+        public System.DateTime? CompletedDate { get; set; } // CompletedDate
+        public System.DateTime? DeniedDate { get; set; } // DeniedDate
+
+        public CbrSurveyStatusWithDupPay()
         {
             InitializePartial();
         }
@@ -763,10 +970,6 @@ namespace CBR.Core.Entities.Models
 
         // Foreign keys
 
-        /// <summary>
-        /// Parent CbrLead pointed by [CoregLeadAccepted].([CbrLeadId]) (FK_CoregLeadAccepted_CBRLead)
-        /// </summary>
-        public virtual CbrLead CbrLead { get; set; } // FK_CoregLeadAccepted_CBRLead
         /// <summary>
         /// Parent CoregCampaign pointed by [CoregLeadAccepted].([CoregCampaignId]) (FK_CoregLeadAccepted_CoregCampaign)
         /// </summary>
@@ -1021,39 +1224,15 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
-    // The table 'Database' is not usable by entity framework because it
+    // The table 'DebugTrans' is not usable by entity framework because it
     // does not have a primary key. It is listed here for completeness.
-    // Database
+    // DebugTrans
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class Database
+    public partial class DebugTran
     {
-        public string Area { get; set; } // AREA (length: 255)
-        public string St { get; set; } // ST (length: 255)
-        public string State { get; set; } // STATE (length: 255)
-        public string OccCode { get; set; } // OCC_CODE (length: 255)
-        public string OccTitle { get; set; } // OCC_TITLE (length: 255)
-        public string OccGroup { get; set; } // OCC_GROUP (length: 255)
-        public double? TotEmp { get; set; } // TOT_EMP
-        public double? EmpPrse { get; set; } // EMP_PRSE
-        public double? Jobs1000 { get; set; } // JOBS_1000
-        public double? LocQ { get; set; } // LOC_Q
-        public double? HMean { get; set; } // H_MEAN
-        public double? AMean { get; set; } // A_MEAN
-        public double? MeanPrse { get; set; } // MEAN_PRSE
-        public double? HPct10 { get; set; } // H_PCT10
-        public double? HPct25 { get; set; } // H_PCT25
-        public double? HMedian { get; set; } // H_MEDIAN
-        public double? HPct75 { get; set; } // H_PCT75
-        public double? HPct90 { get; set; } // H_PCT90
-        public double? APct10 { get; set; } // A_PCT10
-        public double? APct25 { get; set; } // A_PCT25
-        public double? AMedian { get; set; } // A_MEDIAN
-        public double? APct75 { get; set; } // A_PCT75
-        public double? APct90 { get; set; } // A_PCT90
-        public string Annual { get; set; } // ANNUAL (length: 255)
-        public string Hourly { get; set; } // HOURLY (length: 255)
+        public System.Guid? Id { get; set; } // ID
 
-        public Database()
+        public DebugTran()
         {
             InitializePartial();
         }
@@ -1802,25 +1981,6 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
-    // IPCountryNew
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class IpCountryNew
-    {
-        public string StartIp { get; set; } // StartIP (Primary key) (length: 15)
-        public string EndIp { get; set; } // EndIP (Primary key) (length: 15)
-        public long StartNum { get; set; } // StartNum (Primary key)
-        public long EndNum { get; set; } // EndNum (Primary key)
-        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
-        public string CountryName { get; set; } // CountryName (Primary key) (length: 255)
-
-        public IpCountryNew()
-        {
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
     // IPCountryOld
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class IpCountryOld
@@ -1833,6 +1993,25 @@ namespace CBR.Core.Entities.Models
         public string CountryName { get; set; } // CountryName (Primary key) (length: 255)
 
         public IpCountryOld()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // IPCountyBackup
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class IpCountyBackup
+    {
+        public string StartIp { get; set; } // StartIP (Primary key) (length: 15)
+        public string EndIp { get; set; } // EndIP (Primary key) (length: 15)
+        public long StartNum { get; set; } // StartNum (Primary key)
+        public long EndNum { get; set; } // EndNum (Primary key)
+        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
+        public string CountryName { get; set; } // CountryName (Primary key) (length: 255)
+
+        public IpCountyBackup()
         {
             InitializePartial();
         }
@@ -1944,6 +2123,44 @@ namespace CBR.Core.Entities.Models
 
         public LoggedInFromClik()
         {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // MobilelLead
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class MobilelLead
+    {
+        public int MobileLeadId { get; set; } // MobileLeadId (Primary key)
+        public int? RouterContactId { get; set; } // RouterContactID
+        public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public System.Guid UserId { get; set; } // UserId
+        public string Firstname { get; set; } // Firstname (length: 100)
+        public string Lastname { get; set; } // Lastname (length: 100)
+        public string Address { get; set; } // Address (length: 100)
+        public string City { get; set; } // City (length: 100)
+        public string State { get; set; } // State (length: 100)
+        public string Zip { get; set; } // Zip (length: 100)
+        public System.DateTime? Dob { get; set; } // Dob
+        public string Gender { get; set; } // Gender (length: 1)
+        public string CountryId { get; set; } // CountryID (length: 2)
+        public string Ip { get; set; } // IP (length: 15)
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent RouterContact pointed by [MobilelLead].([RouterContactId]) (FK_MobilelLead_RouterContact)
+        /// </summary>
+        public virtual RouterContact RouterContact { get; set; } // FK_MobilelLead_RouterContact
+
+        public MobilelLead()
+        {
+            UserId = System.Guid.NewGuid();
+            CountryId = "US";
+            InsertDate = System.DateTime.Now;
             InitializePartial();
         }
 
@@ -2171,7 +2388,7 @@ namespace CBR.Core.Entities.Models
         public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
         public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated
         public System.DateTime InsertDate { get; set; } // InsertDate
-        public string Ip { get; set; } // IP (length: 15)
+        public string Ip { get; set; } // IP (length: 50)
         public string Uid { get; set; } // UID (length: 50)
         public bool? Clik { get; set; } // Clik
 
@@ -2188,61 +2405,6 @@ namespace CBR.Core.Entities.Models
             DoNotSendTo = false;
             ThirdPartyListsUpdated = false;
             InsertDate = System.DateTime.Now;
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // OptInLeadBackup
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class OptInLeadBackup
-    {
-        public int SiteVertical { get; set; } // SiteVertical (Primary key)
-        public string EmailAddress { get; set; } // EmailAddress (Primary key) (length: 255)
-        public string Salutation { get; set; } // Salutation (length: 100)
-        public string Firstname { get; set; } // Firstname (length: 100)
-        public string Lastname { get; set; } // Lastname (length: 100)
-        public string Address { get; set; } // Address (length: 100)
-        public string Address2 { get; set; } // Address2 (length: 100)
-        public string City { get; set; } // City (length: 100)
-        public string State { get; set; } // State (length: 100)
-        public string Zip { get; set; } // Zip (length: 100)
-        public string Phone { get; set; } // Phone (length: 100)
-        public string Mobilephone { get; set; } // Mobilephone (length: 100)
-        public bool? SmartPhone { get; set; } // SmartPhone
-        public int? BirthdayDay { get; set; } // BirthdayDay
-        public int? BirthdayMonth { get; set; } // BirthdayMonth
-        public int? BirthdayYear { get; set; } // BirthdayYear
-        public string Gender { get; set; } // Gender (length: 1)
-        public string Occupation { get; set; } // Occupation (length: 100)
-        public string Income { get; set; } // Income (length: 100)
-        public string HomeOwnership { get; set; } // HomeOwnership (length: 100)
-        public string Education { get; set; } // Education (length: 100)
-        public string MaritalStatus { get; set; } // MaritalStatus (length: 100)
-        public int? Children { get; set; } // Children
-        public string Ethnicity { get; set; } // Ethnicity (length: 50)
-        public string Password { get; set; } // Password (length: 50)
-        public string OfferId { get; set; } // OfferID (length: 100)
-        public string AffiliateId { get; set; } // AffiliateID (length: 255)
-        public string SubId { get; set; } // SubID (length: 255)
-        public decimal? Cost { get; set; } // Cost
-        public string CountryId { get; set; } // CountryID (Primary key) (length: 2)
-        public string SelectedLanguageId { get; set; } // SelectedLanguageID (Primary key) (length: 2)
-        public System.DateTime OptInDate { get; set; } // OptInDate (Primary key)
-        public System.DateTime LastRunDate { get; set; } // LastRunDate (Primary key)
-        public int LastSendOnDay { get; set; } // LastSendOnDay (Primary key)
-        public System.DateTime? OptOutDate { get; set; } // OptOutDate
-        public bool DoNotSendTo { get; set; } // DoNotSendTo (Primary key)
-        public System.DateTime? ConfirmedDate { get; set; } // ConfirmedDate
-        public bool ThirdPartyListsUpdated { get; set; } // ThirdPartyListsUpdated (Primary key)
-        public System.DateTime InsertDate { get; set; } // InsertDate (Primary key)
-        public string Ip { get; set; } // IP (length: 15)
-        public string Uid { get; set; } // UID (length: 50)
-        public bool? Clik { get; set; } // Clik
-
-        public OptInLeadBackup()
-        {
             InitializePartial();
         }
 
@@ -2277,21 +2439,6 @@ namespace CBR.Core.Entities.Models
             Method = "POST";
             Status = "0";
             InsertDate = System.DateTime.Now;
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // PQ_ToBeDeleted
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class PqToBeDeleted
-    {
-        public int Id { get; set; } // ID (Primary key)
-        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
-
-        public PqToBeDeleted()
-        {
             InitializePartial();
         }
 
@@ -2460,6 +2607,271 @@ namespace CBR.Core.Entities.Models
 
         public ReUploadElab()
         {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterAction
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterAction
+    {
+        public int RouterActionId { get; set; } // RouterActionId (Primary key)
+        public int RouterContactId { get; set; } // RouterContactId
+        public int RouterHostId { get; set; } // RouterHostId
+        public int? RouterSurveyYourSurveyId { get; set; } // RouterSurveyYourSurveyId
+        public int? RouterSurveyPrecisionSampleId { get; set; } // RouterSurveyPrecisionSampleId
+        public string Ip { get; set; } // IP (length: 50)
+        public System.Guid TransactionId { get; set; } // TransactionId
+        public System.DateTime InsertDate { get; set; } // InsertDate
+        public string PostedUrl { get; set; } // PostedUrl (length: 500)
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent RouterContact pointed by [RouterAction].([RouterContactId]) (FK_RouterAction_RouterContact)
+        /// </summary>
+        public virtual RouterContact RouterContact { get; set; } // FK_RouterAction_RouterContact
+        /// <summary>
+        /// Parent RouterHost pointed by [RouterAction].([RouterHostId]) (FK_RouterAction_RouterHost)
+        /// </summary>
+        public virtual RouterHost RouterHost { get; set; } // FK_RouterAction_RouterHost
+        /// <summary>
+        /// Parent RouterSurveyPrecisionSample pointed by [RouterAction].([RouterSurveyPrecisionSampleId]) (FK_RouterAction_RouterSurveyPrecisionSample)
+        /// </summary>
+        public virtual RouterSurveyPrecisionSample RouterSurveyPrecisionSample { get; set; } // FK_RouterAction_RouterSurveyPrecisionSample
+        /// <summary>
+        /// Parent RouterSurveyYourSurvey pointed by [RouterAction].([RouterSurveyYourSurveyId]) (FK_RouterAction_RouterSurveyYourSurvey)
+        /// </summary>
+        public virtual RouterSurveyYourSurvey RouterSurveyYourSurvey { get; set; } // FK_RouterAction_RouterSurveyYourSurvey
+
+        public RouterAction()
+        {
+            TransactionId = System.Guid.NewGuid();
+            InsertDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterContact
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterContact
+    {
+        public int RouterContactId { get; set; } // RouterContactId (Primary key)
+        public string Email { get; set; } // Email (length: 250)
+        public System.Guid UniqueId { get; set; } // UniqueId
+        public System.DateTime InsertDate { get; set; } // InsertDate
+        public System.DateTime? DailySurveyEmailSentDate { get; set; } // DailySurveyEmailSentDate
+        public bool? Removed { get; set; } // Removed
+        public bool? ErrorOut { get; set; } // ErrorOut
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child MobilelLeads where [MobilelLead].[RouterContactID] point to this entity (FK_MobilelLead_RouterContact)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<MobilelLead> MobilelLeads { get; set; } // MobilelLead.FK_MobilelLead_RouterContact
+        /// <summary>
+        /// Child RouterActions where [RouterAction].[RouterContactId] point to this entity (FK_RouterAction_RouterContact)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RouterAction> RouterActions { get; set; } // RouterAction.FK_RouterAction_RouterContact
+        /// <summary>
+        /// Child RouterContactPrecisionSamples where [RouterContactPrecisionSample].[RouterContactId] point to this entity (FK_RouterContactPrecisionSample_RouterContact)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RouterContactPrecisionSample> RouterContactPrecisionSamples { get; set; } // RouterContactPrecisionSample.FK_RouterContactPrecisionSample_RouterContact
+
+        public RouterContact()
+        {
+            UniqueId = System.Guid.NewGuid();
+            InsertDate = System.DateTime.Now;
+            MobilelLeads = new System.Collections.Generic.List<MobilelLead>();
+            RouterActions = new System.Collections.Generic.List<RouterAction>();
+            RouterContactPrecisionSamples = new System.Collections.Generic.List<RouterContactPrecisionSample>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterContactPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterContactPrecisionSample
+    {
+        public int RouterContactPrecisionSampleId { get; set; } // RouterContactPrecisionSampleId (Primary key)
+        public int RouterContactId { get; set; } // RouterContactId
+        public System.Guid UserGuid { get; set; } // UserGuid
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent RouterContact pointed by [RouterContactPrecisionSample].([RouterContactId]) (FK_RouterContactPrecisionSample_RouterContact)
+        /// </summary>
+        public virtual RouterContact RouterContact { get; set; } // FK_RouterContactPrecisionSample_RouterContact
+
+        public RouterContactPrecisionSample()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterHost
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterHost
+    {
+        public int RouterHostId { get; set; } // RouterHostId (Primary key)
+        public string Name { get; set; } // Name (length: 250)
+        public bool Enabled { get; set; } // Enabled
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child RouterActions where [RouterAction].[RouterHostId] point to this entity (FK_RouterAction_RouterHost)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RouterAction> RouterActions { get; set; } // RouterAction.FK_RouterAction_RouterHost
+
+        public RouterHost()
+        {
+            Enabled = true;
+            RouterActions = new System.Collections.Generic.List<RouterAction>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterPostBackPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterPostBackPrecisionSample
+    {
+        public int RouterPostbackPrecisionSampleId { get; set; } // RouterPostbackPrecisionSampleId (Primary key)
+        public System.Guid UserGuid { get; set; } // UserGuid
+        public decimal Reward { get; set; } // Reward
+        public string Status { get; set; } // Status (length: 1)
+        public bool Reversed { get; set; } // Reversed
+        public int ProjectId { get; set; } // ProjectId
+        public decimal Gross { get; set; } // Gross
+        public System.DateTime PostbackDate { get; set; } // PostbackDate
+        public System.DateTime? ReverseDate { get; set; } // ReverseDate
+        public bool? Processed { get; set; } // Processed
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+        public System.DateTime InsertDate { get; set; } // InsertDate
+        public System.Guid TransactionId { get; set; } // TransactionId
+
+        public RouterPostBackPrecisionSample()
+        {
+            InsertDate = System.DateTime.Now;
+            TransactionId = System.Guid.NewGuid();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterPostBackYourSurveys
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterPostBackYourSurvey
+    {
+        public int RouterPostBackYourSurveysId { get; set; } // RouterPostBackYourSurveysId (Primary key)
+        public System.Guid TransactionId { get; set; } // TransactionId
+        public string TransactionIdYs { get; set; } // TransactionIdYS (length: 50)
+        public string IpAddress { get; set; } // IpAddress (length: 50)
+        public string SignatureMd5 { get; set; } // signatureMd5 (length: 250)
+        public System.DateTime PostbackDate { get; set; } // PostbackDate
+        public bool? Processed { get; set; } // Processed
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+
+        public RouterPostBackYourSurvey()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterStatusYourSurveys
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterStatusYourSurvey
+    {
+        public string Email { get; set; } // Email (Primary key) (length: 250)
+        public string Name { get; set; } // Name (Primary key) (length: 255)
+        public decimal Cpi { get; set; } // cpi (Primary key)
+        public System.DateTime PostbackDate { get; set; } // PostbackDate (Primary key)
+        public bool? Processed { get; set; } // Processed
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+        public System.Guid TransactionId { get; set; } // TransactionId (Primary key)
+
+        public RouterStatusYourSurvey()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterSurveyPrecisionSample
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterSurveyPrecisionSample
+    {
+        public int RouterSurveyPrecisionSampleId { get; set; } // RouterSurveyPrecisionSampleId (Primary key)
+        public int ProjectId { get; set; } // ProjectId
+        public string Name { get; set; } // Name (length: 255)
+        public int SurveyLength { get; set; } // SurveyLength
+        public decimal GrossRevenue { get; set; } // GrossRevenue
+        public decimal RewardValue { get; set; } // RewardValue
+        public string TrafficType { get; set; } // TrafficType (length: 50)
+        public int ConversionRate { get; set; } // ConversionRate
+        public bool VerityCheckRequired { get; set; } // VerityCheckRequired
+        public string Url { get; set; } // Url (length: 500)
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child RouterActions where [RouterAction].[RouterSurveyPrecisionSampleId] point to this entity (FK_RouterAction_RouterSurveyPrecisionSample)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RouterAction> RouterActions { get; set; } // RouterAction.FK_RouterAction_RouterSurveyPrecisionSample
+
+        public RouterSurveyPrecisionSample()
+        {
+            InsertDate = System.DateTime.Now;
+            RouterActions = new System.Collections.Generic.List<RouterAction>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterSurveyYourSurvey
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterSurveyYourSurvey
+    {
+        public int RouterSurveyYourSurveyId { get; set; } // RouterSurveyYourSurveyId (Primary key)
+        public decimal Cpi { get; set; } // Cpi
+        public decimal ConversionRate { get; set; } // ConversionRate
+        public int Loi { get; set; } // Loi
+        public string Name { get; set; } // Name (length: 255)
+        public int StudyType { get; set; } // StudyType
+        public int RemainingCompletes { get; set; } // RemainingCompletes
+        public int ProjectId { get; set; } // ProjectId
+        public string Url { get; set; } // Url (length: 500)
+        public System.DateTime InsertDate { get; set; } // InsertDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child RouterActions where [RouterAction].[RouterSurveyYourSurveyId] point to this entity (FK_RouterAction_RouterSurveyYourSurvey)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RouterAction> RouterActions { get; set; } // RouterAction.FK_RouterAction_RouterSurveyYourSurvey
+
+        public RouterSurveyYourSurvey()
+        {
+            InsertDate = System.DateTime.Now;
+            RouterActions = new System.Collections.Generic.List<RouterAction>();
             InitializePartial();
         }
 
@@ -2857,46 +3269,6 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
-    // The table 'state_dl$' is not usable by entity framework because it
-    // does not have a primary key. It is listed here for completeness.
-    // state_dl$
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class StateDl36
-    {
-        public string Area { get; set; } // AREA (length: 255)
-        public string St { get; set; } // ST (length: 255)
-        public string State { get; set; } // STATE (length: 255)
-        public string OccCode { get; set; } // OCC_CODE (length: 255)
-        public string OccTitle { get; set; } // OCC_TITLE (length: 255)
-        public string OccGroup { get; set; } // OCC_GROUP (length: 255)
-        public double? TotEmp { get; set; } // TOT_EMP
-        public double? EmpPrse { get; set; } // EMP_PRSE
-        public double? Jobs1000 { get; set; } // JOBS_1000
-        public double? LocQ { get; set; } // LOC_Q
-        public double? HMean { get; set; } // H_MEAN
-        public double? AMean { get; set; } // A_MEAN
-        public double? MeanPrse { get; set; } // MEAN_PRSE
-        public double? HPct10 { get; set; } // H_PCT10
-        public double? HPct25 { get; set; } // H_PCT25
-        public double? HMedian { get; set; } // H_MEDIAN
-        public double? HPct75 { get; set; } // H_PCT75
-        public double? HPct90 { get; set; } // H_PCT90
-        public double? APct10 { get; set; } // A_PCT10
-        public double? APct25 { get; set; } // A_PCT25
-        public double? AMedian { get; set; } // A_MEDIAN
-        public double? APct75 { get; set; } // A_PCT75
-        public double? APct90 { get; set; } // A_PCT90
-        public string Annual { get; set; } // ANNUAL (length: 255)
-        public string Hourly { get; set; } // HOURLY (length: 255)
-
-        public StateDl36()
-        {
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
     // UserNews
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class UserNew
@@ -2917,52 +3289,20 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
-    // UserSurveyCountAfter
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class UserSurveyCountAfter
-    {
-        public int UserSurveyCountAfterId { get; set; } // UserSurveyCountAfterID (Primary key)
-        public string EmailAddress { get; set; } // EmailAddress (length: 250)
-        public int SurveyCount { get; set; } // SurveyCount
-        public System.DateTime InsertDate { get; set; } // InsertDate
-
-        public UserSurveyCountAfter()
-        {
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // UserSurveyCountBefore
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class UserSurveyCountBefore
-    {
-        public int UserSurveyCountBeforeId { get; set; } // UserSurveyCountBeforeID (Primary key)
-        public string EmailAddress { get; set; } // EmailAddress (length: 250)
-        public int SurveyCount { get; set; } // SurveyCount
-        public System.DateTime InsertDate { get; set; } // InsertDate
-
-        public UserSurveyCountBefore()
-        {
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
     // VerifyZipFailure
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class VerifyZipFailure
     {
         public int VerifyZipFailureId { get; set; } // VerifyZipFailureId (Primary key)
         public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public string Street { get; set; } // Street (length: 500)
         public string IpAddress { get; set; } // IpAddress (length: 50)
         public string Zip { get; set; } // Zip (length: 50)
         public string IpVerifyResultJson { get; set; } // IpVerifyResultJson (length: 1000)
         public string ZipLookupResultJson { get; set; } // ZipLookupResultJson (length: 1000)
         public bool InvalidIp { get; set; } // InvalidIP
         public bool InvalidZip { get; set; } // InvalidZip
+        public bool InValidAddress { get; set; } // InValidAddress
         public bool NoMatch { get; set; } // NoMatch
         public System.DateTime InsertDate { get; set; } // InsertDate
         public bool IrreputableIp { get; set; } // IrreputableIP
@@ -2971,6 +3311,7 @@ namespace CBR.Core.Entities.Models
         {
             InvalidIp = false;
             InvalidZip = false;
+            InValidAddress = false;
             NoMatch = false;
             InsertDate = System.DateTime.Now;
             InitializePartial();
@@ -3248,6 +3589,25 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
+    // vwRouterStatusPrecisionSurvey
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class VwRouterStatusPrecisionSurvey
+    {
+        public string Email { get; set; } // Email (Primary key) (length: 250)
+        public System.Guid UserGuid { get; set; } // UserGuid (Primary key)
+        public string Name { get; set; } // Name (Primary key) (length: 255)
+        public string Status { get; set; } // Status (Primary key) (length: 1)
+        public decimal Reward { get; set; } // Reward (Primary key)
+        public decimal Gross { get; set; } // Gross (Primary key)
+
+        public VwRouterStatusPrecisionSurvey()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // WeeklySurveyAnswers
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class WeeklySurveyAnswer
@@ -3344,6 +3704,12 @@ namespace CBR.Core.Entities.Models
     #region Stored procedure return models
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class DailyReportCostCpaReturnModel
+    {
+        public System.Decimal? Column1 { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class DailyReportCostOfLeadsReturnModel
     {
         public System.Decimal? CostOfLeads { get; set; }
@@ -3437,18 +3803,6 @@ namespace CBR.Core.Entities.Models
         public System.String AffiliateID { get; set; }
         public System.String OfferID { get; set; }
         public System.String SubID { get; set; }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
-    public partial class GetShippingAddressReturnModel
-    {
-        public System.String FirstName { get; set; }
-        public System.String LastName { get; set; }
-        public System.String Address { get; set; }
-        public System.String Address2 { get; set; }
-        public System.String City { get; set; }
-        public System.String State { get; set; }
-        public System.String Zip { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
@@ -3574,6 +3928,12 @@ namespace CBR.Core.Entities.Models
         public System.Decimal ClickReceiveValue { get; set; }
         public System.String URL { get; set; }
         public System.Boolean Enabled { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterContactInsertsReturnModel
+    {
+        public System.Int32? Column1 { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]

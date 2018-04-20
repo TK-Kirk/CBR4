@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAPI", "ServiceAPI\ServiceAPI.csproj", "{1C8DCE47-03E6-4FA8-8BC1-BC82C1F4DE99}"
 EndProject
@@ -57,7 +57,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServiceAPI", "AdminSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Logic", "Admin.Logic\Admin.Logic.csproj", "{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "devmapi.cashbackresearch.com", "devmapi.cashbackresearch.com\devmapi.cashbackresearch.com.csproj", "{1E5E4FB1-D3B3-42C0-9915-F67D2716D466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyRouter.Logic", "SurveyRouter.Logic\SurveyRouter.Logic.csproj", "{91F356AE-92E1-4163-8EF7-DC0AE5FC8AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyRouter.Distributor", "SurveyRouter.Distributor\SurveyRouter.Distributor.csproj", "{6FEAFAAC-A4D0-4D61-84BF-47A4D2EE3C5C}"
+EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -93,8 +102,32 @@ Global
 		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{475B80E9-45E8-4BD5-BBDB-1D631D6258CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E5E4FB1-D3B3-42C0-9915-F67D2716D466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5E4FB1-D3B3-42C0-9915-F67D2716D466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5E4FB1-D3B3-42C0-9915-F67D2716D466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5E4FB1-D3B3-42C0-9915-F67D2716D466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F356AE-92E1-4163-8EF7-DC0AE5FC8AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F356AE-92E1-4163-8EF7-DC0AE5FC8AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F356AE-92E1-4163-8EF7-DC0AE5FC8AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F356AE-92E1-4163-8EF7-DC0AE5FC8AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FEAFAAC-A4D0-4D61-84BF-47A4D2EE3C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FEAFAAC-A4D0-4D61-84BF-47A4D2EE3C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FEAFAAC-A4D0-4D61-84BF-47A4D2EE3C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FEAFAAC-A4D0-4D61-84BF-47A4D2EE3C5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2565E3CC-3D18-4408-8D86-5D3315598730}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

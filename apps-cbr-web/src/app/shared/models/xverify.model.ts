@@ -1,4 +1,4 @@
-﻿namespace xverify {
+namespace xverify {
     export class AddressVerificationResponse {
         public get isValid(): boolean {
             if (this.address != null) {

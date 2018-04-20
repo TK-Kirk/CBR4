@@ -13,7 +13,12 @@ namespace ServiceAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            string origins = "http://devcoreg.cashbackresearch.com,http://testcoreg.cashbackresearch.com,http://coreg.cashbackresearch.com,http://apps.cashbackresearch.com";
+            string origins = "http://devm.cashbackresearch.com," +
+                             "http://m.cashbackresearch.com," +
+                             "http://devcoreg.cashbackresearch.com," +
+                             "http://testcoreg.cashbackresearch.com," +
+                             "http://coreg.cashbackresearch.com," +
+                             "http://apps.cashbackresearch.com";
             var cors = new EnableCorsAttribute(origins, "*", "*");
             config.EnableCors(cors);
 
