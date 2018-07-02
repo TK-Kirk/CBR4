@@ -2981,6 +2981,33 @@ namespace CBR.DataAccess.Mapping
         partial void InitializePartial();
     }
 
+    // RouterStatusPrecisionSamples
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterStatusPrecisionSampleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterStatusPrecisionSample>
+    {
+        public RouterStatusPrecisionSampleConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterStatusPrecisionSampleConfiguration(string schema)
+        {
+            ToTable("RouterStatusPrecisionSamples", schema);
+            HasKey(x => new { x.Email, x.Name, x.RewardValue, x.Status, x.PostbackDate, x.TransactionId });
+
+            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.RewardValue).HasColumnName(@"RewardValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("nchar").IsRequired().IsFixedLength().HasMaxLength(1).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PostbackDate).HasColumnName(@"PostbackDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Processed).HasColumnName(@"Processed").HasColumnType("bit").IsOptional();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
     // RouterStatusYourSurveys
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class RouterStatusYourSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterStatusYourSurvey>

@@ -13,11 +13,14 @@ namespace CBR.Core.Entities.ResourceModels
         public bool ValidEmail { get; set; }
         public string Message { get; set; }
 
-        public string DashUrl => "http://mdash.cashbackresearch.com/";
+        public string DashUrl { get; set; }
+
         public string RegisterUrl { get; set; }
         public string CashoutUrl => "http://m.cashbackresearch.com/cashout";
-        public string EarningsUrl => "http://m.cashbackresearch.com/earnings";
+        public string EarningsUrl { get; set; }
         public string DailySurveysUrl { get; set; }
+
+        public string DisplayName { get; set; }
 
     }
 }

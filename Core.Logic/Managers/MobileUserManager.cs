@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CBR.Core.Entities.ExternalResouceModels.XVerify;
@@ -38,15 +39,28 @@ namespace CBR.Core.Logic.Managers
                         existingLead = new MobilelLead() { EmailAddress = email, Ip = ipAddress, CountryId = countryId};
                         db.MobilelLeads.Add(existingLead);
                         db.SaveChanges();
+                        var oils = db.OptInLeads.Where(o => o.EmailAddress == email);
+                        if (!oils.Any())
+                        {
+                            var oil = new OptInLead();
+                            oil.EmailAddress = email;
+                            oil.Ip = ipAddress;
+                            oil.OfferId = "51011";
+                            db.OptInLeads.Add(oil);
+                            db.SaveChanges();
+                        }
                     }
                     return new MobileSignupResponse()
                     {
                         UserId = existingLead.UserId,
                         IsRegistered = existingLead.IsRegistered,
+                        DisplayName =  string.IsNullOrWhiteSpace(existingLead.Firstname) ? null : $"{existingLead.Firstname} {existingLead.Lastname}",
                         ValidEmail = true,
                         Message = "Success",
-                        RegisterUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}/register?ug={existingLead.UserId}",
-                        DailySurveysUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}/mysurveys?mu={existingLead.UserId}"
+                        DashUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}dash?ug={existingLead.UserId}",
+                        RegisterUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}register?ug={existingLead.UserId}",
+                        DailySurveysUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}mysurveys?mu={existingLead.UserId}",
+                        EarningsUrl = $"{ConfigurationManager.AppSettings["BaseWebUrl"]}earnings?ug={existingLead.UserId}"
                     };
                 }
 
@@ -92,7 +106,35 @@ namespace CBR.Core.Logic.Managers
             var mobileLead = db.MobilelLeads.FirstOrDefault(m=>m.UserId==userId);
 
             MobileLeadMapper.Map(userRegistrationRequest, mobileLead);
-            
+
+            db.SaveChanges();
+
+            var oil = db.OptInLeads.Where(o => o.EmailAddress == mobileLead.EmailAddress);
+
+            int? birthdayDay = null;
+            int? birthdayMonth = null;
+            int? birthdayYear = null;
+
+            if (mobileLead.Dob.HasValue)
+            {
+                birthdayDay = mobileLead.Dob.Value.Day;
+                birthdayMonth = mobileLead.Dob.Value.Month;
+                birthdayYear = mobileLead.Dob.Value.Year;
+            }
+
+            foreach (OptInLead lead in  oil)
+            {
+                lead.Firstname = lead.Firstname ?? mobileLead?.Firstname;
+                lead.Lastname = lead.Lastname ?? mobileLead?.Lastname;
+                lead.Address = lead.Address ?? mobileLead?.Address;
+                lead.BirthdayDay = lead.BirthdayDay ?? birthdayDay;
+                lead.BirthdayMonth = lead.BirthdayMonth ?? birthdayMonth;
+                lead.BirthdayYear = lead.BirthdayYear ?? birthdayYear;
+                lead.City = lead.City ?? mobileLead?.City;
+                lead.State = lead.State ?? mobileLead?.State;
+                lead.Zip = lead.Zip ?? mobileLead?.Zip;
+            }
+
             db.SaveChanges();
 
             return mobileLead.RouterContactId;
@@ -122,6 +164,18 @@ namespace CBR.Core.Logic.Managers
             var mobileLead = db.MobilelLeads.FirstOrDefault(m => m.UserId == userId);
             mobileLead.RouterContactId = routerContactId;
             db.SaveChanges();
+        }
+
+        public decimal GetUserEarnings(Guid userId)
+        {
+            var db = new GloshareContext();
+            List<GetMobileEarningsReturnModel> earnings = db.GetMobileEarnings(userId);
+            if (earnings.Any())
+            {
+                return earnings.First().earnings ?? 0;
+            }
+
+            return 0;
         }
     }
 

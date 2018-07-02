@@ -142,6 +142,7 @@ namespace CBR.DataAccess
         System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
         System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
         System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        System.Data.Entity.DbSet<RouterStatusPrecisionSample> RouterStatusPrecisionSamples { get; set; } // RouterStatusPrecisionSamples
         System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
         System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
         System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
@@ -213,9 +214,16 @@ namespace CBR.DataAccess
         int DevPurgeSurveyResultsForEmail(string emailAddress, int? surveyId);
         // DevPurgeSurveyResultsForEmailAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
 
+        int FixIp(string emailAddress, string ip);
+        // FixIpAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
         System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel> GetLeadsByDayForFraud(System.DateTime? dateToCheck);
         System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel> GetLeadsByDayForFraud(System.DateTime? dateToCheck, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel>> GetLeadsByDayForFraudAsync(System.DateTime? dateToCheck);
+
+        System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId);
+        System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GetMobileEarningsReturnModel>> GetMobileEarningsAsync(System.Guid? mobileUserId);
 
         System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd);
         System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd, out int procResult);
@@ -232,6 +240,10 @@ namespace CBR.DataAccess
         System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel> GetRoiForLast100Signups(string affiliateId, string offerId, string subId, int? sampleNumber);
         System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel> GetRoiForLast100Signups(string affiliateId, string offerId, string subId, int? sampleNumber, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel>> GetRoiForLast100SignupsAsync(string affiliateId, string offerId, string subId, int? sampleNumber);
+
+        System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats();
+        System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats(out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GetRouterStatsReturnModel>> GetRouterStatsAsync();
 
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList);
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList, out int procResult);
@@ -458,6 +470,7 @@ namespace CBR.DataAccess
         public System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
         public System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
         public System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        public System.Data.Entity.DbSet<RouterStatusPrecisionSample> RouterStatusPrecisionSamples { get; set; } // RouterStatusPrecisionSamples
         public System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
         public System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
         public System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
@@ -651,6 +664,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new RouterHostConfiguration());
             modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration());
+            modelBuilder.Configurations.Add(new RouterStatusPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration());
             modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration());
@@ -796,6 +810,7 @@ namespace CBR.DataAccess
             modelBuilder.Configurations.Add(new RouterHostConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterStatusPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration(schema));
@@ -1047,6 +1062,23 @@ namespace CBR.DataAccess
             return (int) procResultParam.Value;
         }
 
+        public int FixIp(string emailAddress, string ip)
+        {
+            var emailAddressParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@EmailAddress", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = emailAddress, Size = 250 };
+            if (emailAddressParam.Value == null)
+                emailAddressParam.Value = System.DBNull.Value;
+
+            var ipParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@IP", SqlDbType = System.Data.SqlDbType.VarChar, Direction = System.Data.ParameterDirection.Input, Value = ip, Size = 50 };
+            if (ipParam.Value == null)
+                ipParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[FixIP] @EmailAddress, @IP", emailAddressParam, ipParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
         public System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel> GetLeadsByDayForFraud(System.DateTime? dateToCheck)
         {
             int procResult;
@@ -1073,6 +1105,36 @@ namespace CBR.DataAccess
                 dateToCheckParam.Value = System.DBNull.Value;
 
             var procResultData = await Database.SqlQuery<GetLeadsByDayForFraudReturnModel>("EXEC [dbo].[GetLeadsByDayForFraud] @DateToCheck", dateToCheckParam).ToListAsync();
+
+            return procResultData;
+        }
+
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId)
+        {
+            int procResult;
+            return GetMobileEarnings(mobileUserId, out procResult);
+        }
+
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId, out int procResult)
+        {
+            var mobileUserIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@MobileUserId", SqlDbType = System.Data.SqlDbType.UniqueIdentifier, Direction = System.Data.ParameterDirection.Input, Value = mobileUserId.GetValueOrDefault() };
+            if (!mobileUserId.HasValue)
+                mobileUserIdParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<GetMobileEarningsReturnModel>("EXEC @procResult = [dbo].[GetMobileEarnings] @MobileUserId", mobileUserIdParam, procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<GetMobileEarningsReturnModel>> GetMobileEarningsAsync(System.Guid? mobileUserId)
+        {
+            var mobileUserIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@MobileUserId", SqlDbType = System.Data.SqlDbType.UniqueIdentifier, Direction = System.Data.ParameterDirection.Input, Value = mobileUserId.GetValueOrDefault() };
+            if (!mobileUserId.HasValue)
+                mobileUserIdParam.Value = System.DBNull.Value;
+
+            var procResultData = await Database.SqlQuery<GetMobileEarningsReturnModel>("EXEC [dbo].[GetMobileEarnings] @MobileUserId", mobileUserIdParam).ToListAsync();
 
             return procResultData;
         }
@@ -1265,6 +1327,28 @@ namespace CBR.DataAccess
                 sampleNumberParam.Value = System.DBNull.Value;
 
             var procResultData = await Database.SqlQuery<GetRoiForLast100SignupsReturnModel>("EXEC [dbo].[GetROIForLast100Signups] @AffiliateId, @OfferId, @SubId, @SampleNumber", affiliateIdParam, offerIdParam, subIdParam, sampleNumberParam).ToListAsync();
+
+            return procResultData;
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats()
+        {
+            int procResult;
+            return GetRouterStats(out procResult);
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats(out int procResult)
+        {
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<GetRouterStatsReturnModel>("EXEC @procResult = [dbo].[GetRouterStats] ", procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<GetRouterStatsReturnModel>> GetRouterStatsAsync()
+        {
+            var procResultData = await Database.SqlQuery<GetRouterStatsReturnModel>("EXEC [dbo].[GetRouterStats] ").ToListAsync();
 
             return procResultData;
         }

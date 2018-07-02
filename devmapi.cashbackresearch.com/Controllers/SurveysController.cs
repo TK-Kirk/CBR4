@@ -137,7 +137,7 @@ namespace devmapi.cashbackresearch.com.Controllers
             //if minumum data does exist it creates a new router user and redirects them ot
             //the daily surveys page
             var _manager = new RouterManager();
-            var minimumInfoExistsResult = _manager.CheckIfMinimumInfoExistsForEmail(emailAddress);
+            MinimumInfoExistsResult minimumInfoExistsResult = _manager.CheckIfMinimumInfoExistsForEmail(emailAddress);
 
             if (minimumInfoExistsResult.HasMinimumInfo && !minimumInfoExistsResult.HasRounterContact)
             {
@@ -156,10 +156,18 @@ namespace devmapi.cashbackresearch.com.Controllers
             //second half of RouterEmailPush.
             //if all info not present then it gets sent in. 
             //then set up for surveys
-            var _manager = new RouterManager();
-            _manager.UpdateMinimumSurveyInfo(minimumSurveyInfo);
-            RouterContact user = _manager.RouterContactFullSetup(minimumSurveyInfo.EmailAddress);
-            return Ok(user);
+            try
+            {
+                var _manager = new RouterManager();
+                _manager.UpdateMinimumSurveyInfo(minimumSurveyInfo);
+                RouterContact user = _manager.RouterContactFullSetup(minimumSurveyInfo.EmailAddress);
+                return Ok(user.UniqueId);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+
+            }
         }
 
         private string CreateUrlForYourSurveys(string surveyUrl)

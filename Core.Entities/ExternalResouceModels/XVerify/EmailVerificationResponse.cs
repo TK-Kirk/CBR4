@@ -14,7 +14,7 @@ namespace CBR.Core.Entities.ExternalResouceModels.XVerify
             {
                 if (email != null)
                 {
-                    return email.responsecode == 1;
+                    return email.responsecode == 1 || email.responsecode == 3;
                 }
                 return false;
             }

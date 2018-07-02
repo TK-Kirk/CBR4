@@ -12,7 +12,7 @@ namespace devmapi.cashbackresearch.com
     {
         public static void Register(HttpConfiguration config)
         {
-            string origins = "http://devm.cashbackresearch.com,http://m.cashbackresearch.com";
+            string origins = "http://devm.cashbackresearch.com,https://m.cashbackresearch.com";
             var cors1 = new EnableCorsAttribute(origins, "*", "*");
             config.EnableCors(cors1);
 

@@ -2793,6 +2793,27 @@ namespace CBR.Core.Entities.Models
         partial void InitializePartial();
     }
 
+    // RouterStatusPrecisionSamples
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class RouterStatusPrecisionSample
+    {
+        public string Email { get; set; } // Email (Primary key) (length: 250)
+        public string Name { get; set; } // Name (Primary key) (length: 255)
+        public decimal RewardValue { get; set; } // RewardValue (Primary key)
+        public string Status { get; set; } // Status (Primary key) (length: 1)
+        public System.DateTime PostbackDate { get; set; } // PostbackDate (Primary key)
+        public bool? Processed { get; set; } // Processed
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+        public System.Guid TransactionId { get; set; } // TransactionId (Primary key)
+
+        public RouterStatusPrecisionSample()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // RouterStatusYourSurveys
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class RouterStatusYourSurvey
@@ -3761,6 +3782,12 @@ namespace CBR.Core.Entities.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class GetMobileEarningsReturnModel
+    {
+        public System.Decimal? earnings { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public partial class GetOffersReportReturnModel
     {
         public System.String Title { get; set; }
@@ -3803,6 +3830,12 @@ namespace CBR.Core.Entities.Models
         public System.String AffiliateID { get; set; }
         public System.String OfferID { get; set; }
         public System.String SubID { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public partial class GetRouterStatsReturnModel
+    {
+        public System.String message { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]

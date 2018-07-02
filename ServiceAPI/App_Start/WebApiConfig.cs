@@ -14,7 +14,7 @@ namespace ServiceAPI
         {
             // Web API configuration and services
             string origins = "http://devm.cashbackresearch.com," +
-                             "http://m.cashbackresearch.com," +
+                             "https://m.cashbackresearch.com," +
                              "http://devcoreg.cashbackresearch.com," +
                              "http://testcoreg.cashbackresearch.com," +
                              "http://coreg.cashbackresearch.com," +
@@ -22,6 +22,9 @@ namespace ServiceAPI
             var cors = new EnableCorsAttribute(origins, "*", "*");
             config.EnableCors(cors);
 
+            // Web API configuration and services
+            //var cors2 = new EnableCorsAttribute("*", "*", "*");
+            //GlobalConfiguration.Configuration.EnableCors(cors2);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

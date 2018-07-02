@@ -116,6 +116,7 @@ namespace SurveyRouter.Logic.Data
         System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
         System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
         System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        System.Data.Entity.DbSet<RouterStatusPrecisionSample> RouterStatusPrecisionSamples { get; set; } // RouterStatusPrecisionSamples
         System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
         System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
         System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
@@ -194,6 +195,10 @@ namespace SurveyRouter.Logic.Data
         System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel> GetLeadsByDayForFraud(System.DateTime? dateToCheck, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetLeadsByDayForFraudReturnModel>> GetLeadsByDayForFraudAsync(System.DateTime? dateToCheck);
 
+        System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId);
+        System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GetMobileEarningsReturnModel>> GetMobileEarningsAsync(System.Guid? mobileUserId);
+
         System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd);
         System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetOffersReportReturnModel>> GetOffersReportAsync(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd);
@@ -209,6 +214,10 @@ namespace SurveyRouter.Logic.Data
         System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel> GetRoiForLast100Signups(string affiliateId, string offerId, string subId, int? sampleNumber);
         System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel> GetRoiForLast100Signups(string affiliateId, string offerId, string subId, int? sampleNumber, out int procResult);
         System.Threading.Tasks.Task<System.Collections.Generic.List<GetRoiForLast100SignupsReturnModel>> GetRoiForLast100SignupsAsync(string affiliateId, string offerId, string subId, int? sampleNumber);
+
+        System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats();
+        System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats(out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GetRouterStatsReturnModel>> GetRouterStatsAsync();
 
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList);
         System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList, out int procResult);
@@ -409,6 +418,7 @@ namespace SurveyRouter.Logic.Data
         public System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; } // RouterHost
         public System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; } // RouterPostBackPrecisionSample
         public System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; } // RouterPostBackYourSurveys
+        public System.Data.Entity.DbSet<RouterStatusPrecisionSample> RouterStatusPrecisionSamples { get; set; } // RouterStatusPrecisionSamples
         public System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; } // RouterStatusYourSurveys
         public System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; } // RouterSurveyPrecisionSample
         public System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; } // RouterSurveyYourSurvey
@@ -577,6 +587,7 @@ namespace SurveyRouter.Logic.Data
             modelBuilder.Configurations.Add(new RouterHostConfiguration());
             modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration());
+            modelBuilder.Configurations.Add(new RouterStatusPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration());
             modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration());
             modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration());
@@ -697,6 +708,7 @@ namespace SurveyRouter.Logic.Data
             modelBuilder.Configurations.Add(new RouterHostConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterPostBackPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterPostBackYourSurveyConfiguration(schema));
+            modelBuilder.Configurations.Add(new RouterStatusPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterStatusYourSurveyConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterSurveyPrecisionSampleConfiguration(schema));
             modelBuilder.Configurations.Add(new RouterSurveyYourSurveyConfiguration(schema));
@@ -995,6 +1007,36 @@ namespace SurveyRouter.Logic.Data
             return procResultData;
         }
 
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId)
+        {
+            int procResult;
+            return GetMobileEarnings(mobileUserId, out procResult);
+        }
+
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId, out int procResult)
+        {
+            var mobileUserIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@MobileUserId", SqlDbType = System.Data.SqlDbType.UniqueIdentifier, Direction = System.Data.ParameterDirection.Input, Value = mobileUserId.GetValueOrDefault() };
+            if (!mobileUserId.HasValue)
+                mobileUserIdParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<GetMobileEarningsReturnModel>("EXEC @procResult = [dbo].[GetMobileEarnings] @MobileUserId", mobileUserIdParam, procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<GetMobileEarningsReturnModel>> GetMobileEarningsAsync(System.Guid? mobileUserId)
+        {
+            var mobileUserIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@MobileUserId", SqlDbType = System.Data.SqlDbType.UniqueIdentifier, Direction = System.Data.ParameterDirection.Input, Value = mobileUserId.GetValueOrDefault() };
+            if (!mobileUserId.HasValue)
+                mobileUserIdParam.Value = System.DBNull.Value;
+
+            var procResultData = await Database.SqlQuery<GetMobileEarningsReturnModel>("EXEC [dbo].[GetMobileEarnings] @MobileUserId", mobileUserIdParam).ToListAsync();
+
+            return procResultData;
+        }
+
         public System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd)
         {
             int procResult;
@@ -1183,6 +1225,28 @@ namespace SurveyRouter.Logic.Data
                 sampleNumberParam.Value = System.DBNull.Value;
 
             var procResultData = await Database.SqlQuery<GetRoiForLast100SignupsReturnModel>("EXEC [dbo].[GetROIForLast100Signups] @AffiliateId, @OfferId, @SubId, @SampleNumber", affiliateIdParam, offerIdParam, subIdParam, sampleNumberParam).ToListAsync();
+
+            return procResultData;
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats()
+        {
+            int procResult;
+            return GetRouterStats(out procResult);
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats(out int procResult)
+        {
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<GetRouterStatsReturnModel>("EXEC @procResult = [dbo].[GetRouterStats] ", procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<GetRouterStatsReturnModel>> GetRouterStatsAsync()
+        {
+            var procResultData = await Database.SqlQuery<GetRouterStatsReturnModel>("EXEC [dbo].[GetRouterStats] ").ToListAsync();
 
             return procResultData;
         }
@@ -2661,6 +2725,7 @@ namespace SurveyRouter.Logic.Data
         public System.Data.Entity.DbSet<RouterHost> RouterHosts { get; set; }
         public System.Data.Entity.DbSet<RouterPostBackPrecisionSample> RouterPostBackPrecisionSamples { get; set; }
         public System.Data.Entity.DbSet<RouterPostBackYourSurvey> RouterPostBackYourSurveys { get; set; }
+        public System.Data.Entity.DbSet<RouterStatusPrecisionSample> RouterStatusPrecisionSamples { get; set; }
         public System.Data.Entity.DbSet<RouterStatusYourSurvey> RouterStatusYourSurveys { get; set; }
         public System.Data.Entity.DbSet<RouterSurveyPrecisionSample> RouterSurveyPrecisionSamples { get; set; }
         public System.Data.Entity.DbSet<RouterSurveyYourSurvey> RouterSurveyYourSurveys { get; set; }
@@ -2778,6 +2843,7 @@ namespace SurveyRouter.Logic.Data
             RouterHosts = new FakeDbSet<RouterHost>("RouterHostId");
             RouterPostBackPrecisionSamples = new FakeDbSet<RouterPostBackPrecisionSample>("RouterPostbackPrecisionSampleId");
             RouterPostBackYourSurveys = new FakeDbSet<RouterPostBackYourSurvey>("RouterPostBackYourSurveysId");
+            RouterStatusPrecisionSamples = new FakeDbSet<RouterStatusPrecisionSample>("Email", "Name", "RewardValue", "Status", "PostbackDate", "TransactionId");
             RouterStatusYourSurveys = new FakeDbSet<RouterStatusYourSurvey>("Email", "Name", "Cpi", "PostbackDate", "TransactionId");
             RouterSurveyPrecisionSamples = new FakeDbSet<RouterSurveyPrecisionSample>("RouterSurveyPrecisionSampleId");
             RouterSurveyYourSurveys = new FakeDbSet<RouterSurveyYourSurvey>("RouterSurveyYourSurveyId");
@@ -2992,6 +3058,25 @@ namespace SurveyRouter.Logic.Data
             return System.Threading.Tasks.Task.FromResult(GetLeadsByDayForFraud(dateToCheck, out procResult));
         }
 
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId)
+        {
+            int procResult;
+            return GetMobileEarnings(mobileUserId, out procResult);
+        }
+
+        public System.Collections.Generic.List<GetMobileEarningsReturnModel> GetMobileEarnings(System.Guid? mobileUserId, out int procResult)
+        {
+
+            procResult = 0;
+            return new System.Collections.Generic.List<GetMobileEarningsReturnModel>();
+        }
+
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GetMobileEarningsReturnModel>> GetMobileEarningsAsync(System.Guid? mobileUserId)
+        {
+            int procResult;
+            return System.Threading.Tasks.Task.FromResult(GetMobileEarnings(mobileUserId, out procResult));
+        }
+
         public System.Collections.Generic.List<GetOffersReportReturnModel> GetOffersReport(string offerId, string affiliateId, string subid, System.DateTime? dateStart, System.DateTime? dateEnd)
         {
             int procResult;
@@ -3066,6 +3151,25 @@ namespace SurveyRouter.Logic.Data
         {
             int procResult;
             return System.Threading.Tasks.Task.FromResult(GetRoiForLast100Signups(affiliateId, offerId, subId, sampleNumber, out procResult));
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats()
+        {
+            int procResult;
+            return GetRouterStats(out procResult);
+        }
+
+        public System.Collections.Generic.List<GetRouterStatsReturnModel> GetRouterStats(out int procResult)
+        {
+
+            procResult = 0;
+            return new System.Collections.Generic.List<GetRouterStatsReturnModel>();
+        }
+
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GetRouterStatsReturnModel>> GetRouterStatsAsync()
+        {
+            int procResult;
+            return System.Threading.Tasks.Task.FromResult(GetRouterStats(out procResult));
         }
 
         public System.Collections.Generic.List<GetSignupsWithRevenueReturnModel> GetSignupsWithRevenue(string affiliateId, string offerId, string subId, string emailList)
@@ -5715,6 +5819,27 @@ namespace SurveyRouter.Logic.Data
         public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
 
         public RouterPostBackYourSurvey()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // RouterStatusPrecisionSamples
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
+    public partial class RouterStatusPrecisionSample
+    {
+        public string Email { get; set; } // Email (Primary key) (length: 250)
+        public string Name { get; set; } // Name (Primary key) (length: 255)
+        public decimal RewardValue { get; set; } // RewardValue (Primary key)
+        public string Status { get; set; } // Status (Primary key) (length: 1)
+        public System.DateTime PostbackDate { get; set; } // PostbackDate (Primary key)
+        public bool? Processed { get; set; } // Processed
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+        public System.Guid TransactionId { get; set; } // TransactionId (Primary key)
+
+        public RouterStatusPrecisionSample()
         {
             InitializePartial();
         }
@@ -8841,6 +8966,33 @@ namespace SurveyRouter.Logic.Data
         partial void InitializePartial();
     }
 
+    // RouterStatusPrecisionSamples
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
+    public partial class RouterStatusPrecisionSampleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterStatusPrecisionSample>
+    {
+        public RouterStatusPrecisionSampleConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RouterStatusPrecisionSampleConfiguration(string schema)
+        {
+            ToTable("RouterStatusPrecisionSamples", schema);
+            HasKey(x => new { x.Email, x.Name, x.RewardValue, x.Status, x.PostbackDate, x.TransactionId });
+
+            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(250).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.RewardValue).HasColumnName(@"RewardValue").HasColumnType("money").IsRequired().HasPrecision(19,4).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("nchar").IsRequired().IsFixedLength().HasMaxLength(1).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PostbackDate).HasColumnName(@"PostbackDate").HasColumnType("datetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Processed).HasColumnName(@"Processed").HasColumnType("bit").IsOptional();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.TransactionId).HasColumnName(@"TransactionId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
     // RouterStatusYourSurveys
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
     public partial class RouterStatusYourSurveyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RouterStatusYourSurvey>
@@ -9925,6 +10077,12 @@ namespace SurveyRouter.Logic.Data
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
+    public partial class GetMobileEarningsReturnModel
+    {
+        public System.Decimal? earnings { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
     public partial class GetOffersReportReturnModel
     {
         public System.String Title { get; set; }
@@ -9967,6 +10125,12 @@ namespace SurveyRouter.Logic.Data
         public System.String AffiliateID { get; set; }
         public System.String OfferID { get; set; }
         public System.String SubID { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]
+    public partial class GetRouterStatsReturnModel
+    {
+        public System.String message { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.35.0.0")]

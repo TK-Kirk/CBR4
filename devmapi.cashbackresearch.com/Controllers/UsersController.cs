@@ -44,6 +44,14 @@ namespace devmapi.cashbackresearch.com.Controllers
 
         }
 
+        [Route("earnings")]
+        [HttpGet]
+        public IHttpActionResult GetEarnings([FromUri] Guid userId)
+        {
+            var m = new MobileUserManager();
+            decimal earnings = m.GetUserEarnings(userId);
+            return Ok(earnings);
+        }
         // PUT: api/Users/5
         [Route("registration")]
         [HttpPost]
@@ -85,6 +93,9 @@ namespace devmapi.cashbackresearch.com.Controllers
             });
 
         }
+
+
+
 
         //// DELETE: api/Users/5
         //public void Delete(int id)

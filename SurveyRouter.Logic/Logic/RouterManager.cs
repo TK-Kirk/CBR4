@@ -307,7 +307,7 @@ namespace SurveyRouter.Logic.Logic
             lead1.BirthdayYear = lead1.BirthdayYear ?? lead2?.BirthdayYear;
             lead1.City = lead1.City ?? lead2?.City;
             lead1.State = lead1.State ?? lead2?.State;
-            lead1.Zip = lead1.Ethnicity ?? lead2?.Ethnicity;
+            lead1.Zip = lead1.Zip ?? lead2?.Zip;
 
             return lead1;
         }
@@ -439,7 +439,8 @@ namespace SurveyRouter.Logic.Logic
             {
                 if (!user.RouterContactPrecisionSamples.Any())
                 {
-                    CreatePrecisionSampleUser(user);
+                    //4/20/2018 MH Drop PrecisionSample
+                    //CreatePrecisionSampleUser(user);
                 }
             }
 
@@ -462,7 +463,8 @@ namespace SurveyRouter.Logic.Logic
                 db.SaveChanges();
             }
 
-            CreatePrecisionSampleUser(user);
+            //4/20/2018 MH Drop PrecisionSample
+            //CreatePrecisionSampleUser(user);
             return user;
         }
 
@@ -832,11 +834,11 @@ namespace SurveyRouter.Logic.Logic
 
             foreach (OptInLead lead in optInLeads)
             {
-                lead.Gender = minimumSurveyInfo.Gender;
-                lead.BirthdayDay = minimumSurveyInfo.Dob.Day;
-                lead.BirthdayMonth = minimumSurveyInfo.Dob.Month;
-                lead.BirthdayYear = minimumSurveyInfo.Dob.Year;
-                lead.Zip = minimumSurveyInfo.Zip;
+                if (!string.IsNullOrWhiteSpace(minimumSurveyInfo.Gender)) lead.Gender = minimumSurveyInfo.Gender;
+                if (minimumSurveyInfo.Dob != null) lead.BirthdayDay = minimumSurveyInfo.Dob.Value.Day;
+                if (minimumSurveyInfo.Dob != null) lead.BirthdayMonth = minimumSurveyInfo.Dob.Value.Month;
+                if (minimumSurveyInfo.Dob != null) lead.BirthdayYear = minimumSurveyInfo.Dob.Value.Year;
+                if (!string.IsNullOrWhiteSpace(minimumSurveyInfo.Zip)) lead.Zip = minimumSurveyInfo.Zip;
             }
 
             db.SaveChanges();
@@ -858,7 +860,7 @@ namespace SurveyRouter.Logic.Logic
     public class MinimumSurveyInfo
     {
         public string Gender { get; set; }
-        public DateTime Dob { get; set; }
+        public DateTime? Dob { get; set; }
         public string Zip { get; set; }
         public string EmailAddress { get; set; }
 
